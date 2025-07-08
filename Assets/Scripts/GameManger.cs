@@ -34,9 +34,51 @@ public class gameManger : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel"))
         {
-            isPaused = isPaused;
-            menuPaused.SetActive(isPaused);
+           if(menuActive == null)
+            {
+                statePaused();
+                menuActive = menuPaused;
+                menuActive.SetActive(true);
+
+            }
+            else if (menuActive == menuPaused)
+            {
+                stateUnpaused();
+            }
+            else if (menuActive == menuWin || menuActive == menuLose)
+            {
+                stateUnpaused();
+                menuActive = null;
+            }
         }
+
+        
+    }
+
+    public void statePaused()
+    {
+        isPaused = isPaused;
+        Time.timeScale = 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void stateUnpaused()
+    {
+        isPaused = isPaused;
+        Time.timeScale = timescaleOrig;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        menuActive.SetActive(false);
+        menuActive = null;
+    }
+
+    public void updateGameGoal(int amount)
+    {
+        gameGoalCount  += amount;
+        statePaused();
+        menuActive = menuWin;
+        menuActive.SetActive(true);
         
     }
 }
