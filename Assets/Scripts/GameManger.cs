@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class gameManger : MonoBehaviour
+public class gamemanager : MonoBehaviour
 {
-    public static gameManger instance;
+    public static gamemanager instance;
 
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPaused;
