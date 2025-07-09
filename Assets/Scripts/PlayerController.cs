@@ -4,6 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     //Controller
     [SerializeField] CharacterController controller;
+    [SerializeField] LayerMask ignoreLayer;
 
     //Movement
     [SerializeField] int speed;
@@ -101,7 +102,7 @@ public class PlayerController : MonoBehaviour
         Instantiate(Furball, shootPos.position, Camera.main.transform.rotation);
 
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist,~ignoreLayer))
         {
             Debug.Log(hit.collider.name);
         }
