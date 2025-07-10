@@ -20,9 +20,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
     [SerializeField] GameObject Furball;
-    [SerializeField] GameObject PeeSpot;
+    [SerializeField] GameObject Yarnball;
     [SerializeField] Transform shootPos;
-    [SerializeField] Transform PeePos;
 
     //References
     Vector3 moveDir;
@@ -78,7 +77,7 @@ public class PlayerController : MonoBehaviour
         shootTimer += Time.deltaTime;
         if (Input.GetButton("Fire2") && shootTimer > shootRate)
         {
-            shootPee();
+            shootYarn();
         }
     }
 
@@ -118,17 +117,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void shootPee()
+    void shootYarn()
     {
         shootTimer = 0;
 
-        //PeeSpot Spawn
+        //Yarnball Spawn
+        Vector3 offset = Camera.main.transform.forward * 0.3f;
+        Instantiate(Furball, shootPos.position + offset, Camera.main.transform.rotation);
+
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
         {
-            //PeeSpot
-            Quaternion rot = Quaternion.FromToRotation(Vector3.up, hit.normal);
-            Instantiate(PeeSpot, PeePos.position, rot);
+            Debug.Log(hit.collider.name);
         }
     }
 
