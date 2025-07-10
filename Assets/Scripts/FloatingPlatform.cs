@@ -5,6 +5,8 @@ public class FloatingPlatform : MonoBehaviour
 
     [SerializeField] float Speed;
     [SerializeField] float Height;
+    [SerializeField] float ForwardRange;
+    public Vector3 ForwardDirection = Vector3.forward;
 
     private Vector3 startpos;
     private float timer;
@@ -13,13 +15,19 @@ public class FloatingPlatform : MonoBehaviour
     void Start()
     {
         startpos = transform.position;
+        ForwardDirection.Normalize();
     }
 
     // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime * Speed;
+
         float offsetY = Mathf.Sin(timer) * Height;
-        transform.position = new Vector3(startpos.x, startpos.y + offsetY, startpos.z);
+
+        float offsetFor = Mathf.Cos(timer) * ForwardRange;
+
+        Vector3 offset = new Vector3(0, offsetY, 0) + ForwardDirection * offsetFor;
+        transform.position = startpos + offset;
     }
 }

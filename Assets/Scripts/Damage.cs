@@ -26,6 +26,11 @@ public class Damage : MonoBehaviour
             {
                 rigid.linearVelocity = transform.forward * Speed;
             }
+
+            if (type == DamageTypes.Homing)
+            {
+                rigid.linearVelocity = (gamemanager.instance.player.transform.position).normalized * Speed * Time.deltaTime;
+            }
         }
     }
 
@@ -46,7 +51,9 @@ public class Damage : MonoBehaviour
         }
         IDamage damage = other.GetComponent<IDamage>();
 
-        if (damage != null)
+        
+
+        if (damage != null && type != DamageTypes.DmgOvrTime)
         {
             damage.TakeDamage(DamageAmount);
         }
