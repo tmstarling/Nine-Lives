@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour ,IDamage
 {
     //Controller
     [SerializeField] CharacterController controller;
@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         HPOrig = HP;
+        updateplayer();
     }
 
     // Update is called once per frame
@@ -114,6 +115,13 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist,~ignoreLayer))
         {
             Debug.Log(hit.collider.name);
+
+            IDamage dmg = hit.collider.GetComponent<IDamage>();
+
+            if (dmg != null)
+            {
+                dmg.TakeDamage(shootDamage);
+            }
         }
     }
 
@@ -132,13 +140,29 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void takeDamage(int amount)
+    public void TakeDamage(int amount)
     {
         HP -= amount;
+        updateplayer();
+        StartCoroutine(damageFlashScreen());
 
-        if (HP <= 0)
+        if (HP <= 0) 
         {
-            //Die
+            gamemanager.instance.youLose();
+
+
         }
+    }
+
+    public void updateplayer()
+    {
+        gamemanager.instance.playeHPBar.fillAmount = (float)HP / HPOrig;
+    }
+
+    IEnumerator damageFlashScreen()
+    {
+        gamemanager.instance.playerDamagePanel.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gamemanager.instance.playerDamagePanel.SetActive(false);
     }
 }

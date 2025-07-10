@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class gamemanager : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
 
-
+    public Image playeHPBar;
+    public GameObject playerDamagePanel;
     public bool isPaused;
     public GameObject player;
     public PlayerController playerScript;
@@ -75,10 +77,20 @@ public class gamemanager : MonoBehaviour
 
     public void updateGameGoal(int amount)
     {
-        gameGoalCount  += amount;
-        statePaused();
-        menuActive = menuWin;
-        menuActive.SetActive(true);
-        
+        gameGoalCount += amount; 
+        if (gameGoalCount <= 0) 
+        { statePaused(); 
+          menuActive = menuWin; 
+          menuActive.SetActive(true); 
+        }
     }
+
+    
+
+    public void youLose() 
+    {  
+        statePaused();
+        menuActive = menuLose;
+        menuActive.SetActive(true);
+    }   
 }

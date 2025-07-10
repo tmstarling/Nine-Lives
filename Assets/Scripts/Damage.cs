@@ -10,6 +10,7 @@ public class Damage : MonoBehaviour
     [SerializeField] int DamageAmount;
     [SerializeField] int Speed;
     [SerializeField] int DestroyTime;
+    [SerializeField] float damageRate;
 
     bool isDamaging;
 
@@ -24,6 +25,11 @@ public class Damage : MonoBehaviour
             if (type == DamageTypes.Moving)
             {
                 rigid.linearVelocity = transform.forward * Speed;
+            }
+
+            if (type == DamageTypes.Homing)
+            {
+                rigid.linearVelocity = (gamemanager.instance.player.transform.position).normalized * Speed * Time.deltaTime;
             }
         }
     }
@@ -45,7 +51,9 @@ public class Damage : MonoBehaviour
         }
         IDamage damage = other.GetComponent<IDamage>();
 
-        if (damage != null)
+        
+
+        if (damage != null && type != DamageTypes.DmgOvrTime)
         {
             damage.TakeDamage(DamageAmount);
         }
