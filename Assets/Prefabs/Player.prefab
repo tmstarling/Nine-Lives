@@ -1399,7 +1399,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.0832, y: 0, z: 3.1446}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6001662484646101926}
@@ -1427,15 +1427,14 @@ MonoBehaviour:
   speed: 5
   sprintMod: 2
   jumpVel: 10
-  jumpMax: 1
+  jumpMax: 2
   gravity: 35
   shootDamage: 5
   shootRate: 0.5
   shootDist: 150
-  Furball: {fileID: 7135126169504605529, guid: 959b703c07aeeb54c9cc8ad0eba888ae, type: 3}
-  PeeSpot: {fileID: 7937640049546602021, guid: 178b2042e3851574889ea405bc7a93ea, type: 3}
+  Furball: {fileID: 2466991997635656875, guid: fc2100fb8f48c4f4a9e625833052e08a, type: 3}
+  Yarnball: {fileID: 0}
   shootPos: {fileID: 3873752468338650063}
-  PeePos: {fileID: 8810776350878406782}
 --- !u!95 &1527591669686737709
 Animator:
   serializedVersion: 7
@@ -1482,7 +1481,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.1, z: 0}
+  m_Center: {x: 0, y: 0.1, z: -0.05}
 --- !u!1 &5901741243466088468
 GameObject:
   m_ObjectHideFlags: 0
