@@ -10,7 +10,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuLose;
 
 
-    public bool isPaused = false;
+    public bool isPaused;
     public GameObject player;
     public PlayerController playerScript;
 
@@ -57,7 +57,7 @@ public class gamemanager : MonoBehaviour
 
     public void statePaused()
     {
-        isPaused = isPaused;
+        isPaused = true;
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -65,7 +65,7 @@ public class gamemanager : MonoBehaviour
 
     public void stateUnpaused()
     {
-        isPaused = isPaused;
+        isPaused = false;
         Time.timeScale = timescaleOrig;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

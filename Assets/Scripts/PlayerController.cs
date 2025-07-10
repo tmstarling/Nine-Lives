@@ -1,10 +1,12 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
     //Controller
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
+    [SerializeField] int HP;
 
     //Movement
     [SerializeField] int speed;
@@ -18,19 +20,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
     [SerializeField] GameObject Furball;
+    [SerializeField] GameObject PeeSpot;
     [SerializeField] Transform shootPos;
+    [SerializeField] Transform PeePos;
 
     //References
     Vector3 moveDir;
     Vector3 playerVel;
 
+    int HPOrig;
     int jumpCount;
     float shootTimer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        HPOrig = HP;
     }
 
     // Update is called once per frame
@@ -46,8 +51,6 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(moveDir);
         //Debug.Log(controller.gameObject.activeInHierarchy);
         //Debug.Log("Player starting position: " + transform.position);
-        
-        shootTimer += Time.deltaTime;
 
         //Player Grounded
         if (controller.isGrounded)
@@ -69,7 +72,13 @@ public class PlayerController : MonoBehaviour
         shootTimer += Time.deltaTime;
         if (Input.GetButton("Fire1") && shootTimer > shootRate)
         {
-            shoot();
+            shootBall();
+        }
+
+        shootTimer += Time.deltaTime;
+        if (Input.GetButton("Fire2") && shootTimer > shootRate)
+        {
+            shootPee();
         }
     }
 
@@ -94,17 +103,42 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void shoot()
+    void shootBall()
     {
         shootTimer = 0;
 
         //Furball Spawn
-        Instantiate(Furball, shootPos.position, Camera.main.transform.rotation);
+        Vector3 offset = Camera.main.transform.forward * 0.3f;
+        Instantiate(Furball, shootPos.position + offset, Camera.main.transform.rotation);
 
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist,~ignoreLayer))
         {
             Debug.Log(hit.collider.name);
+        }
+    }
+
+    void shootPee()
+    {
+        shootTimer = 0;
+
+        //PeeSpot Spawn
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
+        {
+            //PeeSpot
+            Quaternion rot = Quaternion.FromToRotation(Vector3.up, hit.normal);
+            Instantiate(PeeSpot, PeePos.position, rot);
+        }
+    }
+
+    public void takeDamage(int amount)
+    {
+        HP -= amount;
+
+        if (HP <= 0)
+        {
+            //Die
         }
     }
 }
