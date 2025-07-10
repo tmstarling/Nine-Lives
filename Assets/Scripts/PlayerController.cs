@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour ,IDamage
     void Start()
     {
         HPOrig = HP;
+        updateplayer();
     }
 
     // Update is called once per frame
@@ -145,11 +146,25 @@ public class PlayerController : MonoBehaviour ,IDamage
     public void TakeDamage(int amount)
     {
         HP -= amount;
+        updateplayer();
+        StartCoroutine(damageFlashScreen());
         if (HP <= 0) 
         {
             gamemanager.instance.youLose();
 
 
         }
+    }
+
+    public void updateplayer()
+    {
+        gamemanager.instance.playeHPBar.fillAmount = (float)HP / HPOrig;
+    }
+
+    IEnumerator damageFlashScreen()
+    {
+               gamemanager.instance.playerDamagePanel.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gamemanager.instance.playerDamagePanel.SetActive(false);
     }
 }
