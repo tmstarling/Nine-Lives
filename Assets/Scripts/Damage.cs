@@ -67,6 +67,8 @@ public class Damage : MonoBehaviour
         if (dmg != null && type == DamageTypes.DmgOvrTime && !isDamaging)
         {
             StartCoroutine(DamageOther(dmg));
+
+            Destroy(gameObject);
         }
     }
 
