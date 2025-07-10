@@ -146,13 +146,13 @@ public class enemyAI : MonoBehaviour, IDamage
         }
         else
         {
-            StartCoroutine(flashRed());
+            StartCoroutine(flashGreen());
         }
     }
 
-    IEnumerator flashRed()
+    IEnumerator flashGreen()
     {
-        model.material.color = Color.red;
+        model.material.color = Color.green;
         yield return new WaitForSeconds(0.1f);
         model.material.color = colorOrg;
     }
@@ -163,8 +163,21 @@ public class enemyAI : MonoBehaviour, IDamage
         Instantiate(bullet, shootPos.position, transform.rotation);
 
     }
-}
 
-internal interface IDamage
-{
+    public void TakeDamage(int amount)
+    {
+        HP -= amount;
+        agent.SetDestination(gamemanager.instance.player.transform.position);
+
+        if (HP <= 0)
+        {
+            gamemanager.instance.updateGameGoal(-1);
+            Destroy(gameObject);
+        }
+        else
+        {
+            StartCoroutine(flashGreen());
+        }
+
+    }
 }
