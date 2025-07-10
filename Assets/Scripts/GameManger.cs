@@ -77,12 +77,15 @@ public class gamemanager : MonoBehaviour
 
     public void updateGameGoal(int amount)
     {
-        gameGoalCount  += amount;
-        statePaused();
-        menuActive = menuWin;
-        menuActive.SetActive(true);
-        
+        gameGoalCount += amount; 
+        if (gameGoalCount <= 0) 
+        { statePaused(); 
+          menuActive = menuWin; 
+          menuActive.SetActive(true); 
+        }
     }
+
+    
 
     public void youLose() 
     {  
