@@ -1399,7 +1399,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.0832, y: 0, z: 3.1446}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6001662484646101926}
@@ -1427,15 +1427,14 @@ MonoBehaviour:
   speed: 5
   sprintMod: 2
   jumpVel: 10
-  jumpMax: 1
+  jumpMax: 2
   gravity: 35
   shootDamage: 5
   shootRate: 0.5
   shootDist: 150
   Furball: {fileID: 7135126169504605529, guid: 959b703c07aeeb54c9cc8ad0eba888ae, type: 3}
-  PeeSpot: {fileID: 7937640049546602021, guid: 178b2042e3851574889ea405bc7a93ea, type: 3}
+  Yarnball: {fileID: 0}
   shootPos: {fileID: 3873752468338650063}
-  PeePos: {fileID: 8810776350878406782}
 --- !u!95 &1527591669686737709
 Animator:
   serializedVersion: 7
