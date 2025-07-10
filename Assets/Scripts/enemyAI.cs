@@ -141,7 +141,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            gamemanager.instance.updateGameGoal(-1);
+           
             Destroy(gameObject);
         }
         else
@@ -171,7 +171,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            gamemanager.instance.updateGameGoal(-1);
+           
             Destroy(gameObject);
         }
         else
