@@ -14,6 +14,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int roamDist;
     [SerializeField] int roamPauseTime;
+    [SerializeField] Animator anim;
 
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
@@ -42,7 +43,9 @@ public class enemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        if(agent.remainingDistance < 0.01f)
+        anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
+
+        if (agent.remainingDistance < 0.01f)
         {
             roamTimer += Time.deltaTime;
         }
@@ -88,7 +91,10 @@ public class enemyAI : MonoBehaviour, IDamage
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
-            if(hit.collider.CompareTag("Player") && angleToPlayer <= fov)
+            Debug.Log("Raycast hit: " + hit.collider.name);
+
+
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= fov)
             {
                 shootTimer += Time.deltaTime;
 
