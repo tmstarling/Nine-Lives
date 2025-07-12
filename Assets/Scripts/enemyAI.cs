@@ -27,7 +27,6 @@ public class enemyAI : MonoBehaviour, IDamage
     float stoppingDistOrig;
 
     bool playerInTrigger;
-    bool canSeePlayerCat;
 
     Vector3 playerDir;
     Vector3 startingPos;
