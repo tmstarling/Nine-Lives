@@ -14,6 +14,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int roamDist;
     [SerializeField] int roamPauseTime;
+    [SerializeField] Animator anim;
 
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
@@ -26,6 +27,7 @@ public class enemyAI : MonoBehaviour, IDamage
     float stoppingDistOrig;
 
     bool playerInTrigger;
+    bool canSeePlayerCat;
 
     Vector3 playerDir;
     Vector3 startingPos;
@@ -42,7 +44,9 @@ public class enemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        if(agent.remainingDistance < 0.01f)
+        anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
+
+        if (agent.remainingDistance < 0.01f)
         {
             roamTimer += Time.deltaTime;
         }
@@ -88,7 +92,7 @@ public class enemyAI : MonoBehaviour, IDamage
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
-            if(hit.collider.CompareTag("Player") && angleToPlayer <= fov)
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= fov)
             {
                 shootTimer += Time.deltaTime;
 
@@ -141,7 +145,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            gamemanager.instance.updateGameGoal(-1);
+           
             Destroy(gameObject);
         }
         else
@@ -162,6 +166,7 @@ public class enemyAI : MonoBehaviour, IDamage
         shootTimer = 0;
         Instantiate(bullet, shootPos.position, transform.rotation);
 
+        Debug.Log("Shot fired!");
     }
 
     public void TakeDamage(int amount)
@@ -171,7 +176,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            gamemanager.instance.updateGameGoal(-1);
+           
             Destroy(gameObject);
         }
         else

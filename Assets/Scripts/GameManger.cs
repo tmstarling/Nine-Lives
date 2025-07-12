@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class gamemanager : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
 
-
+    public Image playeHPBar;
+    public GameObject playerDamagePanel;
     public bool isPaused;
     public GameObject player;
     public PlayerController playerScript;
@@ -26,7 +28,7 @@ public class gamemanager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
         timescaleOrig = Time.timeScale;
-        
+        gameGoalCount = 1;
     }
 
     // Update is called once per frame
@@ -44,11 +46,6 @@ public class gamemanager : MonoBehaviour
             else if (menuActive == menuPaused)
             {
                 stateUnpaused();
-            }
-            else if (menuActive == menuWin || menuActive == menuLose)
-            {
-                stateUnpaused();
-                menuActive = null;
             }
         }
 
@@ -75,12 +72,15 @@ public class gamemanager : MonoBehaviour
 
     public void updateGameGoal(int amount)
     {
-        gameGoalCount  += amount;
-        statePaused();
-        menuActive = menuWin;
-        menuActive.SetActive(true);
-        
+        gameGoalCount = amount; 
+        if (gameGoalCount <= 0) 
+        { statePaused(); 
+          menuActive = menuWin; 
+          menuActive.SetActive(true); 
+        }
     }
+
+    
 
     public void youLose() 
     {  
