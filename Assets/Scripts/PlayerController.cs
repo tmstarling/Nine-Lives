@@ -115,6 +115,13 @@ public class PlayerController : MonoBehaviour ,IDamage
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist,~ignoreLayer))
         {
             Debug.Log(hit.collider.name);
+
+            IDamage dmg = hit.collider.GetComponent<IDamage>();
+
+            if (dmg != null)
+            {
+                dmg.TakeDamage(shootDamage);
+            }
         }
     }
 
@@ -133,21 +140,12 @@ public class PlayerController : MonoBehaviour ,IDamage
         }
     }
 
-    public void takeDamage(int amount)
-    {
-        HP -= amount;
-
-        if (HP <= 0)
-        {
-            //Die
-        }
-    }
-
     public void TakeDamage(int amount)
     {
         HP -= amount;
         updateplayer();
         StartCoroutine(damageFlashScreen());
+
         if (HP <= 0) 
         {
             gamemanager.instance.youLose();
@@ -163,7 +161,7 @@ public class PlayerController : MonoBehaviour ,IDamage
 
     IEnumerator damageFlashScreen()
     {
-               gamemanager.instance.playerDamagePanel.SetActive(true);
+        gamemanager.instance.playerDamagePanel.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         gamemanager.instance.playerDamagePanel.SetActive(false);
     }
