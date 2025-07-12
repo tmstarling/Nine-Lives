@@ -28,7 +28,7 @@ public class gamemanager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
         timescaleOrig = Time.timeScale;
-        
+        gameGoalCount = 1;
     }
 
     // Update is called once per frame
@@ -46,11 +46,6 @@ public class gamemanager : MonoBehaviour
             else if (menuActive == menuPaused)
             {
                 stateUnpaused();
-            }
-            else if (menuActive == menuWin || menuActive == menuLose)
-            {
-                stateUnpaused();
-                menuActive = null;
             }
         }
 
@@ -77,7 +72,7 @@ public class gamemanager : MonoBehaviour
 
     public void updateGameGoal(int amount)
     {
-        gameGoalCount += amount; 
+        gameGoalCount = amount; 
         if (gameGoalCount <= 0) 
         { statePaused(); 
           menuActive = menuWin; 

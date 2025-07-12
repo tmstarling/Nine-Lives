@@ -4,7 +4,7 @@ public class litterBoxWin : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("WinTrigger"))
+        if (other.CompareTag("Player"))
         {
             gamemanager.instance.updateGameGoal(-1);
         }
