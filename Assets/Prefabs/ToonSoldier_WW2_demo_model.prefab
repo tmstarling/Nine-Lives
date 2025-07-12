@@ -42,9 +42,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7044661971205712647}
   - component: {fileID: 3230774218907562417}
+  - component: {fileID: 7386397985746375728}
   - component: {fileID: 2239266623723608727}
   - component: {fileID: 5477963565579073246}
-  - component: {fileID: 7386397985746375728}
   m_Layer: 0
   m_Name: ToonSoldier_WW2_demo_model
   m_TagString: Untagged
@@ -90,8 +90,31 @@ MonoBehaviour:
   faceTargetSpeed: 0
   roamDist: 0
   roamPauseTime: 0
+  anim: {fileID: 0}
   bullet: {fileID: 0}
   shootRate: 0
+--- !u!195 &7386397985746375728
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956654740381845747}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 32
+  avoidancePriority: 50
+  m_AngularSpeed: 600
+  m_StoppingDistance: 10
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!95 &2239266623723608727
 Animator:
   serializedVersion: 7
@@ -137,28 +160,6 @@ CapsuleCollider:
   m_Height: 2.25
   m_Direction: 1
   m_Center: {x: 0, y: 1.25, z: 0}
---- !u!195 &7386397985746375728
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 956654740381845747}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 32
-  avoidancePriority: 50
-  m_AngularSpeed: 600
-  m_StoppingDistance: 10
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &1258782609270771219
 GameObject:
   m_ObjectHideFlags: 0
