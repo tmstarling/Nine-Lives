@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour ,IDamage
 {
     //Controller
     [SerializeField] CharacterController controller;
@@ -139,6 +139,17 @@ public class PlayerController : MonoBehaviour
         if (HP <= 0)
         {
             //Die
+        }
+    }
+
+    public void TakeDamage(int amount)
+    {
+        HP -= amount;
+        if (HP <= 0) 
+        {
+            gamemanager.instance.youLose();
+
+
         }
     }
 }
