@@ -92,9 +92,13 @@ public class enemyAI : MonoBehaviour, IDamage
             {
                 shootTimer += Time.deltaTime;
 
-                if (shootTimer >= shootRate)
+                if (playerInTrigger)
                 {
-                    shoot();
+
+                    if (shootTimer >= shootRate)
+                    {
+                        shoot();
+                    }
                 }
 
                 agent.SetDestination(gamemanager.instance.player.transform.position);
@@ -122,9 +126,8 @@ public class enemyAI : MonoBehaviour, IDamage
         {
            playerInTrigger = true;
         }
-
     }
-    private void OnTriggerExit(Collider other)
+   private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
