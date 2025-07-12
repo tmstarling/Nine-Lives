@@ -8,6 +8,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
+    [SerializeField] Animator anim;
 
     [SerializeField] int HP;
     [SerializeField] int fov;
@@ -42,7 +43,8 @@ public class enemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        if(agent.remainingDistance < 0.01f)
+        anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
+        if (agent.remainingDistance < 0.01f)
         {
             roamTimer += Time.deltaTime;
         }
