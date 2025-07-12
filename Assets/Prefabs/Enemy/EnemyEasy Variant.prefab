@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 2864064168456812076}
     - target: {fileID: 3230774218907562417, guid: dd0da7d3085955249ac1bf52b2178846, type: 3}
       propertyPath: roamDist
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3230774218907562417, guid: dd0da7d3085955249ac1bf52b2178846, type: 3}
       propertyPath: shootPos

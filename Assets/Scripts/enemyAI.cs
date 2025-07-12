@@ -27,6 +27,7 @@ public class enemyAI : MonoBehaviour, IDamage
     float stoppingDistOrig;
 
     bool playerInTrigger;
+    bool canSeePlayerCat;
 
     Vector3 playerDir;
     Vector3 startingPos;
@@ -165,6 +166,7 @@ public class enemyAI : MonoBehaviour, IDamage
         shootTimer = 0;
         Instantiate(bullet, shootPos.position, transform.rotation);
 
+        Debug.Log("Shot fired!");
     }
 
     public void TakeDamage(int amount)
