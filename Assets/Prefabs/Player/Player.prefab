@@ -1423,12 +1423,13 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
-  HP: 10
-  speed: 5
+  HP: 100
+  speed: 7
   sprintMod: 2
   jumpVel: 10
   jumpMax: 2
   gravity: 35
+  anim: {fileID: 1527591669686737709}
   shootDamage: 5
   shootRate: 0.5
   shootDist: 150
