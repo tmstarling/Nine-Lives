@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour ,IDamage
     [SerializeField] int jumpVel;
     [SerializeField] int jumpMax;
     [SerializeField] int gravity;
+    [SerializeField] Animator anim;
 
     //Shooting
     [SerializeField] int shootDamage;
@@ -35,11 +36,14 @@ public class PlayerController : MonoBehaviour ,IDamage
     void Start()
     {
         HPOrig = HP;
+        updateplayer();
     }
 
     // Update is called once per frame
     void Update()
     {
+        anim.SetFloat("Speed", controller.velocity.magnitude);
+
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
         movement();
         sprint();
@@ -113,7 +117,14 @@ public class PlayerController : MonoBehaviour ,IDamage
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist,~ignoreLayer))
         {
-            Debug.Log(hit.collider.name);
+            //Debug.Log(hit.collider.name);
+
+            IDamage dmg = hit.collider.GetComponent<IDamage>();
+
+            if (dmg != null)
+            {
+                dmg.TakeDamage(shootDamage);
+            }
         }
     }
 
@@ -132,24 +143,29 @@ public class PlayerController : MonoBehaviour ,IDamage
         }
     }
 
-    public void takeDamage(int amount)
-    {
-        HP -= amount;
-
-        if (HP <= 0)
-        {
-            //Die
-        }
-    }
-
     public void TakeDamage(int amount)
     {
         HP -= amount;
+        updateplayer();
+        StartCoroutine(damageFlashScreen());
+
         if (HP <= 0) 
         {
             gamemanager.instance.youLose();
 
 
         }
+    }
+
+    public void updateplayer()
+    {
+        gamemanager.instance.playeHPBar.fillAmount = (float)HP / HPOrig;
+    }
+
+    IEnumerator damageFlashScreen()
+    {
+        gamemanager.instance.playerDamagePanel.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gamemanager.instance.playerDamagePanel.SetActive(false);
     }
 }
