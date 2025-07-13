@@ -58,16 +58,6 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             roamCheck();
         }
-
-        if (playerInTrigger)
-        {
-            shootTimer += Time.deltaTime;
-
-            if (shootTimer >= shootRate)
-            {
-                shoot();
-            }
-        }
     }
 
     private void OnTriggerEnter(Collider other)
