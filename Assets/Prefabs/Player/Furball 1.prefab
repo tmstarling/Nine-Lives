@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5948156151980306124}
   - component: {fileID: 7840973833223654340}
   - component: {fileID: 4906563597735623320}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Furball 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,6 +54,7 @@ MonoBehaviour:
   DamageAmount: 5
   Speed: 15
   DestroyTime: 3
+  damageRate: 0
 --- !u!96 &6668712044328701634
 TrailRenderer:
   serializedVersion: 3

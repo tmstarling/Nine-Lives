@@ -43,6 +43,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyEasy Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 956654740381845747, guid: dd0da7d3085955249ac1bf52b2178846, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2239266623723608727, guid: dd0da7d3085955249ac1bf52b2178846, type: 3}
       propertyPath: m_Controller
       value: 
