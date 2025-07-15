@@ -39,7 +39,9 @@ public class Damage : MonoBehaviour
     {
         if (type == DamageTypes.Homing)
         {
-
+            Vector3 direction = (gamemanager.instance.player.transform.position - transform.position).normalized;
+            rigid.linearVelocity = direction * Speed;
+            transform.forward = direction;
         }
     }
 

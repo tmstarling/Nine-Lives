@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour ,IDamage
     [SerializeField] int jumpVel;
     [SerializeField] int jumpMax;
     [SerializeField] int gravity;
+    [SerializeField] Animator anim;
 
     //Shooting
     [SerializeField] int shootDamage;
@@ -41,6 +42,8 @@ public class PlayerController : MonoBehaviour ,IDamage
     // Update is called once per frame
     void Update()
     {
+        anim.SetFloat("Speed", controller.velocity.magnitude);
+
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
         movement();
         sprint();
@@ -114,7 +117,7 @@ public class PlayerController : MonoBehaviour ,IDamage
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist,~ignoreLayer))
         {
-            Debug.Log(hit.collider.name);
+            //Debug.Log(hit.collider.name);
 
             IDamage dmg = hit.collider.GetComponent<IDamage>();
 
