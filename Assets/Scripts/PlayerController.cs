@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour ,IDamage
     Vector3 playerVel;
 
     int HPOrig;
+    GameObject pivot;
     int jumpCount;
     float shootTimer;
 

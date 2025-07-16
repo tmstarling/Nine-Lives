@@ -111,6 +111,8 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= fov)
             {
+                Debug.Log(hit.collider.name);
+
                 shootTimer += Time.deltaTime;
 
                 if (shootTimer >= shootRate)
