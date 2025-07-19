@@ -14,6 +14,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int roamDist;
     [SerializeField] int roamPauseTime;
+    [SerializeField] Animator anim;
 
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
@@ -42,7 +43,9 @@ public class enemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        if(agent.remainingDistance < 0.01f)
+        anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
+
+        if (agent.remainingDistance < 0.01f)
         {
             roamTimer += Time.deltaTime;
         }
@@ -55,6 +58,24 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             roamCheck();
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInTrigger = true;
+        }
+
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInTrigger = false;
+            agent.stoppingDistance = 0;
+        }
+
     }
 
     void roamCheck()
@@ -88,8 +109,10 @@ public class enemyAI : MonoBehaviour, IDamage
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
-            if(hit.collider.CompareTag("Player") && angleToPlayer <= fov)
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= fov)
             {
+                Debug.Log(hit.collider.name);
+
                 shootTimer += Time.deltaTime;
 
                 if (shootTimer >= shootRate)
@@ -116,40 +139,6 @@ public class enemyAI : MonoBehaviour, IDamage
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, faceTargetSpeed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-           playerInTrigger = true;
-        }
-
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInTrigger = false;
-            agent.stoppingDistance = 0;
-        }
-
-    }
-
-    public void takeDamage(int amount)
-    {
-       HP -= amount;
-        agent.SetDestination(gamemanager.instance.player.transform.position);
-
-        if (HP <= 0)
-        {
-            gamemanager.instance.updateGameGoal(-1);
-            Destroy(gameObject);
-        }
-        else
-        {
-            StartCoroutine(flashGreen());
-        }
-    }
-
     IEnumerator flashGreen()
     {
         model.material.color = Color.green;
@@ -161,7 +150,6 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         shootTimer = 0;
         Instantiate(bullet, shootPos.position, transform.rotation);
-
     }
 
     public void TakeDamage(int amount)
@@ -171,7 +159,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            gamemanager.instance.updateGameGoal(-1);
+           
             Destroy(gameObject);
         }
         else
