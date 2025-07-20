@@ -4,7 +4,7 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - WinTrigger
+  - CinemachineTarget
   layers:
   - Default
   - TransparentFX
@@ -12,13 +12,13 @@ TagManager:
   - Player
   - Water
   - UI
+  - Enemy
   - Floor
+  - Player Furball
   - Player Bullet
   - Enemy
   - Enemy Bullet
   - NavMeshIgnore
-  - 
-  - 
   - 
   - 
   - 
