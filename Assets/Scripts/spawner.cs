@@ -1,34 +1,33 @@
 using UnityEngine;
 
-public class spawner : MonoBehaviour
+public class Spawner : MonoBehaviour
 {
+    [SerializeField] private GameObject prefabToSpawn;
+    [SerializeField] private int maxSpawns = 10;
+    [SerializeField] private float timeBetweenSpawns = 2f;
 
-    [SerializeField] GameObject objectToSpawn;
-    [SerializeField] int spawnAmount;
-    [SerializeField] int spawnRate;
-    [SerializeField] Transform[] spawnPos;
+    [SerializeField] private Transform[] spawnPoints;
 
-    float spawnTimer;
-    int spawnCount;
-    bool startSpawning;
+    private float nextSpawnTime;
+    private int currentSpawnCount;
+    private bool canSpawn = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gamemanager.instance.updateGameGoal(spawnAmount);
+        if (gamemanager.instance != null)
+        {
+            gamemanager.instance.updateGameGoal(maxSpawns);
+        }
+
+        nextSpawnTime = Time.time + timeBetweenSpawns;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (startSpawning)
+        if (canSpawn && Time.time >= nextSpawnTime && currentSpawnCount < maxSpawns)
         {
-            spawnTimer += Time.deltaTime;
-
-            if (spawnTimer >= spawnRate && spawnCount < spawnAmount)
-            {
-                spawn();
-            }
+            SpawnObject();
+            nextSpawnTime = Time.time + timeBetweenSpawns;
         }
     }
 
@@ -36,17 +35,49 @@ public class spawner : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            startSpawning = true;
+            canSpawn = true;
         }
     }
 
-    void spawn()
+    private void OnTriggerExit(Collider other)
     {
-        int arrayPos = Random.Range(0, spawnPos.Length);
+        if (other.CompareTag("Player"))
+        {
+            canSpawn = false;
+        }
+    }
 
-        Instantiate(objectToSpawn, spawnPos[arrayPos].transform.position, spawnPos[arrayPos].transform.rotation);
-        spawnCount++;
-        spawnTimer = 0;
+    void SpawnObject()
+    {
+        if (spawnPoints.Length == 0 || prefabToSpawn == null) return;
+
+        
+        int randomIndex = Random.Range(0, spawnPoints.Length);
+        Transform selectedSpawnPoint = spawnPoints[randomIndex];
+
+        
+        GameObject spawnedObject = Instantiate(prefabToSpawn, selectedSpawnPoint.position, selectedSpawnPoint.rotation);
+
+        
+        spawnedObject.transform.Rotate(0, Random.Range(0, 360), 0);
+
+        currentSpawnCount++;
+
+        
+        Debug.Log($"Spawned object {currentSpawnCount}/{maxSpawns} at {selectedSpawnPoint.name}");
+    }
+
+    
+    public void ResetSpawner()
+    {
+        currentSpawnCount = 0;
+        canSpawn = false;
+        nextSpawnTime = Time.time + timeBetweenSpawns;
+    }
+
+   
+    public bool IsSpawningComplete()
+    {
+        return currentSpawnCount >= maxSpawns;
     }
 }
-
