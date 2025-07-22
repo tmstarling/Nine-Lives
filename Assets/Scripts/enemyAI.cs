@@ -112,7 +112,7 @@ public class enemyAI: MonoBehaviour, IDamage, IOpen
 
     void ChaseBehavior()
     {
-        if (gamemanager.instance?.player != null)
+        if (gamemanager.instance.player != null)
         {
             float distanceToPlayer = Vector3.Distance(transform.position, gamemanager.instance.player.transform.position);
 
@@ -131,7 +131,7 @@ public class enemyAI: MonoBehaviour, IDamage, IOpen
 
     void AttackBehavior()
     {
-        if (gamemanager.instance?.player != null)
+        if (gamemanager.instance.player != null)
         {
             float distanceToPlayer = Vector3.Distance(transform.position, gamemanager.instance.player.transform.position);
 
@@ -185,7 +185,7 @@ public class enemyAI: MonoBehaviour, IDamage, IOpen
         playerAngle = Vector3.Angle(directionToPlayer, transform.forward);
 
         
-        Debug.DrawRay(visionPoint.position, directionToPlayer.normalized * attackRange, Color.red);
+        Debug.DrawRay(visionPoint.position, directionToPlayer, Color.red);
 
         if (playerAngle <= viewAngle)
         {
@@ -252,7 +252,7 @@ public class enemyAI: MonoBehaviour, IDamage, IOpen
         currentHealth -= damageAmount;
 
         
-        if (gamemanager.instance?.player != null)
+        if (gamemanager.instance.player != null)
         {
             playerDetected = true;
             currentState = EnemyState.Chasing;
