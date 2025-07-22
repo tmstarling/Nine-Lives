@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject prefabToSpawn;
-    [SerializeField] private int maxSpawns = 10;
-    [SerializeField] private float timeBetweenSpawns = 2f;
+    [SerializeField] GameObject prefabToSpawn;
+    [SerializeField] int maxSpawns;
+    [SerializeField] float timeBetweenSpawns;
 
-    [SerializeField] private Transform[] spawnPoints;
+    [SerializeField] Transform[] spawnPoints;
 
-    private float nextSpawnTime;
-    private int currentSpawnCount;
-    private bool canSpawn = false;
+    float nextSpawnTime;
+    int currentSpawnCount;
+    bool canSpawn = false;
 
     void Start()
     {
