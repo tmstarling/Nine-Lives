@@ -4,34 +4,34 @@ using UnityEngine.AI;
 
 public class enemyAI: MonoBehaviour, IDamage, IOpen
 {
-    [SerializeField] private Renderer enemyRenderer;
-    [SerializeField] private Animator enemyAnimator;
+    [SerializeField] Renderer enemyRenderer;
+    [SerializeField] Animator enemyAnimator;
 
-    [SerializeField] private int maxHealth = 100;
-    [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private Transform firePoint;
-    [SerializeField] private float attackCooldown = 1.5f;
-    [SerializeField] private int viewAngle = 60;
-    [SerializeField] private float attackRange = 15f;
+    [SerializeField] int maxHealth;
+    [SerializeField] GameObject projectilePrefab;
+    [SerializeField] Transform firePoint;
+    [SerializeField] float attackCooldown;
+    [SerializeField] int viewAngle;
+    [SerializeField] float attackRange;
 
-    [SerializeField] private NavMeshAgent navAgent;
-    [SerializeField] private Transform visionPoint;
-    [SerializeField] private float turnSpeed = 3f;
-    [SerializeField] private float patrolRadius = 10f;
-    [SerializeField] private float waitTime = 2f;
+    [SerializeField] NavMeshAgent navAgent;
+    [SerializeField] Transform visionPoint;
+    [SerializeField] float turnSpeed;
+    [SerializeField] float patrolRadius;
+    [SerializeField] float waitTime = 2f;
 
-    private Color originalColor;
-    private float lastAttackTime;
-    private float patrolWaitTimer;
-    private float playerAngle;
-    private float originalStoppingDistance;
-    private bool playerDetected;
-    private Vector3 directionToPlayer;
-    private Vector3 homePosition;
-    private int currentHealth;
+    Color originalColor;
+    float lastAttackTime;
+    float patrolWaitTimer;
+    float playerAngle;
+    float originalStoppingDistance;
+    bool playerDetected;
+    Vector3 directionToPlayer;
+    Vector3 homePosition;
+    int currentHealth;
 
-    private enum EnemyState { Patrolling, Chasing, Attacking, Searching }
-    private EnemyState currentState = EnemyState.Patrolling;
+    enum EnemyState { Patrolling, Chasing, Attacking, Searching }
+    EnemyState currentState = EnemyState.Patrolling;
 
     public bool IsOpen => throw new System.NotImplementedException();
 
