@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1077731225192315047}
   - component: {fileID: 7364749144855317225}
   - component: {fileID: 1611428366258788835}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Can Food (Homing Bullet)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

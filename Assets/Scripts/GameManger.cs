@@ -78,9 +78,8 @@ public class gamemanager : MonoBehaviour
         gameGoalCount = amount;
         gameGoalCountText.text = gameGoalCount.ToString("f0");
         if (gameGoalCount <= 0) 
-        { statePaused(); 
-          menuActive = menuWin; 
-          menuActive.SetActive(true); 
+        {
+            youWin(); 
         }
     }
 
@@ -91,5 +90,18 @@ public class gamemanager : MonoBehaviour
         statePaused();
         menuActive = menuLose;
         menuActive.SetActive(true);
-    }   
+    } 
+    
+    public void youWin()
+    {
+        statePaused();
+        menuActive = menuWin;
+        menuActive.SetActive(true);
+    }
+
+    public void PlayerEnteredLitterBox()
+    {
+        Debug.Log("Player entered the litter box - they Win!");
+        youWin();
+    }
 }

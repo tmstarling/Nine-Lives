@@ -158,7 +158,7 @@ MonoBehaviour:
   faceTargetSpeed: 5
   roamDist: 10
   roamPauseTime: 3
-  bullet: {fileID: 9119962367167631622, guid: 9da891c486ced3e429fa0d2ec76d2378, type: 3}
+  bullet: {fileID: 4783417352459397073, guid: 224e7361dad2c604099c27fa3c69f6da, type: 3}
   shootRate: 0.75
 --- !u!95 &4282378822896978875
 Animator:
