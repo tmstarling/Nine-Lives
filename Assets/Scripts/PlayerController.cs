@@ -153,8 +153,6 @@ public class PlayerController : MonoBehaviour ,IDamage
         if (HP <= 0) 
         {
             gamemanager.instance.youLose();
-
-
         }
     }
 

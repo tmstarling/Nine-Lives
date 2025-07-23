@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a7fa87652e796e149bcf74bfcbfdef8f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.88257
+      value: 22.51
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a7fa87652e796e149bcf74bfcbfdef8f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.1682138
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a7fa87652e796e149bcf74bfcbfdef8f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.6
+      value: -60.73
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a7fa87652e796e149bcf74bfcbfdef8f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -98,13 +98,14 @@ MonoBehaviour:
   agent: {fileID: 1342365567992982970}
   shootPos: {fileID: 537026056278755031}
   headPos: {fileID: 8174857406538552686}
+  anim: {fileID: 2008467441584746594}
   HP: 5
   fov: 90
   faceTargetSpeed: 5
   roamDist: 15
   roamPauseTime: 3
-  bullet: {fileID: 2466991997635656875, guid: fc2100fb8f48c4f4a9e625833052e08a, type: 3}
-  shootRate: 0.65
+  bullet: {fileID: 4783417352459397073, guid: 224e7361dad2c604099c27fa3c69f6da, type: 3}
+  shootRate: 0.5
 --- !u!135 &464283188016895385
 SphereCollider:
   m_ObjectHideFlags: 0
