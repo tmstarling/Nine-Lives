@@ -2,222 +2,129 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
 
-public class enemyAI: MonoBehaviour, IDamage, IOpen
+public class enemyAI : MonoBehaviour, IDamage, IOpen
 {
-    [SerializeField] Renderer enemyRenderer;
-    [SerializeField] Animator enemyAnimator;
+    [SerializeField] Renderer model;
+    [SerializeField] NavMeshAgent agent;
+    [SerializeField] Transform shootPos;
+    [SerializeField] Transform headPos;
+    [SerializeField] Animator anim;
 
-    [SerializeField] int maxHealth;
-    [SerializeField] GameObject projectilePrefab;
-    [SerializeField] Transform firePoint;
-    [SerializeField] float attackCooldown;
-    [SerializeField] int viewAngle;
-    [SerializeField] float attackRange;
+    [SerializeField] int HP = 100;
+    [SerializeField] int fov = 90;
+    [SerializeField] int faceTargetSpeed = 5;
+    [SerializeField] int roamDist = 10;
+    [SerializeField] int roamPauseTime = 3;
 
-    [SerializeField] NavMeshAgent navAgent;
-    [SerializeField] Transform visionPoint;
-    [SerializeField] float turnSpeed;
-    [SerializeField] float patrolRadius;
-    [SerializeField] float waitTime = 2f;
+    [SerializeField] GameObject bullet;
+    [SerializeField] float shootRate = 2f;
 
-    Color originalColor;
-    float lastAttackTime;
-    float patrolWaitTimer;
-    float playerAngle;
-    float originalStoppingDistance;
-    bool playerDetected;
-    Vector3 directionToPlayer;
-    Vector3 homePosition;
-    int currentHealth;
+    Color colorOrg;
+    float shootTimer;
+    float roamTimer;
+    float angleToPlayer;
+    float stoppingDistOrig;
 
-    enum EnemyState { Patrolling, Chasing, Attacking, Searching }
-    EnemyState currentState = EnemyState.Patrolling;
+    bool playerInTrigger;
 
-    public bool IsOpen => throw new System.NotImplementedException();
+    Vector3 playerDir;
+    Vector3 startingPos;
 
     void Start()
     {
-        InitializeEnemy();
+        colorOrg = model.material.color;
+        startingPos = transform.position;
+        stoppingDistOrig = agent.stoppingDistance;
+
     }
 
     void Update()
     {
-        UpdateAnimations();
-        HandleEnemyBehavior();
-    }
-
-    void InitializeEnemy()
-    {
-        originalColor = enemyRenderer.material.color;
-        currentHealth = maxHealth;
-        homePosition = transform.position;
-        originalStoppingDistance = navAgent.stoppingDistance;
-
-        if (gamemanager.instance != null)
+        if (anim != null)
         {
-            gamemanager.instance.updateGameGoal(1);
+            anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
+        }
+
+        if (agent.remainingDistance < 0.01f)
+        {
+            roamTimer += Time.deltaTime;
+        }
+
+        if (playerInTrigger && !CanSeePlayer())
+        {
+            RoamCheck();
+        }
+        else if (!playerInTrigger)
+        {
+            RoamCheck();
         }
     }
 
-    void UpdateAnimations()
+    void RoamCheck()
     {
-        if (enemyAnimator != null)
+        if (roamTimer >= roamPauseTime && agent.remainingDistance < 0.01f)
         {
-            float speed = navAgent.velocity.magnitude / navAgent.speed;
-            enemyAnimator.SetFloat("Speed", speed);
-            enemyAnimator.SetBool("IsAttacking", currentState == EnemyState.Attacking);
+            Roam();
         }
     }
 
-    void HandleEnemyBehavior()
+    void Roam()
     {
-        switch (currentState)
+        roamTimer = 0;
+        agent.stoppingDistance = 0;
+
+        Vector3 ranPos = Random.insideUnitSphere * roamDist + startingPos;
+        NavMeshHit hit;
+
+        if (NavMesh.SamplePosition(ranPos, out hit, roamDist, NavMesh.AllAreas))
         {
-            case EnemyState.Patrolling:
-                PatrolBehavior();
-                break;
-            case EnemyState.Chasing:
-                ChaseBehavior();
-                break;
-            case EnemyState.Attacking:
-                AttackBehavior();
-                break;
-            case EnemyState.Searching:
-                SearchBehavior();
-                break;
-        }
-
-        
-        if (playerDetected && CanSeePlayer())
-        {
-            currentState = EnemyState.Chasing;
-        }
-        else if (playerDetected && currentState == EnemyState.Chasing)
-        {
-            currentState = EnemyState.Searching;
-        }
-    }
-
-    void PatrolBehavior()
-    {
-        if (navAgent.remainingDistance < 0.5f)
-        {
-            patrolWaitTimer += Time.deltaTime;
-            if (patrolWaitTimer >= waitTime)
-            {
-                StartPatrol();
-            }
-        }
-    }
-
-    void ChaseBehavior()
-    {
-        if (gamemanager.instance?.player != null)
-        {
-            float distanceToPlayer = Vector3.Distance(transform.position, gamemanager.instance.player.transform.position);
-
-            if (distanceToPlayer <= attackRange)
-            {
-                currentState = EnemyState.Attacking;
-                navAgent.stoppingDistance = originalStoppingDistance;
-            }
-            else
-            {
-                navAgent.SetDestination(gamemanager.instance.player.transform.position);
-                navAgent.stoppingDistance = attackRange;
-            }
-        }
-    }
-
-    void AttackBehavior()
-    {
-        if (gamemanager.instance?.player != null)
-        {
-            float distanceToPlayer = Vector3.Distance(transform.position, gamemanager.instance.player.transform.position);
-
-            if (distanceToPlayer > attackRange)
-            {
-                currentState = EnemyState.Chasing;
-                return;
-            }
-
-            
-            FacePlayer();
-
-            if (Time.time >= lastAttackTime + attackCooldown)
-            {
-                FireProjectile();
-            }
-        }
-    }
-
-    void SearchBehavior()
-    {
-       
-        patrolWaitTimer += Time.deltaTime;
-        if (patrolWaitTimer >= waitTime * 2)
-        {
-            currentState = EnemyState.Patrolling;
-            patrolWaitTimer = 0;
-        }
-    }
-
-    void StartPatrol()
-    {
-        patrolWaitTimer = 0;
-        navAgent.stoppingDistance = 0;
-
-        Vector3 randomDirection = Random.insideUnitSphere * patrolRadius;
-        randomDirection += homePosition;
-
-        NavMeshHit navHit;
-        if (NavMesh.SamplePosition(randomDirection, out navHit, patrolRadius, NavMesh.AllAreas))
-        {
-            navAgent.SetDestination(navHit.position);
+            agent.SetDestination(hit.position);
         }
     }
 
     bool CanSeePlayer()
     {
-        if (gamemanager.instance?.player == null) return false;
+        if (gamemanager.instance == null || gamemanager.instance.player == null) return false;
 
-        directionToPlayer = gamemanager.instance.player.transform.position - visionPoint.position;
-        playerAngle = Vector3.Angle(directionToPlayer, transform.forward);
+        playerDir = gamemanager.instance.player.transform.position - headPos.position;
+        angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
-        
-        Debug.DrawRay(visionPoint.position, directionToPlayer.normalized * attackRange, Color.red);
+        Debug.DrawRay(headPos.position, playerDir.normalized * 20f, Color.red);
 
-        if (playerAngle <= viewAngle)
+        if (Physics.Raycast(headPos.position, playerDir.normalized, out RaycastHit hit))
         {
-            RaycastHit hit;
-            if (Physics.Raycast(visionPoint.position, directionToPlayer.normalized, out hit, attackRange))
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= fov)
             {
-                if (hit.collider.CompareTag("Player"))
+                shootTimer += Time.deltaTime;
+
+                if (shootTimer >= shootRate)
                 {
-                    return true;
+                    Shoot();
                 }
+
+                agent.SetDestination(gamemanager.instance.player.transform.position);
+
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    FaceTarget();
+                }
+
+                agent.stoppingDistance = stoppingDistOrig;
+                return true;
             }
         }
 
+        agent.stoppingDistance = 0;
         return false;
     }
 
-    void FacePlayer()
+    void FaceTarget()
     {
-        Vector3 lookDirection = new Vector3(directionToPlayer.x, 0, directionToPlayer.z);
-        Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
-    }
-
-    void FireProjectile()
-    {
-        if (projectilePrefab != null && firePoint != null)
+        Vector3 flatDir = new Vector3(playerDir.x, 0f, playerDir.z);
+        if (flatDir.sqrMagnitude > 0.01f)
         {
-            lastAttackTime = Time.time;
-            Instantiate(projectilePrefab, firePoint.position, transform.rotation);
-
-            
-            Debug.Log($"{gameObject.name} fired at player!");
+            Quaternion rot = Quaternion.LookRotation(flatDir);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rot, faceTargetSpeed * Time.deltaTime);
         }
     }
 
@@ -225,7 +132,7 @@ public class enemyAI: MonoBehaviour, IDamage, IOpen
     {
         if (other.CompareTag("Player"))
         {
-            playerDetected = true;
+            playerInTrigger = true;
         }
     }
 
@@ -233,68 +140,67 @@ public class enemyAI: MonoBehaviour, IDamage, IOpen
     {
         if (other.CompareTag("Player"))
         {
-            playerDetected = false;
-            navAgent.stoppingDistance = 0;
-            currentState = EnemyState.Searching;
-            patrolWaitTimer = 0;
+            playerInTrigger = false;
+            agent.stoppingDistance = 0;
         }
     }
 
-    IEnumerator FlashDamageColor()
+    public void TakeDamage(int amount)
     {
-        enemyRenderer.material.color = Color.red;
-        yield return new WaitForSeconds(0.15f);
-        enemyRenderer.material.color = originalColor;
-    }
+        HP -= amount;
 
-    public void TakeDamage(int damageAmount)
-    {
-        currentHealth -= damageAmount;
-
-        
-        if (gamemanager.instance?.player != null)
+        if (gamemanager.instance != null && gamemanager.instance.player != null)
         {
-            playerDetected = true;
-            currentState = EnemyState.Chasing;
-            navAgent.SetDestination(gamemanager.instance.player.transform.position);
+            agent.SetDestination(gamemanager.instance.player.transform.position);
         }
 
-        if (currentHealth <= 0)
+        if (HP <= 0)
         {
-            Die();
+            gamemanager.instance?.updateGameGoal(-1);
+            Destroy(gameObject);
         }
         else
         {
-            StartCoroutine(FlashDamageColor());
+            StartCoroutine(FlashRed());
         }
     }
 
-    void Die()
+    IEnumerator FlashRed()
     {
-        
-        Debug.Log($"{gameObject.name} has been defeated!");
-
-        
-        if (gamemanager.instance != null)
+        if (model != null)
         {
-            
+            model.material.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            model.material.color = colorOrg;
         }
-
-        Destroy(gameObject);
     }
+
+    void Shoot()
+    {
+        shootTimer = 0;
+        if (bullet != null && shootPos != null)
+        {
+            Instantiate(bullet, shootPos.position, transform.rotation);
+        }
+    }
+
+    // IOpen interface
+    private bool isOpen;
 
     public void Open(GameObject opener)
     {
-        throw new System.NotImplementedException();
+        isOpen = true;
     }
 
     public void Close()
     {
-        throw new System.NotImplementedException();
+        isOpen = false;
     }
 
     public bool CanOpen(GameObject opener)
     {
-        throw new System.NotImplementedException();
+        return true;
     }
+
+    public bool IsOpen => isOpen;
 }
