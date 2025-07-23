@@ -378,7 +378,7 @@ MonoBehaviour:
   shootPos: {fileID: 5198156730999145291}
   headPos: {fileID: 7168818894717126099}
   anim: {fileID: 4403480988476893154}
-  HP: 10
+  HP: 25
   fov: 90
   faceTargetSpeed: 10
   roamDist: 5
