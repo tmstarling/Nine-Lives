@@ -22,6 +22,7 @@ public class gamemanager : MonoBehaviour
     float timescaleOrig;
 
     int gameGoalCount;
+    public static int amount;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -73,14 +74,10 @@ public class gamemanager : MonoBehaviour
         menuActive = null;
     }
 
-    public void updateGameGoal(int amount)
+    public void updateGameGoal()
     {
         gameGoalCount = amount;
-        gameGoalCountText.text = gameGoalCount.ToString("f0");
-        if (gameGoalCount <= 0) 
-        {
-            youWin(); 
-        }
+        gameGoalCountText.text = gameGoalCount.ToString("F0");
     }
 
     

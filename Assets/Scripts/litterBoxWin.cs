@@ -6,7 +6,7 @@ public class litterBoxWin : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            gamemanager.instance.updateGameGoal(-1);
+            gamemanager.instance.PlayerEnteredLitterBox();
         }
     }
 }

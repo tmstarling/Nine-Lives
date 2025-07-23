@@ -16,7 +16,7 @@ public class Spawner : MonoBehaviour
     {
         if (gamemanager.instance != null)
         {
-            gamemanager.instance.updateGameGoal(maxSpawns);
+            gamemanager.instance.updateGameGoal();
         }
 
         nextSpawnTime = Time.time + timeBetweenSpawns;
@@ -62,7 +62,7 @@ public class Spawner : MonoBehaviour
         spawnedObject.transform.Rotate(0, Random.Range(0, 360), 0);
 
         currentSpawnCount++;
-
+        currentSpawnCount = gamemanager.amount;
         
         Debug.Log($"Spawned object {currentSpawnCount}/{maxSpawns} at {selectedSpawnPoint.name}");
     }
