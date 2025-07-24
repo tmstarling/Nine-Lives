@@ -4,6 +4,7 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] GameObject prefabToSpawn;
     [SerializeField] int maxSpawns;
+    [SerializeField] int spawnRate;
     [SerializeField] float timeBetweenSpawns;
 
     [SerializeField] Transform[] spawnPoints;
@@ -14,20 +15,19 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
-        if (gamemanager.instance != null)
-        {
-            gamemanager.instance.updateGameGoal();
-        }
-
-        nextSpawnTime = Time.time + timeBetweenSpawns;
+        
     }
 
     void Update()
     {
-        if (canSpawn && Time.time >= nextSpawnTime && currentSpawnCount < maxSpawns)
+        if (canSpawn)
         {
-            SpawnObject();
-            nextSpawnTime = Time.time + timeBetweenSpawns;
+            nextSpawnTime = Time.deltaTime;
+
+            if (nextSpawnTime >= spawnRate && currentSpawnCount < maxSpawns)
+            {
+                spawnObject();
+            }
         }
     }
 
@@ -39,45 +39,12 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    void spawnObject()
     {
-        if (other.CompareTag("Player"))
-        {
-            canSpawn = false;
-        }
-    }
+        int arrayPos = Random.Range(0, spawnPoints.Length);
 
-    void SpawnObject()
-    {
-        if (spawnPoints.Length == 0 || prefabToSpawn == null) return;
-
-        
-        int randomIndex = Random.Range(0, spawnPoints.Length);
-        Transform selectedSpawnPoint = spawnPoints[randomIndex];
-
-        
-        GameObject spawnedObject = Instantiate(prefabToSpawn, selectedSpawnPoint.position, selectedSpawnPoint.rotation);
-
-        
-        spawnedObject.transform.Rotate(0, Random.Range(0, 360), 0);
-
+        Instantiate(prefabToSpawn, spawnPoints[arrayPos].transform.position, spawnPoints[arrayPos].transform.rotation);
         currentSpawnCount++;
-        currentSpawnCount = gamemanager.amount;
-        
-        Debug.Log($"Spawned object {currentSpawnCount}/{maxSpawns} at {selectedSpawnPoint.name}");
-    }
-
-    
-    public void ResetSpawner()
-    {
-        currentSpawnCount = 0;
-        canSpawn = false;
-        nextSpawnTime = Time.time + timeBetweenSpawns;
-    }
-
-   
-    public bool IsSpawningComplete()
-    {
-        return currentSpawnCount >= maxSpawns;
+        nextSpawnTime = 0;
     }
 }

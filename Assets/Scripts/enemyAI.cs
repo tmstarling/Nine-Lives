@@ -10,14 +10,14 @@ public class enemyAI : MonoBehaviour, IDamage, IOpen
     [SerializeField] Transform headPos;
     [SerializeField] Animator anim;
 
-    [SerializeField] int HP = 100;
-    [SerializeField] int fov = 90;
-    [SerializeField] int faceTargetSpeed = 5;
-    [SerializeField] int roamDist = 10;
-    [SerializeField] int roamPauseTime = 3;
+    [SerializeField] int HP;
+    [SerializeField] int fov;
+    [SerializeField] int faceTargetSpeed;
+    [SerializeField] int roamDist;
+    [SerializeField] int roamPauseTime;
 
     [SerializeField] GameObject bullet;
-    [SerializeField] float shootRate = 2f;
+    [SerializeField] float shootRate;
 
     Color colorOrg;
     float shootTimer;
@@ -73,12 +73,12 @@ public class enemyAI : MonoBehaviour, IDamage, IOpen
         roamTimer = 0;
         agent.stoppingDistance = 0;
 
-        Vector3 ranPos = Random.insideUnitSphere * roamDist + startingPos;
+        Vector3 ranPos = Random.insideUnitSphere * roamDist;
         ranPos += startingPos;
 
         NavMeshHit hit;
 
-        if (NavMesh.SamplePosition(ranPos, out hit, roamDist, NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(ranPos, out hit, roamDist, 1))
         {
             agent.SetDestination(hit.position);
         }
@@ -93,7 +93,8 @@ public class enemyAI : MonoBehaviour, IDamage, IOpen
 
         Debug.DrawRay(headPos.position, playerDir.normalized * 20f, Color.red);
 
-        if (Physics.Raycast(headPos.position, playerDir.normalized, out RaycastHit hit))
+        RaycastHit hit;
+        if (Physics.Raycast(headPos.position, playerDir.normalized, out hit))
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= fov)
             {
