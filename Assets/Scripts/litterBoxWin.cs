@@ -6,9 +6,12 @@ public class litterBoxWin : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //gamemanager.instance.PlayerEnteredLitterBox();
-
-            gamemanager.instance.youWin();
+           pickUpStats stats = other.GetComponent<pickUpStats>();
+            if (stats != null && stats.pickUpsCount >= 3)
+            {
+                gamemanager.instance.updateGameGoal(-1);
+                Debug.Log("Goal updated! Player had enough pickups.");
+            }
         }
     }
 }
