@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour ,IDamage
+public class PlayerController : MonoBehaviour ,IDamage,IPickup
 {
     //Controller
     [SerializeField] CharacterController controller;
@@ -28,6 +28,9 @@ public class PlayerController : MonoBehaviour ,IDamage
     Vector3 moveDir;
     Vector3 playerVel;
 
+
+    //Variables
+    public int pickUpsCount = 0;
     int HPOrig;
     GameObject pivot;
     int jumpCount;
@@ -166,5 +169,25 @@ public class PlayerController : MonoBehaviour ,IDamage
         gamemanager.instance.playerDamagePanel.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         gamemanager.instance.playerDamagePanel.SetActive(false);
+    }
+
+    public void OnPickup(pickUpStats stats)
+    {
+        HP += stats.bonusHealth;
+        speed *= stats.speedBoost;
+        shootDamage += stats.damageBoost;
+        pickUpsCount++;
+
+      
+
+        if (pickUpsCount >= 3)
+        {
+            gamemanager.instance.updateGameGoal(-1);
+        }
+    }
+
+    public bool CanBePickedUp(GameObject player)
+    {
+        return pickUpsCount < 3;
     }
 }
