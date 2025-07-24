@@ -9,8 +9,8 @@ public class litterBoxWin : MonoBehaviour
            pickUpStats stats = other.GetComponent<pickUpStats>();
             if (stats != null && stats.pickUpsCount >= 3)
             {
-                gamemanager.instance.updateGameGoal();
-                Debug.Log("Goal updated! Player had enough pickups.");
+                gamemanager.instance.youWin();
+                
             }
         }
     }

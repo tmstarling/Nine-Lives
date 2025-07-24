@@ -16,4 +16,4 @@ MonoBehaviour:
   model: {fileID: 0}
   bonusHealth: 10
   speedBoost: 1
-  damageBoost: 1
+  damageBoost: 3
