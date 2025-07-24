@@ -20,7 +20,7 @@ public class gamemanager : MonoBehaviour
     public GameObject InteractButton;
 
     float timescaleOrig;
-
+    int pickUpsCount = 0;
     int gameGoalCount;
     public static int amount;
 

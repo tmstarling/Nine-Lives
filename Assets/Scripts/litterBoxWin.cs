@@ -4,14 +4,18 @@ public class litterBoxWin : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        IPickup pickUp = other.GetComponent<IPickup>();
+        if (pickUp != null)
         {
-           pickUpStats stats = other.GetComponent<pickUpStats>();
-            if (stats != null && stats.pickUpsCount >= 3)
+            pickUpStats stats = other.GetComponentInChildren<pickUpStats>();
+            if (stats != null)
             {
-                gamemanager.instance.youWin();
-                
+             
+                pickUp.OnPickup(stats);
+                Destroy(gameObject);
             }
+            
         }
     }
 }
+

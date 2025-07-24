@@ -54,7 +54,7 @@ MonoBehaviour:
   DamageAmount: 5
   Speed: 15
   DestroyTime: 5
-  damageRate: 0
+  damageRate: 3
 --- !u!96 &5917465778983600773
 TrailRenderer:
   serializedVersion: 3
