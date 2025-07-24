@@ -7,7 +7,7 @@ public class PickUp : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         IPickup pickUp = other.GetComponent<IPickup>();
-        if (pickUp != null && pickUp.CanBePickedUp(other.gameObject))
+        if (pickUp != null)
         {
             pickUp.OnPickup(stats);
             Destroy(gameObject);

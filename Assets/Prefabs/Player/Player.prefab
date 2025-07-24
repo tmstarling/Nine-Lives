@@ -964,7 +964,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0024035363, y: 1}
+  m_AnchoredPosition: {x: 0.0024035363, y: 0.007}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4130375260006402104
@@ -1387,6 +1387,7 @@ GameObject:
   - component: {fileID: 1527591669686737709}
   - component: {fileID: 8192666778365918465}
   - component: {fileID: -5907757582677470795}
+  - component: {fileID: 4585781773690064590}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1404,7 +1405,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.0832, y: 0, z: 3.1446}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6001662484646101926}
@@ -1435,7 +1436,7 @@ MonoBehaviour:
   jumpMax: 2
   gravity: 35
   anim: {fileID: 1527591669686737709}
-  shootDamage: 5
+  shootDamage: 1
   shootRate: 0.5
   shootDist: 150
   Furball: {fileID: 2466991997635656875, guid: fc2100fb8f48c4f4a9e625833052e08a, type: 3}
@@ -1509,6 +1510,29 @@ CapsuleCollider:
   serializedVersion: 2
   m_Radius: 0.05
   m_Height: 0.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &4585781773690064590
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5836961965450366441}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5901741243466088468
