@@ -182,7 +182,8 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
 
         if (pickUpsCount >= 3)
         {
-            gamemanager.instance.updateGameGoal(-1);
+           pickUpsCount = 3; // Limit to 3 pickups
+            
         }
     }
 

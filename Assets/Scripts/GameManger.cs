@@ -98,7 +98,7 @@ public class gamemanager : MonoBehaviour
 
     public void PlayerEnteredLitterBox()
     {
-        Debug.Log("Player entered the litter box - they Win!");
+     
         youWin();
     }
 }
