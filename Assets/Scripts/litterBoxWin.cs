@@ -6,7 +6,9 @@ public class litterBoxWin : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            gamemanager.instance.PlayerEnteredLitterBox();
+            //gamemanager.instance.PlayerEnteredLitterBox();
+
+            gamemanager.instance.youWin();
         }
     }
 }
