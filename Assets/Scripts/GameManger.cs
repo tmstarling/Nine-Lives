@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class gamemanager : MonoBehaviour
 {
@@ -9,16 +10,19 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuPaused;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
+    [SerializeField] TMP_Text gameGoalCountText;
 
     public Image playeHPBar;
     public GameObject playerDamagePanel;
     public bool isPaused;
     public GameObject player;
     public PlayerController playerScript;
+    public GameObject InteractButton;
 
     float timescaleOrig;
 
     int gameGoalCount;
+    public static int amount;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -70,14 +74,10 @@ public class gamemanager : MonoBehaviour
         menuActive = null;
     }
 
-    public void updateGameGoal(int amount)
+    public void updateGameGoal()
     {
-        gameGoalCount = amount; 
-        if (gameGoalCount <= 0) 
-        { statePaused(); 
-          menuActive = menuWin; 
-          menuActive.SetActive(true); 
-        }
+        gameGoalCount = amount;
+        gameGoalCountText.text = gameGoalCount.ToString("F0");
     }
 
     
@@ -87,5 +87,18 @@ public class gamemanager : MonoBehaviour
         statePaused();
         menuActive = menuLose;
         menuActive.SetActive(true);
-    }   
+    } 
+    
+    public void youWin()
+    {
+        statePaused();
+        menuActive = menuWin;
+        menuActive.SetActive(true);
+    }
+
+    public void PlayerEnteredLitterBox()
+    {
+        Debug.Log("Player entered the litter box - they Win!");
+        youWin();
+    }
 }

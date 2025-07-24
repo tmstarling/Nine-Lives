@@ -2,21 +2,21 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject prefabToSpawn;
-    [SerializeField] private int maxSpawns = 10;
-    [SerializeField] private float timeBetweenSpawns = 2f;
+    [SerializeField] GameObject prefabToSpawn;
+    [SerializeField] int maxSpawns;
+    [SerializeField] float timeBetweenSpawns;
 
-    [SerializeField] private Transform[] spawnPoints;
+    [SerializeField] Transform[] spawnPoints;
 
-    private float nextSpawnTime;
-    private int currentSpawnCount;
-    private bool canSpawn = false;
+    float nextSpawnTime;
+    int currentSpawnCount;
+    bool canSpawn = false;
 
     void Start()
     {
         if (gamemanager.instance != null)
         {
-            gamemanager.instance.updateGameGoal(maxSpawns);
+            gamemanager.instance.updateGameGoal();
         }
 
         nextSpawnTime = Time.time + timeBetweenSpawns;
@@ -62,7 +62,7 @@ public class Spawner : MonoBehaviour
         spawnedObject.transform.Rotate(0, Random.Range(0, 360), 0);
 
         currentSpawnCount++;
-
+        currentSpawnCount = gamemanager.amount;
         
         Debug.Log($"Spawned object {currentSpawnCount}/{maxSpawns} at {selectedSpawnPoint.name}");
     }

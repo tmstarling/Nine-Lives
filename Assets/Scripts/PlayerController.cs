@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist,~ignoreLayer))
         {
-            //Debug.Log(hit.collider.name);
+            Debug.Log(hit.collider.name);
 
             IDamage dmg = hit.collider.GetComponent<IDamage>();
 
@@ -156,8 +156,6 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
         if (HP <= 0) 
         {
             gamemanager.instance.youLose();
-
-
         }
     }
 

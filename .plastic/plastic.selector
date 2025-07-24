@@ -1,4 +1,0 @@
-repository "Nine Lives/Nine Lives@2475858509554@cloud"
-  path "/"
-    br "/main"
-    co "/main"
