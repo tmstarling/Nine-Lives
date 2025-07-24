@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickUpsCount: 0
   model: {fileID: 0}
-  bonusHealth: 0
-  speedBoost: 0
-  damageBoost: 0
+  bonusHealth: 10
+  speedBoost: 1
+  damageBoost: 1
