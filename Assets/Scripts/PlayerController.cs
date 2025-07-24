@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
 
 
     //Variables
-    public int pickUpsCount = 0;
+    int pickUpsCount;
     int HPOrig;
     GameObject pivot;
     int jumpCount;
@@ -175,7 +175,7 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     {
         HP += stats.bonusHealth;
         speed *= stats.speedBoost;
-        shootDamage += stats.damageBoost;
+        shootDamage *= stats.damageBoost;
         pickUpsCount++;
 
       
