@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pick Up - Fish
   m_EditorClassIdentifier: 
   pickUpsCount: 0
-  model: {fileID: 0}
-  bonusHealth: 0
-  speedBoost: 0
-  damageBoost: 0
+  model: {fileID: 2725249261450741679, guid: b19ca3861684ca74fa0fc5d72cb77db7, type: 3}
+  bonusHealth: 10
+  speedBoost: 1
+  damageBoost: 1

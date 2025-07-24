@@ -51,8 +51,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   rigid: {fileID: 1611428366258788835}
-  DamageAmount: 10
-  Speed: 10
+  DamageAmount: 5
+  Speed: 15
   DestroyTime: 5
   damageRate: 0
 --- !u!96 &5917465778983600773

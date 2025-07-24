@@ -5,7 +5,7 @@ using UnityEngine;
 public class pickUpStats : ScriptableObject
 {
 
-    public int pickUpsCount = 0;
+    public int pickUpsCount;
     public GameObject model;
     [Range(10, 50)] public int bonusHealth;
     [Range(1, 5)] public int speedBoost;
