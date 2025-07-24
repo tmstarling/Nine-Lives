@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
 
 
     //Variables
-    public int pickUpsCount = 0;
+    int pickUpsCount;
     int HPOrig;
     GameObject pivot;
     int jumpCount;
@@ -175,16 +175,15 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     {
         HP += stats.bonusHealth;
         speed *= stats.speedBoost;
-        shootDamage += stats.damageBoost;
+        shootDamage *= stats.damageBoost;
         pickUpsCount++;
 
       
 
-        if (pickUpsCount >= 3)
-        {
-           pickUpsCount = 3; // Limit to 3 pickups
-            
-        }
+        //if (pickUpsCount >= 3)
+        //{
+        //    gamemanager.instance.updateGameGoal();
+        //}
     }
 
     public bool CanBePickedUp(GameObject player)

@@ -74,6 +74,8 @@ public class enemyAI : MonoBehaviour, IDamage, IOpen
         agent.stoppingDistance = 0;
 
         Vector3 ranPos = Random.insideUnitSphere * roamDist + startingPos;
+        ranPos += startingPos;
+
         NavMeshHit hit;
 
         if (NavMesh.SamplePosition(ranPos, out hit, roamDist, NavMesh.AllAreas))
