@@ -1197,8 +1197,8 @@ MonoBehaviour:
   headPos: {fileID: 3907713012263451406}
   anim: {fileID: 6680058053427895270}
   HP: 25
-  fov: 90
-  faceTargetSpeed: 5
+  fov: 200
+  faceTargetSpeed: 20
   roamDist: 10
   roamPauseTime: 3
   bullet: {fileID: 4783417352459397073, guid: 224e7361dad2c604099c27fa3c69f6da, type: 3}

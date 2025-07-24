@@ -56,12 +56,12 @@ MonoBehaviour:
   headPos: {fileID: 2757631367391303202}
   anim: {fileID: 3136051230220409162}
   HP: 35
-  fov: 90
-  faceTargetSpeed: 5
-  roamDist: 10
+  fov: 200
+  faceTargetSpeed: 20
+  roamDist: 20
   roamPauseTime: 3
   bullet: {fileID: 2261200442920770066, guid: ee746fdd6c3702a49b66f35ca541d4b8, type: 3}
-  shootRate: 0.5
+  shootRate: 3
 --- !u!95 &3136051230220409162
 Animator:
   serializedVersion: 7

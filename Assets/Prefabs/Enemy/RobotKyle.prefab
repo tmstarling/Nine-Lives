@@ -380,12 +380,12 @@ MonoBehaviour:
   headPos: {fileID: 7168818894717126099}
   anim: {fileID: 4403480988476893154}
   HP: 50
-  fov: 90
-  faceTargetSpeed: 10
+  fov: 200
+  faceTargetSpeed: 20
   roamDist: 5
   roamPauseTime: 0
   bullet: {fileID: 4783417352459397073, guid: 224e7361dad2c604099c27fa3c69f6da, type: 3}
-  shootRate: 1
+  shootRate: 2
 --- !u!95 &4403480988476893154
 Animator:
   serializedVersion: 7
