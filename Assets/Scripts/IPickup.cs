@@ -2,6 +2,6 @@ using UnityEngine;
 
 public interface IPickup
 {
-    void OnPickup(GameObject player);
+    void OnPickup(pickUpStats stats);
     bool CanBePickedUp(GameObject player);
 }
