@@ -1416,6 +1416,22 @@ PrefabInstance:
       propertyPath: gameGoalCountText
       value: 
       objectReference: {fileID: 985464522}
+    - target: {fileID: 6893242306375384240, guid: 14aa92e5f360dc043b42d870db7c78e9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6893242306375384240, guid: 14aa92e5f360dc043b42d870db7c78e9, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6893242306375384240, guid: 14aa92e5f360dc043b42d870db7c78e9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6893242306375384240, guid: 14aa92e5f360dc043b42d870db7c78e9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
