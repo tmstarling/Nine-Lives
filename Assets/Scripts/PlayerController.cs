@@ -179,11 +179,6 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
         pickUpsCount++;
 
         stats.pickUpsCount++;
-
-        //if (pickUpsCount >= 3)
-        //{
-        //    gamemanager.instance.updateGameGoal();
-        //}
     }
 
     public bool CanBePickedUp(GameObject player)
