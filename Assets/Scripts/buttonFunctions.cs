@@ -2,7 +2,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class buttonFunctions : MonoBehaviour
-{ 
+{
+    [SerializeField] AudioSource hoverSFX;
+    [SerializeField] AudioSource clickSFX;
+
     public void resume()
     {
         gamemanager.instance.stateUnpaused();
@@ -26,9 +29,18 @@ public class buttonFunctions : MonoBehaviour
     #endif
 
     }
-    
-        
-    
+
+    public void hover()
+    {
+        hoverSFX.Play();
+    }
+    public void click()
+    {
+        clickSFX.Play();
+    }
+
+
+
 }
 
 
