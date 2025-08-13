@@ -8,6 +8,7 @@ public class gamemanager : MonoBehaviour
 
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPaused;
+    [SerializeField] GameObject menuCheat;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
 
@@ -49,8 +50,6 @@ public class gamemanager : MonoBehaviour
                 stateUnpaused();
             }
         }
-
-        
     }
 
     public void statePaused()
@@ -71,6 +70,17 @@ public class gamemanager : MonoBehaviour
         menuActive = null;
     }
 
+    public void youCheat()
+    {
+        if (menuActive != null)
+        {
+            menuActive.SetActive(false);
+        }
+
+        statePaused();
+        menuActive = menuCheat;
+        menuActive.SetActive(true);
+    }
 
     public void youLose() 
     {  
