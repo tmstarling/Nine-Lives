@@ -2,13 +2,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
+// before checkpoint manager, after regular objective manager
+[DefaultExecutionOrder(1000)]
 public class ObjectiveManager : MonoBehaviour
 {
-    public static ObjectiveManager instance;
-    [TextArea]
-    [SerializeField] string finalDescription;
-    [SerializeField] TextMeshProUGUI description;
-
     [System.Serializable]
     class Objective
     {
@@ -16,6 +13,7 @@ public class ObjectiveManager : MonoBehaviour
         // public UnityEvent onUndo; TODO: Checkpoints
         public GameObject objective;
         public IObjective _objective;
+        public int checkpointID;
 
         public void Init()
         {
@@ -24,11 +22,26 @@ public class ObjectiveManager : MonoBehaviour
         }
     }
 
-
+    public static ObjectiveManager instance;
+    [TextArea]
+    [SerializeField] string finalDescription;
+    [SerializeField] TextMeshProUGUI description;
     [SerializeField] Objective[] objectives;
     bool finished;
     Objective current => objectives[currentIdx];
     int currentIdx;
+
+    public void SkipTo(int checkpointID)
+    {
+        foreach (Objective o in objectives)
+        {
+            if (o.checkpointID < checkpointID)
+                currentIdx++;
+            else
+                break;
+        }
+    }
+
     void Awake()
     {
         instance = this;
