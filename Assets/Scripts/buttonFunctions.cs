@@ -10,7 +10,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        CheckpointManager.instance.ResetToLastCheckpoint();
         gamemanager.instance.stateUnpaused();
     }
 

@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     void Start()
     {
         HPOrig = HP;
-        updateplayer();
+        UpdateHealthBarFill();
     }
 
     // Update is called once per frame
@@ -117,19 +117,6 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
         //Furball Spawn
         Vector3 offset = Camera.main.transform.forward * 0.3f;
         Instantiate(Furball, shootPos.position + offset, Camera.main.transform.rotation);
-
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist,~ignoreLayer))
-        {
-            Debug.Log(hit.collider.name);
-
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
-
-            if (dmg != null)
-            {
-                dmg.TakeDamage(shootDamage);
-            }
-        }
     }
 
     void shootYarn()
@@ -139,18 +126,12 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
         //Yarnball Spawn
         Vector3 offset = Camera.main.transform.forward * 0.3f;
         Instantiate(Furball, shootPos.position + offset, Camera.main.transform.rotation);
-
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
-        {
-            Debug.Log(hit.collider.name);
-        }
     }
 
     public void TakeDamage(int amount)
     {
         HP -= amount;
-        updateplayer();
+        UpdateHealthBarFill();
         StartCoroutine(damageFlashScreen());
 
         if (HP <= 0) 
@@ -159,7 +140,7 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
         }
     }
 
-    public void updateplayer()
+    public void UpdateHealthBarFill()
     {
         gamemanager.instance.playeHPBar.fillAmount = (float)HP / HPOrig;
     }
