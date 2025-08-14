@@ -52,6 +52,8 @@ public class buttonFunctions : MonoBehaviour
         {
             case "godmode":
                 player.godMode = true;
+                player.EnableSpeedBoost();
+                player.EnableInvulnerability();
                 Debug.Log("God mode activated");
                 break;
 

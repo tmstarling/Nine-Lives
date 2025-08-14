@@ -55,9 +55,12 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     {
         anim.SetFloat("Speed", controller.velocity.magnitude);
 
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
-        movement();
-        sprint();
+        if (!gamemanager.instance.isPaused)
+        {
+            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
+            movement();
+            sprint();
+        }
     }
 
     void movement()
@@ -183,9 +186,6 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     public void EnableGodMode()
     {
         godMode = true;
-        EnableInvulnerability();
-        EnableSpeedBoost();
-        UpdateHealthBarFill();
     }
 
     public void EnableSpeedBoost()
