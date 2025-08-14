@@ -10,7 +10,6 @@ public class ObjectiveManager : MonoBehaviour
     class Objective
     {
         public UnityEvent onComplete;
-        // public UnityEvent onUndo; TODO: Checkpoints
         public GameObject objective;
         public IObjective _objective;
         public int checkpointID;
@@ -71,6 +70,8 @@ public class ObjectiveManager : MonoBehaviour
         currentIdx++;
         if (current._objective != null)
             current._objective.Register(UpdateDescription, CompleteObjective);
+        else
+            Debug.LogError("_objective was null, objects need to implement IObjective");
     }
 
     void Start()
@@ -79,5 +80,7 @@ public class ObjectiveManager : MonoBehaviour
             return;
         if (current._objective != null)
             current._objective.Register(UpdateDescription, CompleteObjective);
+        else 
+            Debug.LogError("_objective was null, objects need to implement IObjective");
     }
 }

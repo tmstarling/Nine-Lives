@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class buttonFunctions : MonoBehaviour
 { 
@@ -10,8 +9,15 @@ public class buttonFunctions : MonoBehaviour
 
     public void restart()
     {
-        CheckpointManager.instance.ResetToLastCheckpoint();
-        gamemanager.instance.stateUnpaused();
+        if (CheckpointManager.instance == null) 
+        {
+            Debug.LogError("CheckpointManager.instance is null");
+        }
+        else
+        {
+            CheckpointManager.instance.ResetToLastCheckpoint();
+            gamemanager.instance.stateUnpaused();
+        }
     }
 
     public void quit()
