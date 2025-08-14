@@ -12,6 +12,8 @@ public class CheckpointManager : MonoBehaviour
 
     int checkpointID;
 
+    public int GetCheckpointID() => checkpointID;
+
     public void UpdateCheckpoint(int id, Vector3 pos)
     {
         checkpointID = id;
@@ -20,10 +22,14 @@ public class CheckpointManager : MonoBehaviour
 
     private void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return; 
+        }
+        instance = this;
         if (awoken)
             return;
-        DontDestroyOnLoad(gameObject);
-        instance = this;
         var spawnPos = GameObject.FindGameObjectWithTag("StartPosition");
         if (spawnPos != null)
             playerSpawnPoint = spawnPos.transform.position;
@@ -31,6 +37,10 @@ public class CheckpointManager : MonoBehaviour
             playerSpawnPoint = Vector3.zero;
         MovePlayerToLastSpawn();
         awoken = true;
+    }
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
     }
 
     void MovePlayerToLastSpawn() => player.position = playerSpawnPoint;
