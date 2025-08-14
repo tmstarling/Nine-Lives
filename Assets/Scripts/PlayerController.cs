@@ -185,7 +185,7 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
         godMode = true;
         EnableInvulnerability();
         EnableSpeedBoost();
-        updateplayer();
+        UpdateHealthBarFill();
     }
 
     public void EnableSpeedBoost()

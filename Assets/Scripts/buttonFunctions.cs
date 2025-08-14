@@ -17,7 +17,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void restart()
     {
-        CheckpointManager.instance.ResetToLastCheckpoint();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gamemanager.instance.stateUnpaused();
     }
 
@@ -27,7 +27,11 @@ public class buttonFunctions : MonoBehaviour
         gamemanager.instance.youCheat();
     }
 
-    // ... existing methods ...
+    public void repawn()
+    {
+        CheckpointManager.instance.ResetToLastCheckpoint();
+        gamemanager.instance.stateUnpaused();
+    }
 
     public void ClearCheatInput()
     {
