@@ -227,10 +227,4 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     {
         invulnerability = true;
     }
-
-    //public void SpawnEnemy()
-    //{
-    //    Debug.Log("Enemy Spawned");
-        
-    //}
 }

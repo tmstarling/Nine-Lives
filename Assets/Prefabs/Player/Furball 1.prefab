@@ -66,7 +66,7 @@ MonoBehaviour:
   type: 0
   rigid: {fileID: 7840973833223654340}
   DamageAmount: 5
-  Speed: 15
+  Speed: 50
   DestroyTime: 3
   damageRate: 0
 --- !u!96 &6668712044328701634
@@ -219,7 +219,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 50e88dd1d7cd4064eb7271eb3d11acad, type: 2}
+  - {fileID: 2100000, guid: 326834db23ca5b3438d00bd08f5b9362, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

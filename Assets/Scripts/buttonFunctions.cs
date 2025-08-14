@@ -66,10 +66,22 @@ public class buttonFunctions : MonoBehaviour
                 Debug.Log("Invulnerability activated");
                 break;
 
-            //case "spawn enemy":
+            //case "spawnenemy":
             //    player.SpawnEnemy();
             //    Debug.Log("Item drop activated");
             //    break;
+
+            case "spawnitem":
+                if (ItemSpawner.instance != null)
+                {
+                    ItemSpawner.instance.SpawnItem();
+                    Debug.Log("Item spawned via cheat");
+                }
+                else
+                {
+                    Debug.LogWarning("ItemSpawner instance not found");
+                }
+                break;
 
             default:
                 Debug.LogWarning("Unknown cheat code: " + cheatCode);
