@@ -13,14 +13,6 @@ public class buttonFunctions : MonoBehaviour
     [SerializeField] TMP_InputField cheatInputField;
     [SerializeField] TMP_Text cheatFeedbackText;
 
-
-    Color colorOrig;
-
-    void Start()
-    {
-        colorOrig = model.material.color;
-    }
-
     public void resume()
     {
         gamemanager.instance.stateUnpaused();
@@ -123,11 +115,9 @@ public class buttonFunctions : MonoBehaviour
 
     IEnumerator cheatcodeFeedback()
     {
-        model.material.color = Color.red;
         gamemanager.instance.cheatPopup.SetActive(true);
         yield return new WaitForSeconds(1);
         gamemanager.instance.cheatPopup.SetActive(false);
-        model.material.color = colorOrig;
     }
 
     public void quit()
