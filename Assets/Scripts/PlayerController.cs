@@ -194,15 +194,6 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
         speedBoost = speedOrig * 5;
         speed = speedBoost;
     }
-    public void EnableWallHack()
-    {
-        wallHack = true;
-        Collider[] colliders = GetComponents<Collider>();
-        foreach (var col in colliders)
-        {
-            col.enabled = false;
-        }
-    }
 
     public void EnableInvulnerability()
     {

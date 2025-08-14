@@ -1,14 +1,25 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 using TMPro;
 
 public class buttonFunctions : MonoBehaviour
 {
+    [SerializeField] Renderer model;
+
     [SerializeField] AudioSource hoverSFX;
     [SerializeField] AudioSource clickSFX;
 
     [SerializeField] TMP_InputField cheatInputField;
+    [SerializeField] TMP_Text cheatFeedbackText;
 
+
+    Color colorOrig;
+
+    void Start()
+    {
+        colorOrig = model.material.color;
+    }
 
     public void resume()
     {
@@ -54,26 +65,33 @@ public class buttonFunctions : MonoBehaviour
                 player.godMode = true;
                 player.EnableSpeedBoost();
                 player.EnableInvulnerability();
-                Debug.Log("God mode activated");
+
+                StartCoroutine(cheatcodeFeedback());
+
+                cheatFeedbackText.text = "God mode activated";
                 break;
 
             case "speedboost":
                 player.EnableSpeedBoost();
-                Debug.Log("Speed boost activated");
-                break;
 
-            case "wallhack":
-                player.EnableWallHack();
-                Debug.Log("Wallhack activated");
+                StartCoroutine(cheatcodeFeedback());
+
+                cheatFeedbackText.text = "Speed boost activated";
                 break;
 
             case "invulnerable":
                 player.EnableInvulnerability();
-                Debug.Log("Invulnerability activated");
+
+                StartCoroutine(cheatcodeFeedback());
+
+                cheatFeedbackText.text = "Invulnerability activated";
                 break;
 
             //case "spawnenemy":
             //    player.SpawnEnemy();
+
+            //    StartCoroutine(cheatcodeFeedback());
+
             //    Debug.Log("Item drop activated");
             //    break;
 
@@ -81,7 +99,10 @@ public class buttonFunctions : MonoBehaviour
                 if (ItemSpawner.instance != null)
                 {
                     ItemSpawner.instance.SpawnItem();
-                    Debug.Log("Item spawned via cheat");
+
+                    StartCoroutine(cheatcodeFeedback());
+
+                    cheatFeedbackText.text = "Item spawned via cheat";
                 }
                 else
                 {
@@ -90,13 +111,24 @@ public class buttonFunctions : MonoBehaviour
                 break;
 
             default:
-                Debug.LogWarning("Unknown cheat code: " + cheatCode);
+
+                StartCoroutine(cheatcodeFeedback());
+
+                cheatFeedbackText.text = "Unknown cheat code: " + cheatCode;
                 break;
         }
 
         cheatInputField.text = "";
     }
 
+    IEnumerator cheatcodeFeedback()
+    {
+        model.material.color = Color.red;
+        gamemanager.instance.cheatPopup.SetActive(true);
+        yield return new WaitForSeconds(1);
+        gamemanager.instance.cheatPopup.SetActive(false);
+        model.material.color = colorOrig;
+    }
 
     public void quit()
     {

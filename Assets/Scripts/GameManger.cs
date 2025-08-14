@@ -18,6 +18,7 @@ public class gamemanager : MonoBehaviour
     public GameObject player;
     public PlayerController playerScript;
     public GameObject InteractButton;
+    public GameObject cheatPopup;
 
     float timescaleOrig;
     int pickUpsCount = 0;
