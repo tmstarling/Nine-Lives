@@ -22,7 +22,7 @@ public class OpenDoor : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            anim.SetTrigger("doorOpen");
+            anim.SetTrigger("Open");
 
             Debug.Log("Opening Door");
         }
