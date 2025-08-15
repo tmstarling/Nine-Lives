@@ -116,7 +116,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -141,7 +141,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1.3826308, y: 0.12306504, z: 2.3121815}
-  m_Center: {x: -0.6460866, y: 0.025042713, z: 1.1560907}
+  m_Center: {x: -0.65, y: 0, z: 1.155}
 --- !u!59 &67309680250354808
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -324,7 +324,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.00000011920928, y: 1.3708}
+  m_Offset: {x: 0.00000011920928, y: 0.98}
   m_Size: {x: 2.1867907, y: 2.7416}
   m_Direction: 0
 --- !u!1 &8444816050124576923
