@@ -49,10 +49,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   rigid: {fileID: 3150376335016071731}
-  DamageAmount: 5
+  DamageAmount: 10
   Speed: 15
   DestroyTime: 3
   damageRate: 0
+  sourceEnemy: {fileID: -7695164382656237390, guid: 7693bf64042a3084798b28334212dcb7, type: 3}
 --- !u!96 &870527752284585839
 TrailRenderer:
   serializedVersion: 3

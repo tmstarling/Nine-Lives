@@ -19,6 +19,8 @@ public class enemyAI : MonoBehaviour, IDamage, IOpen
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
 
+    [SerializeField] public float aimOffset;
+
     Color colorOrg;
     float shootTimer;
     float roamTimer;

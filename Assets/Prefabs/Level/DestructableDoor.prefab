@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3320653407445673317}
+  - component: {fileID: 9140598545791501704}
   - component: {fileID: 2761942383577347443}
   - component: {fileID: 3257540880628919285}
   - component: {fileID: 8288771320587367633}
@@ -16,7 +17,7 @@ GameObject:
   - component: {fileID: 691356939987006503}
   - component: {fileID: 67309680250354808}
   - component: {fileID: 7286704695399079896}
-  - component: {fileID: 821867824243425569}
+  - component: {fileID: 7050732379165320539}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -39,6 +40,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1623835523747338744}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9140598545791501704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3451682556073496070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7aad67c54f965243b49e38672a07f4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2761942383577347443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,7 +229,7 @@ MonoBehaviour:
   isOpened: 0
   OpenSpeed: 3
   rbDoor: {fileID: 0}
---- !u!95 &821867824243425569
+--- !u!95 &7050732379165320539
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -372,8 +385,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1623835523747338744}
+  - component: {fileID: 5530198163867607835}
   - component: {fileID: 3966039728809877749}
-  - component: {fileID: 3840215047335204509}
+  - component: {fileID: 9150235845922696887}
+  - component: {fileID: 2513547305020446408}
   m_Layer: 0
   m_Name: DestructableDoor
   m_TagString: BulletDestroy
@@ -398,6 +413,18 @@ Transform:
   - {fileID: 3320653407445673317}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5530198163867607835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8444816050124576923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7aad67c54f965243b49e38672a07f4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &3966039728809877749
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -419,7 +446,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.15, y: 3, z: 1}
   m_Center: {x: 0, y: 1.3, z: 0}
---- !u!95 &3840215047335204509
+--- !u!65 &9150235845922696887
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8444816050124576923}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.15, y: 3, z: 5}
+  m_Center: {x: 0, y: 1.3, z: 0}
+--- !u!95 &2513547305020446408
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -429,7 +477,7 @@ Animator:
   m_GameObject: {fileID: 8444816050124576923}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5d6c7d7d0c2759c448f615f19f37ddd5, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -55,6 +55,7 @@ MonoBehaviour:
   Speed: 15
   DestroyTime: 5
   damageRate: 3
+  sourceEnemy: {fileID: 4387281779428652668, guid: 6d66cc7425bc0d44a871e1b8b1e694e8, type: 3}
 --- !u!96 &5917465778983600773
 TrailRenderer:
   serializedVersion: 3
