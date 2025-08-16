@@ -1225,7 +1225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 2968202612390734735}
   agent: {fileID: 1426220367102977869}
-  shootPos1: {fileID: 0}
+  shootPos1: {fileID: 2089944553449168550}
   shootPos2: {fileID: 0}
   headPos: {fileID: 3907713012263451406}
   anim: {fileID: 6680058053427895270}

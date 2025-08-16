@@ -1461,7 +1461,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 0}
   agent: {fileID: 0}
-  shootPos: {fileID: 0}
+  shootPos1: {fileID: 0}
+  shootPos2: {fileID: 0}
   headPos: {fileID: 0}
   anim: {fileID: 0}
   HP: 0
@@ -1469,7 +1470,8 @@ MonoBehaviour:
   faceTargetSpeed: 0
   roamDist: 0
   roamPauseTime: 0
-  bullet: {fileID: 0}
+  bullet1: {fileID: 0}
+  bullet2: {fileID: 0}
   shootRate: 0
   aimOffset: 0
 --- !u!95 &1527591669686737709

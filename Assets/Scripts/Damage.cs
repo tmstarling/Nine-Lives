@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Damage : MonoBehaviour
 {
-    enum DamageTypes { Moving, Homing, DmgOvrTime }
+    enum DamageTypes { PlayerMoving, Moving, Homing, DmgOvrTime }
 
     [SerializeField] DamageTypes type;
     [SerializeField] Rigidbody rigid;
@@ -34,6 +34,19 @@ public class Damage : MonoBehaviour
             if (type == DamageTypes.Homing)
             {
                 rigid.linearVelocity = (gamemanager.instance.player.transform.position).normalized * Speed * Time.deltaTime;
+            }
+        }
+
+        else if (type == DamageTypes.PlayerMoving)
+        {
+            Destroy(gameObject, DestroyTime);
+
+            if (type == DamageTypes.PlayerMoving)
+            {
+                Vector3 targetPos = gamemanager.instance.player.transform.position + Vector3.up * sourceEnemy.aimOffset;
+                Vector3 direction = (targetPos - transform.position).normalized;
+
+                rigid.linearVelocity = transform.forward * Speed;
             }
         }
     }
@@ -93,6 +106,4 @@ public class Damage : MonoBehaviour
         yield return new WaitForSeconds(DamageAmount);
         isDamaging = false;
     }
-
-
 }

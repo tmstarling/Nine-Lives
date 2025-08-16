@@ -53,6 +53,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7131641928682395595, guid: ee746fdd6c3702a49b66f35ca541d4b8, type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7131641928682395595, guid: ee746fdd6c3702a49b66f35ca541d4b8, type: 3}
       propertyPath: sourceEnemy
       value: 
       objectReference: {fileID: 777917304896469860, guid: 40e11cc298452cb478bd34ccfdb9a92e, type: 3}
