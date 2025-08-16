@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8079081716708806485}
   m_Layer: 0
-  m_Name: ShootPos
+  m_Name: ShootPos2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3720824717804801957}
   m_Layer: 0
-  m_Name: ShootPos
+  m_Name: ShootPos1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,7 +114,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 1847578552246669771}
   agent: {fileID: 7478780410626926788}
-  shootPos: {fileID: 3720824717804801957}
+  shootPos1: {fileID: 3720824717804801957}
+  shootPos2: {fileID: 8079081716708806485}
   headPos: {fileID: 2415633824412126834}
   anim: {fileID: 4923935679519718315}
   HP: 50
@@ -122,8 +123,9 @@ MonoBehaviour:
   faceTargetSpeed: 50
   roamDist: 10
   roamPauseTime: 3
-  bullet: {fileID: 2261200442920770066, guid: ee746fdd6c3702a49b66f35ca541d4b8, type: 3}
-  shootRate: 1
+  bullet1: {fileID: 2261200442920770066, guid: ee746fdd6c3702a49b66f35ca541d4b8, type: 3}
+  bullet2: {fileID: 2261200442920770066, guid: ee746fdd6c3702a49b66f35ca541d4b8, type: 3}
+  shootRate: 3
   aimOffset: 0.5
 --- !u!65 &2168973957509269961
 BoxCollider:

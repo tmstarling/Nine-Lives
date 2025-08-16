@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: sourceEnemy
       value: 
       objectReference: {fileID: 777917304896469860, guid: 40e11cc298452cb478bd34ccfdb9a92e, type: 3}
+    - target: {fileID: 7131641928682395595, guid: ee746fdd6c3702a49b66f35ca541d4b8, type: 3}
+      propertyPath: DamageAmount
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

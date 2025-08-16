@@ -27,7 +27,8 @@ public class Damage : MonoBehaviour
                 Vector3 targetPos = gamemanager.instance.player.transform.position + Vector3.up * sourceEnemy.aimOffset;
                 Vector3 direction = (targetPos - transform.position).normalized;
 
-                rigid.linearVelocity = transform.forward * Speed;
+                rigid.linearVelocity = direction * Speed;
+                transform.forward = direction;
             }
 
             if (type == DamageTypes.Homing)

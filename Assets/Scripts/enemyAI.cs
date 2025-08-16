@@ -109,14 +109,19 @@ public class enemyAI : MonoBehaviour, IDamage, IOpen
                     Shoot();
                 }
 
-                agent.SetDestination(gamemanager.instance.player.transform.position);
+                float distanceToPlayer = Vector3.Distance(transform.position, gamemanager.instance.player.transform.position);
 
-                if (agent.remainingDistance <= agent.stoppingDistance)
+                if (distanceToPlayer > stoppingDistOrig)
                 {
+                    agent.stoppingDistance = stoppingDistOrig;
+                    agent.SetDestination(gamemanager.instance.player.transform.position);
+                }
+                else
+                {
+                    agent.ResetPath();
                     FaceTarget();
                 }
 
-                agent.stoppingDistance = stoppingDistOrig;
                 return true;
             }
         }

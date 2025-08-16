@@ -52,8 +52,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 6839303219332312950}
   agent: {fileID: 3085890938446258571}
-  shootPos1: {fileID: 0}
-  shootPos2: {fileID: 0}
+  shootPos1: {fileID: 6637159406216933619}
+  shootPos2: {fileID: 6241368815826848610}
   headPos: {fileID: 2757631367391303202}
   anim: {fileID: 3136051230220409162}
   HP: 35
@@ -62,8 +62,8 @@ MonoBehaviour:
   roamDist: 20
   roamPauseTime: 3
   bullet1: {fileID: 7816752249784725137, guid: 84f9d41a12e68264e94004b34b757d94, type: 3}
-  bullet2: {fileID: 0}
-  shootRate: 3
+  bullet2: {fileID: 7816752249784725137, guid: 84f9d41a12e68264e94004b34b757d94, type: 3}
+  shootRate: 2
   aimOffset: 0.5
 --- !u!95 &3136051230220409162
 Animator:
@@ -794,7 +794,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6241368815826848610}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: shootPos2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
