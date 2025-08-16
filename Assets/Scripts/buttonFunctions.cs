@@ -2,11 +2,44 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
+using UnityEngine.UI;
 
 public class buttonFunctions : MonoBehaviour
 {
+    public static buttonFunctions Instance;
+
+    [Header("Cheat Input")]
     [SerializeField] TMP_InputField cheatInputField;
+
+    [Header("Cheat Text")]
     [SerializeField] TMP_Text cheatFeedbackText;
+
+    [Header("Cheat Toggles")]
+    [SerializeField] Toggle godModeToggle;
+    [SerializeField] Toggle speedBoostToggle;
+    [SerializeField] Toggle invulnerabilityToggle;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        // ONLY ONE
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
+        godModeToggle.onValueChanged.AddListener(OnGodModeToggle);
+        speedBoostToggle.onValueChanged.AddListener(OnSpeedBoostToggle);
+        invulnerabilityToggle.onValueChanged.AddListener(OnInvulnerabilityToggle);
+
+        SyncCheatToggles();
+    }
+
 
     public void resume()
     {
@@ -34,6 +67,9 @@ public class buttonFunctions : MonoBehaviour
         {
             CheckpointManager.instance.ResetToLastCheckpoint();
             gamemanager.instance.stateUnpaused();
+            //Cheats Reapplied
+            CheatManager.Instance.ApplyCheatsToPlayer(gamemanager.instance.playerScript);
+            SyncCheatToggles();
         }
     }
 
@@ -63,70 +99,21 @@ public class buttonFunctions : MonoBehaviour
         string cheatCode = cheatInputField.text.Trim().ToLower();
         Debug.Log("Entered cheat: " + cheatCode);
 
-        var player = gamemanager.instance.playerScript;
+        CheatManager.Instance.ActivateCheat(cheatCode);
+        StartCoroutine(cheatcodeFeedback());
 
         switch (cheatCode)
         {
             case "godmode":
-                player.godMode = true;
-                player.EnableSpeedBoost();
-                player.EnableInvulnerability();
-
-                StartCoroutine(cheatcodeFeedback());
-
                 cheatFeedbackText.text = "God mode activated";
                 break;
-
             case "speedboost":
-                player.EnableSpeedBoost();
-
-                StartCoroutine(cheatcodeFeedback());
-
                 cheatFeedbackText.text = "Speed boost activated";
                 break;
-
-             //case "wallhack":
-             //   player.EnableWallHack();
-
-             //   StartCoroutine(cheatcodeFeedback());
-
-             //   cheatFeedbackText.text = "Wallhack activated";
-             //   break;
-
             case "invulnerable":
-                player.EnableInvulnerability();
-
-                StartCoroutine(cheatcodeFeedback());
-
                 cheatFeedbackText.text = "Invulnerability activated";
                 break;
-
-            //case "spawnenemy":
-            //    player.SpawnEnemy();
-
-            //    StartCoroutine(cheatcodeFeedback());
-
-            //    cheatFeedbackText.text = "Item drop activated";
-            //    break;
-
-            case "spawnitem":
-                if (ItemSpawner.instance != null)
-                {
-                    ItemSpawner.instance.SpawnItem();
-
-                    StartCoroutine(cheatcodeFeedback());
-
-                    cheatFeedbackText.text = "Item spawned via cheat";
-                }
-                else
-                {
-                    Debug.LogWarning("ItemSpawner instance not found");
-                }
-                break;
-
             default:
-                StartCoroutine(cheatcodeFeedback());
-
                 cheatFeedbackText.text = "Unknown cheat code: " + cheatCode;
                 break;
         }
@@ -139,6 +126,32 @@ public class buttonFunctions : MonoBehaviour
         yield return new WaitForSeconds(1);
         gamemanager.instance.cheatPopup.SetActive(false);
     }
+
+    void OnGodModeToggle(bool isOn)
+    {
+        CheatManager.Instance.godModeEnabled = isOn;
+        CheatManager.Instance.ApplyCheatsToPlayer(gamemanager.instance.playerScript);
+    }
+
+    void OnSpeedBoostToggle(bool isOn)
+    {
+        CheatManager.Instance.speedBoostEnabled = isOn;
+        CheatManager.Instance.ApplyCheatsToPlayer(gamemanager.instance.playerScript);
+    }
+
+    void OnInvulnerabilityToggle(bool isOn)
+    {
+        CheatManager.Instance.invulnerabilityEnabled = isOn;
+        CheatManager.Instance.ApplyCheatsToPlayer(gamemanager.instance.playerScript);
+    }
+
+    void SyncCheatToggles()
+    {
+        godModeToggle.isOn = CheatManager.Instance.godModeEnabled;
+        speedBoostToggle.isOn = CheatManager.Instance.speedBoostEnabled;
+        invulnerabilityToggle.isOn = CheatManager.Instance.invulnerabilityEnabled;
+    }
+
 }
 
 

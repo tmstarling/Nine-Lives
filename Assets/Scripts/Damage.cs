@@ -5,13 +5,17 @@ public class Damage : MonoBehaviour
 {
     enum DamageTypes { PlayerMoving, Moving, Homing, DmgOvrTime }
 
+    [Header("Damage Type")]
     [SerializeField] DamageTypes type;
     [SerializeField] Rigidbody rigid;
+
+    [Header("Damage Settings")]
     [SerializeField] int DamageAmount;
     [SerializeField] int Speed;
     [SerializeField] int DestroyTime;
     [SerializeField] float damageRate;
 
+    [Header("Source Enemy")]
     bool isDamaging;
     public enemyAI sourceEnemy;
 

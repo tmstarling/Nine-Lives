@@ -4,6 +4,7 @@ using UnityEngine.AI;
 
 public class enemyAI : MonoBehaviour, IDamage, IOpen
 {
+    [Header("Enemy AI Settings")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform shootPos1;
@@ -11,18 +12,22 @@ public class enemyAI : MonoBehaviour, IDamage, IOpen
     [SerializeField] Transform headPos;
     [SerializeField] Animator anim;
 
+    [Header("Enemy AI Parameters")]
     [SerializeField] int HP;
     [SerializeField] int fov;
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int roamDist;
     [SerializeField] int roamPauseTime;
 
+    [Header("Shooting Settings")]
     [SerializeField] GameObject bullet1;
     [SerializeField] GameObject bullet2;
     [SerializeField] float shootRate;
 
+    [Header("Aim Offset")]
     [SerializeField] public float aimOffset;
 
+    [Header("Debugging")]
     Color colorOrg;
     float shootTimer;
     float roamTimer;

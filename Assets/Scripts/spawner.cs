@@ -2,13 +2,16 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    [Header("Spawner Settings")]
     [SerializeField] GameObject prefabToSpawn;
     [SerializeField] int maxSpawns;
     [SerializeField] int spawnRate;
     [SerializeField] float timeBetweenSpawns;
 
+    [Header("Spawn Points")]
     [SerializeField] Transform[] spawnPoints;
 
+    [Header("Spawn Variables")]
     float nextSpawnTime;
     int currentSpawnCount;
     bool canSpawn = false;

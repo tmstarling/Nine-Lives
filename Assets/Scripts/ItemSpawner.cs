@@ -12,6 +12,7 @@ public class ItemSpawner : MonoBehaviour
         public int count;
     }
 
+    [Header("Item Drops")]
     [SerializeField] List<ItemDrop> itemDrops = new List<ItemDrop>();
     [SerializeField] float spacing = 2f;
 

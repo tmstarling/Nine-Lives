@@ -2,12 +2,11 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    //Mobement Limits
+    [Header("Movement Limits")]
     [SerializeField] int sens;
     [SerializeField] int lockVertMin, lockVertMax;
     [SerializeField] bool invertY;
 
-    float cameraPosOrig;
     float rotX;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

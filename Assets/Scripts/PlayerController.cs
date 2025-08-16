@@ -3,12 +3,12 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour ,IDamage,IPickup
 {
-    //Controller
+    [Header("Player Settings")]
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] int HP;
 
-    //Movement
+    [Header("Movement Settings")]
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
     [SerializeField] int jumpVel;
@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     [SerializeField] int gravity;
     [SerializeField] Animator anim;
 
-    //Shooting
+    [Header("Shooting Settings")]
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
@@ -24,21 +24,22 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     [SerializeField] GameObject Yarnball;
     [SerializeField] Transform shootPos;
 
-    //References
+    [Header("References")]
     Vector3 moveDir;
     Vector3 playerVel;
 
-
-    //Variables
+    [Header("Variables")]
     int pickUpsCount = 0;
     int HPOrig;
     int jumpCount;
     float shootTimer;
 
-    //Cheats
+    [Header("Cheats")]
     public bool godMode;
     public bool invulnerability;
     public bool wallHack;
+
+    [Header("Speed")]
     public int speedOrig;
     public int speedBoost;
 

@@ -6,12 +6,14 @@ public class gamemanager : MonoBehaviour
 {
     public static gamemanager instance;
 
+    [Header("Menus")]
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPaused;
     [SerializeField] GameObject menuCheat;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
 
+    [Header("UI Elements")]
     public Image playeHPBar;
     public GameObject playerDamagePanel;
     public bool isPaused;
@@ -20,6 +22,7 @@ public class gamemanager : MonoBehaviour
     public GameObject InteractButton;
     public GameObject cheatPopup;
 
+    [Header("Game Settings")]
     float timescaleOrig;
     int pickUpsCount = 0;
     public static int amount;
