@@ -1384,7 +1384,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3684181386452131980}
   - component: {fileID: 5954403917245569192}
-  - component: {fileID: 7774468318885143730}
   - component: {fileID: 1527591669686737709}
   - component: {fileID: 8192666778365918465}
   - component: {fileID: 4398316529347073984}
@@ -1447,33 +1446,6 @@ MonoBehaviour:
   wallHack: 0
   speedOrig: 0
   speedBoost: 5
---- !u!114 &7774468318885143730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5836961965450366441}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc878426e1921d6428460d61ce525ccc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  model: {fileID: 0}
-  agent: {fileID: 0}
-  shootPos1: {fileID: 0}
-  shootPos2: {fileID: 0}
-  headPos: {fileID: 0}
-  anim: {fileID: 0}
-  HP: 0
-  fov: 0
-  faceTargetSpeed: 0
-  roamDist: 0
-  roamPauseTime: 0
-  bullet1: {fileID: 0}
-  bullet2: {fileID: 0}
-  shootRate: 0
-  aimOffset: 0
 --- !u!95 &1527591669686737709
 Animator:
   serializedVersion: 7
@@ -1514,13 +1486,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 0.1
-  m_Radius: 0.1
+  m_Height: 0.14
+  m_Radius: 0.4
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.1, z: -0.05}
+  m_Center: {x: 0, y: 0.36, z: -0.05}
 --- !u!136 &4398316529347073984
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1540,7 +1512,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.15
+  m_Radius: 0.25
   m_Height: 0.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.15, z: 0}
