@@ -2,8 +2,13 @@ using UnityEngine;
 using System;
 public class CaptureObjective : MonoBehaviour, IObjective
 {
-    [Header("Objective points are children of this transform.")][Header("Tooltips included, completes when checkpoint changes.")][Tooltip("Needs {0} for the timer string replacement")][SerializeField][TextArea] string descriptionCapturingTime;
-    [Tooltip("Needs {0} for the number of captures left string replacement")][SerializeField][TextArea] string descriptionCapturesLeft;
+    [Header("Objective points are children of this transform.")][Header("Tooltips included. All child points must be captured to progress.")][Tooltip("Needs {0} for the timer string replacement")][SerializeField][TextArea] 
+    string descriptionCapturingTime;
+    [Tooltip("Needs {0} for the number of captures left string replacement")][SerializeField][TextArea] 
+    string descriptionCapturesLeft;
+    [SerializeField]
+    [TextArea]
+    string descriptionEnemiesInvading;
     bool complete;
     bool started;
     Action _complete;
@@ -25,6 +30,8 @@ public class CaptureObjective : MonoBehaviour, IObjective
         return finsihed;
     }
     public void SetToCapturesLeft() => _updateDescription?.Invoke(string.Format(descriptionCapturesLeft, CapturesLeft()));
+
+    public void SetToEnemiesInvading() => _updateDescription?.Invoke(descriptionEnemiesInvading);
     void Update()
     {
         if (!started) return;

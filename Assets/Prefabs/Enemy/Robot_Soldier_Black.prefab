@@ -1129,7 +1129,7 @@ GameObject:
   - component: {fileID: 7699737286180079746}
   m_Layer: 0
   m_Name: Robot_Soldier_Black
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
