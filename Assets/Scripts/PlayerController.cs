@@ -32,9 +32,16 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     //Variables
     int pickUpsCount = 0;
     int HPOrig;
-    GameObject pivot;
     int jumpCount;
     float shootTimer;
+
+    //Cheats
+    public bool godMode;
+    public bool invulnerability;
+    public bool wallHack;
+    public int speedOrig;
+    public int speedBoost;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -48,9 +55,12 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     {
         anim.SetFloat("Speed", controller.velocity.magnitude);
 
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
-        movement();
-        sprint();
+        if (!gamemanager.instance.isPaused)
+        {
+            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
+            movement();
+            sprint();
+        }
     }
 
     void movement()
@@ -138,6 +148,11 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
         {
             gamemanager.instance.youLose();
         }
+
+        if (invulnerability == true)
+        {
+            HP += amount; 
+        }
     }
 
     public void UpdateHealthBarFill()
@@ -165,5 +180,23 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     public bool CanBePickedUp(GameObject player)
     {
         return pickUpsCount < 3;
+    }
+
+    //===CHEAT MODE===//
+    public void EnableGodMode()
+    {
+        godMode = true;
+    }
+
+    public void EnableSpeedBoost()
+    {
+        speedOrig = speed;
+        speedBoost = speedOrig * 5;
+        speed = speedBoost;
+    }
+
+    public void EnableInvulnerability()
+    {
+        invulnerability = true;
     }
 }

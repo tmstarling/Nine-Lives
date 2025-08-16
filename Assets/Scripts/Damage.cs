@@ -13,7 +13,7 @@ public class Damage : MonoBehaviour
     [SerializeField] float damageRate;
 
     bool isDamaging;
-
+    public enemyAI sourceEnemy;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,6 +24,9 @@ public class Damage : MonoBehaviour
 
             if (type == DamageTypes.Moving)
             {
+                Vector3 targetPos = gamemanager.instance.player.transform.position + Vector3.up * sourceEnemy.aimOffset;
+                Vector3 direction = (targetPos - transform.position).normalized;
+
                 rigid.linearVelocity = transform.forward * Speed;
             }
 
@@ -39,7 +42,9 @@ public class Damage : MonoBehaviour
     {
         if (type == DamageTypes.Homing)
         {
-            Vector3 direction = (gamemanager.instance.player.transform.position - transform.position).normalized;
+            Vector3 targetPos = gamemanager.instance.player.transform.position + Vector3.up * sourceEnemy.aimOffset;
+            Vector3 direction = (targetPos - transform.position).normalized;
+
             rigid.linearVelocity = direction * Speed;
             transform.forward = direction;
         }

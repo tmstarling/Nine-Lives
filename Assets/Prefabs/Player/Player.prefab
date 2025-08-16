@@ -1383,8 +1383,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3684181386452131980}
-  - component: {fileID: 8580091821328838948}
   - component: {fileID: 5954403917245569192}
+  - component: {fileID: 7774468318885143730}
   - component: {fileID: 1527591669686737709}
   - component: {fileID: 8192666778365918465}
   - component: {fileID: 4398316529347073984}
@@ -1413,18 +1413,6 @@ Transform:
   - {fileID: 64897445449469025}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8580091821328838948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5836961965450366441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88f124923bbd29d4fac5731462f4d983, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5954403917245569192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1454,6 +1442,36 @@ MonoBehaviour:
   Furball: {fileID: 2466991997635656875, guid: fc2100fb8f48c4f4a9e625833052e08a, type: 3}
   Yarnball: {fileID: 0}
   shootPos: {fileID: 3873752468338650063}
+  godMode: 0
+  invulnerability: 0
+  wallHack: 0
+  speedOrig: 0
+  speedBoost: 5
+--- !u!114 &7774468318885143730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5836961965450366441}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc878426e1921d6428460d61ce525ccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 0}
+  agent: {fileID: 0}
+  shootPos: {fileID: 0}
+  headPos: {fileID: 0}
+  anim: {fileID: 0}
+  HP: 0
+  fov: 0
+  faceTargetSpeed: 0
+  roamDist: 0
+  roamPauseTime: 0
+  bullet: {fileID: 0}
+  shootRate: 0
+  aimOffset: 0
 --- !u!95 &1527591669686737709
 Animator:
   serializedVersion: 7
@@ -1516,7 +1534,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2

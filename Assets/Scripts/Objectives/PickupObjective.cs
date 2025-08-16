@@ -5,11 +5,10 @@ public class PickupObjective : TransformObjective, IObjective
     [Header("Pickups must be a child of this transform.")]
     [Tooltip("Must have {0} for string replacement for pickup count")]
     [TextArea]
-    [SerializeField]
-    string description;
+    [SerializeField] string description;
     [Tooltip("defaults to this transform on awake. Pickups must be a child of this transform.")]
-    [SerializeField]
-    Transform _pickupTransform;
+    [SerializeField] Transform _pickupTransform;
+
     private void Awake()
     {
         if (_pickupTransform == null)

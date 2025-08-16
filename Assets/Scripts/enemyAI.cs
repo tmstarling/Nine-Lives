@@ -6,7 +6,8 @@ public class enemyAI : MonoBehaviour, IDamage, IOpen
 {
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] Transform shootPos;
+    [SerializeField] Transform shootPos1;
+    [SerializeField] Transform shootPos2;
     [SerializeField] Transform headPos;
     [SerializeField] Animator anim;
 
@@ -16,8 +17,11 @@ public class enemyAI : MonoBehaviour, IDamage, IOpen
     [SerializeField] int roamDist;
     [SerializeField] int roamPauseTime;
 
-    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject bullet1;
+    [SerializeField] GameObject bullet2;
     [SerializeField] float shootRate;
+
+    [SerializeField] public float aimOffset;
 
     Color colorOrg;
     float shootTimer;
@@ -180,9 +184,14 @@ public class enemyAI : MonoBehaviour, IDamage, IOpen
     void Shoot()
     {
         shootTimer = 0;
-        if (bullet != null && shootPos != null)
+        if (bullet1 != null && shootPos1 != null)
         {
-            Instantiate(bullet, shootPos.position, transform.rotation);
+            Instantiate(bullet1, shootPos1.position, transform.rotation);
+        }
+
+        if (bullet2 != null && shootPos2 != null)
+        {
+            Instantiate(bullet2, shootPos2.position, transform.rotation);
         }
     }
 
