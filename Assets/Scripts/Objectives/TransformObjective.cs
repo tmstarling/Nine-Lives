@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using UnityEngine.Events;
 
 public class TransformObjective : MonoBehaviour, IObjective
 {
@@ -7,6 +8,7 @@ public class TransformObjective : MonoBehaviour, IObjective
     bool started;
     Action<string> _updateDescription;
     Action _complete;
+    [SerializeField] UnityEvent onComplete;
     public virtual void Register(Action<string> updateDescription, Action complete)
     {
         _complete = complete;
@@ -22,6 +24,7 @@ public class TransformObjective : MonoBehaviour, IObjective
         _updateDescription?.Invoke(string.Format(description, count));
         if (count == 0)
         {
+            onComplete?.Invoke();
             _complete?.Invoke();
             complete = true;
         }
