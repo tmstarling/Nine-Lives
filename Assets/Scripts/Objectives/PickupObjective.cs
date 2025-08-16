@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PickupObjective : TransformObjective, IObjective
 {
+    [Header("Pickups must be a child of this transform.")]
     [Tooltip("Must have {0} for string replacement for pickup count")]
     [TextArea]
     [SerializeField]
