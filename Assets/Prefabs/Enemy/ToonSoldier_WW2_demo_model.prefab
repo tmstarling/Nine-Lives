@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 5477963565579073246}
   m_Layer: 0
   m_Name: ToonSoldier_WW2_demo_model
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,12 +85,12 @@ MonoBehaviour:
   agent: {fileID: 7386397985746375728}
   shootPos: {fileID: 0}
   headPos: {fileID: 0}
+  anim: {fileID: 2239266623723608727}
   HP: 3
   fov: 0
   faceTargetSpeed: 0
   roamDist: 0
   roamPauseTime: 0
-  anim: {fileID: 2239266623723608727}
   bullet: {fileID: 2261200442920770066, guid: ee746fdd6c3702a49b66f35ca541d4b8, type: 3}
   shootRate: 3
 --- !u!95 &2239266623723608727

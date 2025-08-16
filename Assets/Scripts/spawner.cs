@@ -22,7 +22,7 @@ public class Spawner : MonoBehaviour
     {
         if (canSpawn)
         {
-            nextSpawnTime = Time.deltaTime;
+            nextSpawnTime += Time.deltaTime;
 
             if (nextSpawnTime >= spawnRate && currentSpawnCount < maxSpawns)
             {
