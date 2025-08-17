@@ -68,8 +68,7 @@ public class buttonFunctions : MonoBehaviour
             CheckpointManager.instance.ResetToLastCheckpoint();
             gamemanager.instance.stateUnpaused();
             //Cheats Reapplied
-            CheatManager.Instance.ApplyCheatsToPlayer(gamemanager.instance.playerScript);
-            SyncCheatToggles();
+            StartCoroutine(ReapplyCheatsAfterRespawn());
         }
     }
 
@@ -188,5 +187,20 @@ public class buttonFunctions : MonoBehaviour
         godModeToggle.onValueChanged.AddListener(OnGodModeToggle);
         speedBoostToggle.onValueChanged.AddListener(OnSpeedBoostToggle);
         invulnerabilityToggle.onValueChanged.AddListener(OnInvulnerabilityToggle);
+    }
+
+    IEnumerator ReapplyCheatsAfterRespawn()
+    {
+        yield return null;
+
+        if (gamemanager.instance.playerScript != null)
+        {
+            CheatManager.Instance.ApplyCheatsToPlayer(gamemanager.instance.playerScript);
+            SyncCheatToggles();
+        }
+        else
+        {
+            Debug.LogWarning("PlayerScript not found after respawn");
+        }
     }
 }
