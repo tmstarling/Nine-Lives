@@ -46,7 +46,7 @@ public class MusicManager : MonoBehaviour
         {
             PlayGameMusic();
         }*/
-        PlayGameMusic();
+        if (gameObject != null) PlayGameMusic();
     }
 
     private void PlayMenuMusic()

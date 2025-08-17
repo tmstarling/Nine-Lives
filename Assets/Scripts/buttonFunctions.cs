@@ -6,6 +6,18 @@ using UnityEngine.UI;
 
 public class buttonFunctions : MonoBehaviour
 {
+    [SerializeField] AudioSource hoverSFX;
+    [SerializeField] AudioSource clickSFX;
+
+    public void hover()
+    {
+        hoverSFX.Play();
+    }
+    public void click()
+    {
+        clickSFX.Play();
+    }
+	
     public static buttonFunctions Instance;
 
     [Header("Cheat Input")]
