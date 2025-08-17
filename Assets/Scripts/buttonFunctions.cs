@@ -100,6 +100,7 @@ public class buttonFunctions : MonoBehaviour
         Debug.Log("Entered cheat: " + cheatCode);
 
         CheatManager.Instance.ActivateCheat(cheatCode);
+        SyncCheatToggles();
         StartCoroutine(cheatcodeFeedback());
 
         switch (cheatCode)
@@ -129,31 +130,63 @@ public class buttonFunctions : MonoBehaviour
 
     void OnGodModeToggle(bool isOn)
     {
-        CheatManager.Instance.godModeEnabled = isOn;
-        CheatManager.Instance.ApplyCheatsToPlayer(gamemanager.instance.playerScript);
+        if (!isOn)
+        {
+            CheatManager.Instance.godModeEnabled = false;
+            CheatManager.Instance.ApplyCheatsToPlayer(gamemanager.instance.playerScript);
+        }
+        else
+        {
+            godModeToggle.isOn = false;
+        }
     }
 
     void OnSpeedBoostToggle(bool isOn)
     {
-        CheatManager.Instance.speedBoostEnabled = isOn;
-        CheatManager.Instance.ApplyCheatsToPlayer(gamemanager.instance.playerScript);
+        if (!isOn)
+        {
+            CheatManager.Instance.speedBoostEnabled = false;
+            CheatManager.Instance.ApplyCheatsToPlayer(gamemanager.instance.playerScript);
+        }
+        else
+        {
+            speedBoostToggle.isOn = false;
+        }
     }
 
     void OnInvulnerabilityToggle(bool isOn)
     {
-        CheatManager.Instance.invulnerabilityEnabled = isOn;
-        CheatManager.Instance.ApplyCheatsToPlayer(gamemanager.instance.playerScript);
+        if (!isOn)
+        {
+            CheatManager.Instance.invulnerabilityEnabled = false;
+            CheatManager.Instance.ApplyCheatsToPlayer(gamemanager.instance.playerScript);
+        }
+        else
+        {
+            invulnerabilityToggle.isOn = false;
+        }
     }
 
     void SyncCheatToggles()
     {
+        //Temp Remove Listeners
+        godModeToggle.onValueChanged.RemoveAllListeners();
+        speedBoostToggle.onValueChanged.RemoveAllListeners();
+        invulnerabilityToggle.onValueChanged.RemoveAllListeners();
+
+        //Sync Toggles
         godModeToggle.isOn = CheatManager.Instance.godModeEnabled;
         speedBoostToggle.isOn = CheatManager.Instance.speedBoostEnabled;
         invulnerabilityToggle.isOn = CheatManager.Instance.invulnerabilityEnabled;
+
+        //Toggles Clicked OFF
+        godModeToggle.interactable = CheatManager.Instance.godModeEnabled;
+        speedBoostToggle.interactable = CheatManager.Instance.speedBoostEnabled;
+        invulnerabilityToggle.interactable = CheatManager.Instance.invulnerabilityEnabled;
+
+        //Reattach Listeners
+        godModeToggle.onValueChanged.AddListener(OnGodModeToggle);
+        speedBoostToggle.onValueChanged.AddListener(OnSpeedBoostToggle);
+        invulnerabilityToggle.onValueChanged.AddListener(OnInvulnerabilityToggle);
     }
-
 }
-
-
-
-

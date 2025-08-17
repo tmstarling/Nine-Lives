@@ -36,18 +36,20 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
 
     [Header("Cheats")]
     public bool godMode;
+    public bool speedBoost;
     public bool invulnerability;
-    public bool wallHack;
+    //public bool wallHack;
 
     [Header("Speed")]
     public int speedOrig;
-    public int speedBoost;
+    public int boostedSpeed;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         HPOrig = HP;
+        speedOrig = speed;
         UpdateHealthBarFill();
     }
 
@@ -189,15 +191,29 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
         godMode = true;
     }
 
+    public void DisableGodMode()
+    {
+        godMode = false;
+    }
+
     public void EnableSpeedBoost()
     {
-        speedOrig = speed;
-        speedBoost = speedOrig * 5;
-        speed = speedBoost;
+        speedBoost = true;
+        boostedSpeed = speedOrig * 5;
+        speed = boostedSpeed;
+    }
+    public void DisableSpeedBoost()
+    {
+        speedBoost = false;
+        speed = speedOrig;
     }
 
     public void EnableInvulnerability()
     {
         invulnerability = true;
+    }
+    public void DisableInvulnerability()
+    {
+        invulnerability = false;
     }
 }

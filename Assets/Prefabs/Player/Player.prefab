@@ -1443,9 +1443,10 @@ MonoBehaviour:
   shootPos: {fileID: 3873752468338650063}
   godMode: 0
   invulnerability: 0
+  speedBoost: 0
   wallHack: 0
   speedOrig: 0
-  speedBoost: 5
+  boostedSpeed: 0
 --- !u!95 &1527591669686737709
 Animator:
   serializedVersion: 7

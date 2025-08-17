@@ -35,15 +35,29 @@ public class CheatManager : MonoBehaviour
             player.EnableSpeedBoost();
             player.EnableInvulnerability();
         }
+        else
+        {
+            player.godMode = false;
+            player.DisableSpeedBoost();
+            player.DisableInvulnerability();
+        }
 
         if (speedBoostEnabled)
         {
             player.EnableSpeedBoost();
         }
+        else
+        {
+            player.DisableSpeedBoost();
+        }
 
         if (invulnerabilityEnabled)
         {
             player.EnableInvulnerability();
+        }
+        else
+        {
+            player.DisableInvulnerability();
         }
     }
 
@@ -54,6 +68,8 @@ public class CheatManager : MonoBehaviour
         switch (cheatCode.ToLower().Trim())
         {
             case "godmode":
+                if (godModeEnabled) return;
+
                 godModeEnabled = true;
                 speedBoostEnabled = true;
                 invulnerabilityEnabled = true;
@@ -61,11 +77,15 @@ public class CheatManager : MonoBehaviour
                 break;
 
             case "speedboost":
+                if (speedBoostEnabled) return;
+
                 speedBoostEnabled = true;
                 ApplyCheatsToPlayer(player);
                 break;
 
             case "invulnerable":
+                if (invulnerabilityEnabled) return;
+
                 invulnerabilityEnabled = true;
                 ApplyCheatsToPlayer(player);
                 break;
@@ -81,5 +101,7 @@ public class CheatManager : MonoBehaviour
         godModeEnabled = false;
         speedBoostEnabled = false;
         invulnerabilityEnabled = false;
+
+        ApplyCheatsToPlayer(gamemanager.instance.playerScript);
     }
 }
