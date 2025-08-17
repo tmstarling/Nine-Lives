@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a342ea4e0db07f46862e521437e101d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
+  type: 1
   rigid: {fileID: 1611428366258788835}
   DamageAmount: 5
   Speed: 15
@@ -194,8 +194,6 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e375f611624fb2a4298304fb55f75c9e, type: 2}
-  - {fileID: -876546973899608171, guid: 124c112a6e8f1a54e8b0870e881b56d8, type: 3}
   - {fileID: 2100000, guid: f95d116f9690653489083d8ea7ca3c29, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

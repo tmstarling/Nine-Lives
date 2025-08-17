@@ -3,12 +3,12 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour ,IDamage,IPickup
 {
-    //Controller
+    [Header("Player Settings")]
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] int HP;
 
-    //Movement
+    [Header("Movement Settings")]
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
     [SerializeField] int jumpVel;
@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     [SerializeField] int gravity;
     [SerializeField] Animator anim;
 
-    //Shooting
+    [Header("Shooting Settings")]
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
@@ -24,29 +24,32 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     [SerializeField] GameObject Yarnball;
     [SerializeField] Transform shootPos;
 
-    //References
+    [Header("References")]
     Vector3 moveDir;
     Vector3 playerVel;
 
-
-    //Variables
+    [Header("Variables")]
     int pickUpsCount = 0;
     int HPOrig;
     int jumpCount;
     float shootTimer;
 
-    //Cheats
+    [Header("Cheats")]
     public bool godMode;
+    public bool speedBoost;
     public bool invulnerability;
-    public bool wallHack;
+    //public bool wallHack;
+
+    [Header("Speed")]
     public int speedOrig;
-    public int speedBoost;
+    public int boostedSpeed;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         HPOrig = HP;
+        speedOrig = speed;
         UpdateHealthBarFill();
     }
 
@@ -188,15 +191,29 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
         godMode = true;
     }
 
+    public void DisableGodMode()
+    {
+        godMode = false;
+    }
+
     public void EnableSpeedBoost()
     {
-        speedOrig = speed;
-        speedBoost = speedOrig * 5;
-        speed = speedBoost;
+        speedBoost = true;
+        boostedSpeed = speedOrig * 5;
+        speed = boostedSpeed;
+    }
+    public void DisableSpeedBoost()
+    {
+        speedBoost = false;
+        speed = speedOrig;
     }
 
     public void EnableInvulnerability()
     {
         invulnerability = true;
+    }
+    public void DisableInvulnerability()
+    {
+        invulnerability = false;
     }
 }

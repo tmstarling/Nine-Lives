@@ -5,26 +5,35 @@ public class Damage : MonoBehaviour
 {
     enum DamageTypes { PlayerMoving, Moving, Homing, DmgOvrTime }
 
+    [Header("Damage Type")]
     [SerializeField] DamageTypes type;
     [SerializeField] Rigidbody rigid;
+
+    [Header("Damage Settings")]
     [SerializeField] int DamageAmount;
     [SerializeField] int Speed;
     [SerializeField] int DestroyTime;
     [SerializeField] float damageRate;
 
+    [Header("Source Enemy")]
     bool isDamaging;
     public enemyAI sourceEnemy;
+
+    float aimOffset = 1.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (sourceEnemy != null)
+            aimOffset = sourceEnemy.aimOffset;
+
         if (type == DamageTypes.Moving || type == DamageTypes.Homing)
         {
             Destroy(gameObject, DestroyTime);
 
             if (type == DamageTypes.Moving)
             {
-                Vector3 targetPos = gamemanager.instance.player.transform.position + Vector3.up * sourceEnemy.aimOffset;
+                Vector3 targetPos = gamemanager.instance.player.transform.position + Vector3.up * aimOffset;
                 Vector3 direction = (targetPos - transform.position).normalized;
 
                 rigid.linearVelocity = direction * Speed;
@@ -43,7 +52,7 @@ public class Damage : MonoBehaviour
 
             if (type == DamageTypes.PlayerMoving)
             {
-                Vector3 targetPos = gamemanager.instance.player.transform.position + Vector3.up * sourceEnemy.aimOffset;
+                Vector3 targetPos = gamemanager.instance.player.transform.position + Vector3.up * aimOffset;
                 Vector3 direction = (targetPos - transform.position).normalized;
 
                 rigid.linearVelocity = transform.forward * Speed;
@@ -56,7 +65,7 @@ public class Damage : MonoBehaviour
     {
         if (type == DamageTypes.Homing)
         {
-            Vector3 targetPos = gamemanager.instance.player.transform.position + Vector3.up * sourceEnemy.aimOffset;
+            Vector3 targetPos = gamemanager.instance.player.transform.position + Vector3.up * aimOffset;
             Vector3 direction = (targetPos - transform.position).normalized;
 
             rigid.linearVelocity = direction * Speed;
