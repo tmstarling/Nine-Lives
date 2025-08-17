@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3652153604565820385}
   - component: {fileID: 245676433810142012}
+  - component: {fileID: 727979321868804051}
   - component: {fileID: 8964193396935132128}
   - component: {fileID: 3971875031096509248}
   - component: {fileID: 4994933135524249073}
@@ -31,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 97.37, y: 0, z: -89.07}
-  m_LocalScale: {x: 1, y: 0.05, z: 1}
+  m_LocalScale: {x: 1, y: 0.050000004, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2288781570742782868}
@@ -50,6 +51,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 9af41423fced9074490dfb03bac6ad85, type: 2}
+--- !u!114 &727979321868804051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5554901257150463972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07810419f5e333f4e8d536d2024f1ad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatAmplitude: 0.25
+  floatFrequency: 1
+  rotationSpeed: 45
 --- !u!33 &8964193396935132128
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -118,11 +134,11 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5000001
+  m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}

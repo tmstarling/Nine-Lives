@@ -3,20 +3,22 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour ,IDamage,IPickup
 {
-    //Controller
+    public static PlayerController Instance;
+
+    [Header("Player Settings")]
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] int HP;
 
-    //Movement
-    [SerializeField] int speed;
+    [Header("Movement Settings")]
+    [SerializeField] public int speed;
     [SerializeField] int sprintMod;
     [SerializeField] int jumpVel;
     [SerializeField] int jumpMax;
     [SerializeField] int gravity;
     [SerializeField] Animator anim;
 
-    //Shooting
+    [Header("Shooting Settings")]
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
@@ -24,29 +26,32 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     [SerializeField] GameObject Yarnball;
     [SerializeField] Transform shootPos;
 
-    //References
+    [Header("References")]
     Vector3 moveDir;
     Vector3 playerVel;
 
-
-    //Variables
+    [Header("Variables")]
     int pickUpsCount = 0;
     int HPOrig;
     int jumpCount;
     float shootTimer;
 
-    //Cheats
+    [Header("Cheats")]
     public bool godMode;
+    public bool speedBoost;
     public bool invulnerability;
-    public bool wallHack;
+    //public bool wallHack;
+
+    [Header("Speed")]
     public int speedOrig;
-    public int speedBoost;
+    public int boostedSpeed;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         HPOrig = HP;
+        speedOrig = speed;
         UpdateHealthBarFill();
     }
 
@@ -183,20 +188,5 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     }
 
     //===CHEAT MODE===//
-    public void EnableGodMode()
-    {
-        godMode = true;
-    }
-
-    public void EnableSpeedBoost()
-    {
-        speedOrig = speed;
-        speedBoost = speedOrig * 5;
-        speed = speedBoost;
-    }
-
-    public void EnableInvulnerability()
-    {
-        invulnerability = true;
-    }
+    
 }

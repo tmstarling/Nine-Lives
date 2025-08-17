@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LitterBoxWin1 : MonoBehaviour
 {
@@ -6,7 +7,7 @@ public class LitterBoxWin1 : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            gamemanager.instance.PlayerEnteredLitterBox();
+            SceneManager.LoadScene("ObjectiveTesting");
         }
     }
 }

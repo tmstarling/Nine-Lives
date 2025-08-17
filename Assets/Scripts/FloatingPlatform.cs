@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class FloatingPlatform : MonoBehaviour
 {
-
+    [Header("Floating Platform Settings")]
     [SerializeField] float Speed;
     [SerializeField] float Height;
     [SerializeField] float ForwardRange;
+
+    [Header("Forward Direction")]
     public Vector3 ForwardDirection = Vector3.forward;
 
+    [Header("Variables")]
     private Vector3 startpos;
     private float timer;
     private Rigidbody rb;
