@@ -26,13 +26,13 @@ public class CheatManager : MonoBehaviour
     {
         if (godModeEnabled)
         {
-            PlayerController.godMode = true;
+            gamemanager.instance.playerScript.godMode = true;
             EnableSpeedBoost();
             EnableInvulnerability();
         }
         else
         {
-            PlayerController.godMode = false;
+            gamemanager.instance.playerScript.godMode = false;
             DisableSpeedBoost();
             DisableInvulnerability();
         }
@@ -102,33 +102,33 @@ public class CheatManager : MonoBehaviour
 
     public void EnableGodMode()
     {
-        PlayerController.godMode = true;
+        gamemanager.instance.playerScript.godMode = true;
     }
 
     public void DisableGodMode()
     {
-        PlayerController.godMode = false;
+        gamemanager.instance.playerScript.godMode = false;
     }
 
     public void EnableSpeedBoost()
     {
-        PlayerController.speedBoost = true;
-        PlayerController.boostedSpeed = PlayerController.speed * 5;
-        PlayerController.speedOrig = PlayerController.boostedSpeed;
+        gamemanager.instance.playerScript.speedBoost = true;
+        gamemanager.instance.playerScript.boostedSpeed = gamemanager.instance.playerScript.speedOrig * 5;
+        gamemanager.instance.playerScript.speed = gamemanager.instance.playerScript.boostedSpeed;
     }
     public void DisableSpeedBoost()
     {
-        PlayerController.speedBoost = false;
-        PlayerController.speedOrig = PlayerController.speedOrig / 5;
+        gamemanager.instance.playerScript.speedBoost = false;
+        gamemanager.instance.playerScript.speed = gamemanager.instance.playerScript.boostedSpeed / 5;
     }
 
     public void EnableInvulnerability()
     {
-        PlayerController.invulnerability = true;
+        gamemanager.instance.playerScript.invulnerability = true;
     }
     public void DisableInvulnerability()
     {
-        PlayerController.invulnerability = false;
+        gamemanager.instance.playerScript.invulnerability = false;
     }
 
     public IEnumerator ReapplyCheatsAfterRespawn()

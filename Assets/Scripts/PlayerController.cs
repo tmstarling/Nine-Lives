@@ -3,13 +3,15 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour ,IDamage,IPickup
 {
+    public static PlayerController Instance;
+
     [Header("Player Settings")]
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] int HP;
 
     [Header("Movement Settings")]
-    [SerializeField] public static int speed;
+    [SerializeField] public int speed;
     [SerializeField] int sprintMod;
     [SerializeField] int jumpVel;
     [SerializeField] int jumpMax;
@@ -35,22 +37,21 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     float shootTimer;
 
     [Header("Cheats")]
-    public static bool godMode;
-    public static bool speedBoost;
-    public static bool invulnerability;
+    public bool godMode;
+    public bool speedBoost;
+    public bool invulnerability;
     //public bool wallHack;
 
     [Header("Speed")]
-    public static int speedOrig;
-    public static int boostedSpeed;
+    public int speedOrig;
+    public int boostedSpeed;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         HPOrig = HP;
-        speed = 7;
-        speed = speedOrig;
+        speedOrig = speed;
         UpdateHealthBarFill();
     }
 
