@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class buttonFunctions : MonoBehaviour
 {
-    [SerializeField] AudioSource hoverSFX;
-    [SerializeField] AudioSource clickSFX;
+    AudioSource hoverSFX;
+    AudioSource clickSFX;
 
     public void hover()
     {
@@ -33,6 +33,9 @@ public class buttonFunctions : MonoBehaviour
 
     private void Awake()
     {
+        clickSFX = SoundManager.Instance.click;
+        hoverSFX = SoundManager.Instance.hover;
+
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
