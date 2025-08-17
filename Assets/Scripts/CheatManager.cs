@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class CheatManager : MonoBehaviour
 {
@@ -21,43 +22,37 @@ public class CheatManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void ApplyCheatsToPlayer(PlayerController player)
+    public void ApplyCheatsToPlayer()
     {
-        if (player == null)
-        {
-            Debug.LogWarning("CheatManager: Player reference is null");
-            return;
-        }
-
         if (godModeEnabled)
         {
-            player.godMode = true;
-            player.EnableSpeedBoost();
-            player.EnableInvulnerability();
+            PlayerController.godMode = true;
+            EnableSpeedBoost();
+            EnableInvulnerability();
         }
         else
         {
-            player.godMode = false;
-            player.DisableSpeedBoost();
-            player.DisableInvulnerability();
+            PlayerController.godMode = false;
+            DisableSpeedBoost();
+            DisableInvulnerability();
         }
 
         if (speedBoostEnabled)
         {
-            player.EnableSpeedBoost();
+            EnableSpeedBoost();
         }
         else
         {
-            player.DisableSpeedBoost();
+            DisableSpeedBoost();
         }
 
         if (invulnerabilityEnabled)
         {
-            player.EnableInvulnerability();
+            EnableInvulnerability();
         }
         else
         {
-            player.DisableInvulnerability();
+            DisableInvulnerability();
         }
     }
 
@@ -73,21 +68,21 @@ public class CheatManager : MonoBehaviour
                 godModeEnabled = true;
                 speedBoostEnabled = true;
                 invulnerabilityEnabled = true;
-                ApplyCheatsToPlayer(player);
+                ApplyCheatsToPlayer();
                 break;
 
             case "speedboost":
                 if (speedBoostEnabled) return;
 
                 speedBoostEnabled = true;
-                ApplyCheatsToPlayer(player);
+                ApplyCheatsToPlayer();
                 break;
 
             case "invulnerable":
                 if (invulnerabilityEnabled) return;
 
                 invulnerabilityEnabled = true;
-                ApplyCheatsToPlayer(player);
+                ApplyCheatsToPlayer();
                 break;
 
             default:
@@ -102,6 +97,52 @@ public class CheatManager : MonoBehaviour
         speedBoostEnabled = false;
         invulnerabilityEnabled = false;
 
-        ApplyCheatsToPlayer(gamemanager.instance.playerScript);
+        ApplyCheatsToPlayer();
+    }
+
+    public void EnableGodMode()
+    {
+        PlayerController.godMode = true;
+    }
+
+    public void DisableGodMode()
+    {
+        PlayerController.godMode = false;
+    }
+
+    public void EnableSpeedBoost()
+    {
+        PlayerController.speedBoost = true;
+        PlayerController.boostedSpeed = PlayerController.speed * 5;
+        PlayerController.speedOrig = PlayerController.boostedSpeed;
+    }
+    public void DisableSpeedBoost()
+    {
+        PlayerController.speedBoost = false;
+        PlayerController.speedOrig = PlayerController.speedOrig / 5;
+    }
+
+    public void EnableInvulnerability()
+    {
+        PlayerController.invulnerability = true;
+    }
+    public void DisableInvulnerability()
+    {
+        PlayerController.invulnerability = false;
+    }
+
+    public IEnumerator ReapplyCheatsAfterRespawn()
+    {
+        yield return null;
+
+        if (gamemanager.instance.playerScript != null)
+        {
+            ApplyCheatsToPlayer();
+            buttonFunctions.Instance.SyncCheatToggles();
+        }
+        else
+        {
+            Debug.LogWarning("PlayerScript not found after respawn");
+        }
     }
 }
