@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 691668374581315901}
   - component: {fileID: 2369613558390372028}
   - component: {fileID: 6527570472977075800}
-  - component: {fileID: 901092629776526978}
   - component: {fileID: 8780305447046157960}
   m_Layer: 0
   m_Name: Pick Up - Fish
@@ -118,28 +117,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &901092629776526978
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2725249261450741679}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5414332994079535143, guid: 38f74cd884cda8242b4fdc167c4962f8, type: 3}
 --- !u!136 &8780305447046157960
 CapsuleCollider:
   m_ObjectHideFlags: 0
