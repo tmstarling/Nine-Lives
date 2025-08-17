@@ -3,13 +3,15 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour ,IDamage,IPickup
 {
+    public static PlayerController Instance;
+
     [Header("Player Settings")]
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] int HP;
 
     [Header("Movement Settings")]
-    [SerializeField] int speed;
+    [SerializeField] public int speed;
     [SerializeField] int sprintMod;
     [SerializeField] int jumpVel;
     [SerializeField] int jumpMax;
@@ -186,34 +188,5 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     }
 
     //===CHEAT MODE===//
-    public void EnableGodMode()
-    {
-        godMode = true;
-    }
-
-    public void DisableGodMode()
-    {
-        godMode = false;
-    }
-
-    public void EnableSpeedBoost()
-    {
-        speedBoost = true;
-        boostedSpeed = speedOrig * 5;
-        speed = boostedSpeed;
-    }
-    public void DisableSpeedBoost()
-    {
-        speedBoost = false;
-        speed = speedOrig;
-    }
-
-    public void EnableInvulnerability()
-    {
-        invulnerability = true;
-    }
-    public void DisableInvulnerability()
-    {
-        invulnerability = false;
-    }
+    
 }

@@ -68,7 +68,7 @@ public class buttonFunctions : MonoBehaviour
             CheckpointManager.instance.ResetToLastCheckpoint();
             gamemanager.instance.stateUnpaused();
             //Cheats Reapplied
-            StartCoroutine(ReapplyCheatsAfterRespawn());
+            CheatManager.Instance.ReapplyCheatsAfterRespawn();
         }
     }
 
@@ -132,7 +132,7 @@ public class buttonFunctions : MonoBehaviour
         if (!isOn)
         {
             CheatManager.Instance.godModeEnabled = false;
-            CheatManager.Instance.ApplyCheatsToPlayer(gamemanager.instance.playerScript);
+            CheatManager.Instance.ApplyCheatsToPlayer();
         }
         else
         {
@@ -145,7 +145,7 @@ public class buttonFunctions : MonoBehaviour
         if (!isOn)
         {
             CheatManager.Instance.speedBoostEnabled = false;
-            CheatManager.Instance.ApplyCheatsToPlayer(gamemanager.instance.playerScript);
+            CheatManager.Instance.ApplyCheatsToPlayer();
         }
         else
         {
@@ -158,7 +158,7 @@ public class buttonFunctions : MonoBehaviour
         if (!isOn)
         {
             CheatManager.Instance.invulnerabilityEnabled = false;
-            CheatManager.Instance.ApplyCheatsToPlayer(gamemanager.instance.playerScript);
+            CheatManager.Instance.ApplyCheatsToPlayer();
         }
         else
         {
@@ -166,7 +166,7 @@ public class buttonFunctions : MonoBehaviour
         }
     }
 
-    void SyncCheatToggles()
+    public void SyncCheatToggles()
     {
         //Temp Remove Listeners
         godModeToggle.onValueChanged.RemoveAllListeners();
@@ -187,20 +187,5 @@ public class buttonFunctions : MonoBehaviour
         godModeToggle.onValueChanged.AddListener(OnGodModeToggle);
         speedBoostToggle.onValueChanged.AddListener(OnSpeedBoostToggle);
         invulnerabilityToggle.onValueChanged.AddListener(OnInvulnerabilityToggle);
-    }
-
-    IEnumerator ReapplyCheatsAfterRespawn()
-    {
-        yield return null;
-
-        if (gamemanager.instance.playerScript != null)
-        {
-            CheatManager.Instance.ApplyCheatsToPlayer(gamemanager.instance.playerScript);
-            SyncCheatToggles();
-        }
-        else
-        {
-            Debug.LogWarning("PlayerScript not found after respawn");
-        }
     }
 }
