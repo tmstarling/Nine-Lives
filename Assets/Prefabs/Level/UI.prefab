@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -478,7 +478,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3450,7 +3450,6 @@ GameObject:
   m_Component:
   - component: {fileID: 42690112592090193}
   - component: {fileID: 8869097717022137412}
-  - component: {fileID: 20091814057054626}
   m_Layer: 5
   m_Name: ButtonFunctions
   m_TagString: Untagged
@@ -3494,21 +3493,6 @@ MonoBehaviour:
   godModeToggle: {fileID: 1660488227703194813}
   speedBoostToggle: {fileID: 4630430331787545048}
   invulnerabilityToggle: {fileID: 2556258291928512969}
---- !u!114 &20091814057054626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4572621883255024623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f9eb0df61241684e85131515fc7bb8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  godModeEnabled: 0
-  speedBoostEnabled: 0
-  invulnerabilityEnabled: 0
 --- !u!1 &4631845984236177910
 GameObject:
   m_ObjectHideFlags: 0
@@ -4364,7 +4348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6274,9 +6258,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '(description)
-
-'
+  m_text: Get to the litter box to get to the next level!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
