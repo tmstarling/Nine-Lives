@@ -1383,7 +1383,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3684181386452131980}
-  - component: {fileID: 8580091821328838948}
   - component: {fileID: 5954403917245569192}
   - component: {fileID: 1527591669686737709}
   - component: {fileID: 8192666778365918465}
@@ -1413,18 +1412,6 @@ Transform:
   - {fileID: 64897445449469025}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8580091821328838948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5836961965450366441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88f124923bbd29d4fac5731462f4d983, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5954403917245569192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1454,6 +1441,12 @@ MonoBehaviour:
   Furball: {fileID: 2466991997635656875, guid: fc2100fb8f48c4f4a9e625833052e08a, type: 3}
   Yarnball: {fileID: 0}
   shootPos: {fileID: 3873752468338650063}
+  godMode: 0
+  invulnerability: 0
+  speedBoost: 0
+  wallHack: 0
+  speedOrig: 0
+  boostedSpeed: 0
 --- !u!95 &1527591669686737709
 Animator:
   serializedVersion: 7
@@ -1494,13 +1487,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 0.1
-  m_Radius: 0.1
+  m_Height: 0.14
+  m_Radius: 0.4
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.1, z: -0.05}
+  m_Center: {x: 0, y: 0.36, z: -0.05}
 --- !u!136 &4398316529347073984
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1516,11 +1509,11 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.15
+  m_Radius: 0.25
   m_Height: 0.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.15, z: 0}

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
+    [Header("PickUp Settings")]
     [SerializeField] pickUpStats stats;
 
     public void OnTriggerEnter(Collider other)
@@ -14,4 +15,3 @@ public class PickUp : MonoBehaviour
         }
     }
 }
-

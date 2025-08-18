@@ -4,21 +4,30 @@ using UnityEngine.AI;
 
 public class enemyAI : MonoBehaviour, IDamage, IOpen
 {
+    [Header("Enemy AI Settings")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] Transform shootPos;
+    [SerializeField] Transform shootPos1;
+    [SerializeField] Transform shootPos2;
     [SerializeField] Transform headPos;
     [SerializeField] Animator anim;
 
+    [Header("Enemy AI Parameters")]
     [SerializeField] int HP;
     [SerializeField] int fov;
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int roamDist;
     [SerializeField] int roamPauseTime;
 
-    [SerializeField] GameObject bullet;
+    [Header("Shooting Settings")]
+    [SerializeField] GameObject bullet1;
+    [SerializeField] GameObject bullet2;
     [SerializeField] float shootRate;
 
+    [Header("Aim Offset")]
+    [SerializeField] public float aimOffset;
+
+    [Header("Debugging")]
     Color colorOrg;
     float shootTimer;
     float roamTimer;
@@ -105,14 +114,19 @@ public class enemyAI : MonoBehaviour, IDamage, IOpen
                     Shoot();
                 }
 
-                agent.SetDestination(gamemanager.instance.player.transform.position);
+                float distanceToPlayer = Vector3.Distance(transform.position, gamemanager.instance.player.transform.position);
 
-                if (agent.remainingDistance <= agent.stoppingDistance)
+                if (distanceToPlayer > stoppingDistOrig)
                 {
+                    agent.stoppingDistance = stoppingDistOrig;
+                    agent.SetDestination(gamemanager.instance.player.transform.position);
+                }
+                else
+                {
+                    agent.ResetPath();
                     FaceTarget();
                 }
 
-                agent.stoppingDistance = stoppingDistOrig;
                 return true;
             }
         }
@@ -159,7 +173,6 @@ public class enemyAI : MonoBehaviour, IDamage, IOpen
 
         if (HP <= 0)
         {
-            gamemanager.instance.updateGameGoal();
             Destroy(gameObject);
         }
         else
@@ -181,9 +194,14 @@ public class enemyAI : MonoBehaviour, IDamage, IOpen
     void Shoot()
     {
         shootTimer = 0;
-        if (bullet != null && shootPos != null)
+        if (bullet1 != null && shootPos1 != null)
         {
-            Instantiate(bullet, shootPos.position, transform.rotation);
+            Instantiate(bullet1, shootPos1.position, transform.rotation);
+        }
+
+        if (bullet2 != null && shootPos2 != null)
+        {
+            Instantiate(bullet2, shootPos2.position, transform.rotation);
         }
     }
 

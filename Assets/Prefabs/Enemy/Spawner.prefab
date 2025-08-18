@@ -144,6 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabToSpawn: {fileID: 5327233271014489920, guid: b533ed954bc2b6246b733d76d5dbfa9f, type: 3}
   maxSpawns: 4
+  spawnRate: 0
   timeBetweenSpawns: 0
   spawnPoints:
   - {fileID: 2790194904956864897}

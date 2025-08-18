@@ -4,6 +4,7 @@ public class Door : MonoBehaviour
 {
     [SerializeField] GameObject DoorModel;
 
+    [Header("Door Settings")]
     bool inTrigger;
     int CountInTrigger;
 

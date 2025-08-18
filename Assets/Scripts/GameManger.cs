@@ -6,22 +6,25 @@ public class gamemanager : MonoBehaviour
 {
     public static gamemanager instance;
 
+    [Header("Menus")]
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPaused;
+    [SerializeField] GameObject menuCheat;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
-    [SerializeField] TMP_Text gameGoalCountText;
-
+    public TextMeshProUGUI gameObjectiveText;
+    [Header("UI Elements")]
     public Image playeHPBar;
     public GameObject playerDamagePanel;
     public bool isPaused;
     public GameObject player;
     public PlayerController playerScript;
     public GameObject InteractButton;
+    public GameObject cheatPopup;
 
+    [Header("Game Settings")]
     float timescaleOrig;
     int pickUpsCount = 0;
-    int gameGoalCount;
     public static int amount;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -32,7 +35,6 @@ public class gamemanager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
         timescaleOrig = Time.timeScale;
-        gameGoalCount = 1;
     }
 
     // Update is called once per frame
@@ -52,8 +54,6 @@ public class gamemanager : MonoBehaviour
                 stateUnpaused();
             }
         }
-
-        
     }
 
     public void statePaused()
@@ -74,13 +74,17 @@ public class gamemanager : MonoBehaviour
         menuActive = null;
     }
 
-    public void updateGameGoal()
+    public void youCheat()
     {
-        gameGoalCount = amount;
-        gameGoalCountText.text = gameGoalCount.ToString("F0");
-    }
+        if (menuActive != null)
+        {
+            menuActive.SetActive(false);
+        }
 
-    
+        statePaused();
+        menuActive = menuCheat;
+        menuActive.SetActive(true);
+    }
 
     public void youLose() 
     {  
