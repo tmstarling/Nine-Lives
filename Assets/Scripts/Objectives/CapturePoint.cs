@@ -46,6 +46,7 @@ public class CapturePoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.isTrigger) return;
         if (objective == null)
             return;
         if (finished) return;
@@ -60,6 +61,7 @@ public class CapturePoint : MonoBehaviour
     {
         if (!other.CompareTag("Enemy"))
             return;
+        if (other.isTrigger) return;
         if (finished) return;
         if (!enemies.Contains(other.gameObject))
         {
@@ -81,6 +83,7 @@ public class CapturePoint : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.isTrigger) return;
         if (objective == null)
             return;
         if (finished) return;
