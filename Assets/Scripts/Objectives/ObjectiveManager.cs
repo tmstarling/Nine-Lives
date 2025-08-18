@@ -24,7 +24,6 @@ public class ObjectiveManager : MonoBehaviour
     public static ObjectiveManager instance;
     [TextArea]
     [SerializeField] string finalDescription;
-    [SerializeField] TextMeshProUGUI description;
     [SerializeField] Objective[] objectives;
     bool finished;
     Objective current => objectives[currentIdx];
@@ -50,8 +49,8 @@ public class ObjectiveManager : MonoBehaviour
 
     void UpdateDescription(string description)
     {
-        if (this.description != null)
-            this.description.text = description;
+        if (gamemanager.instance.gameObjectiveText != null)
+            gamemanager.instance.gameObjectiveText.text = description;
     }
 
     void CompleteObjective()

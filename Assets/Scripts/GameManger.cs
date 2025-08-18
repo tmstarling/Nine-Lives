@@ -12,7 +12,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuCheat;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
-
+    public TextMeshProUGUI gameObjectiveText;
     [Header("UI Elements")]
     public Image playeHPBar;
     public GameObject playerDamagePanel;
