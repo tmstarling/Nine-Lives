@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class PlayerController : MonoBehaviour ,IDamage,IPickup
 {
@@ -142,9 +143,10 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
         Vector3 offset = Camera.main.transform.forward * 0.3f;
         Instantiate(Furball, shootPos.position + offset, Camera.main.transform.rotation);
     }
-
+    public Action takeDamage;
     public void TakeDamage(int amount)
     {
+        takeDamage?.Invoke();
         HP -= amount;
         UpdateHealthBarFill();
         StartCoroutine(damageFlashScreen());
