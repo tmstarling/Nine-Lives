@@ -1,25 +1,31 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 // this is to make sure game manager is initialized first, since we access its properties in awake.
 [DefaultExecutionOrder(1000000)]
 public class CheckpointManager : MonoBehaviour
 {
     int _score;
-    int score { 
-        get => _score; 
-        set     
-        {  
+    int score {
+        get => _score;
+        set
+        {
             _score = value;
-            gamemanager.instance.gameScoreText.text = string.Format("Score: {0}", score);
+            SetScoreText();
         }
     }
     int lastScore;
 
+    void SetScoreText() => gamemanager.instance.gameScoreText.text = string.Format("Score: {0}", score);
+    
     public void AddScore(int score)
     {
         this.score += score;
     }
+    public void SetScore(int score)
+    {
+        this.score = score;
+    }
+
     static bool awoken = false;
     public static CheckpointManager instance { get; private set; }
     Vector3 playerSpawnPoint;
@@ -52,11 +58,13 @@ public class CheckpointManager : MonoBehaviour
         else
             playerSpawnPoint = Vector3.zero;
         MovePlayerToLastSpawn();
+        DontDestroyOnLoad(gameObject);
         awoken = true;
     }
-    private void Start()
+
+    private void OnLevelWasLoaded(int level)
     {
-        DontDestroyOnLoad(gameObject);
+        SetScoreText();
     }
 
     void MovePlayerToLastSpawn() => player.position = playerSpawnPoint;

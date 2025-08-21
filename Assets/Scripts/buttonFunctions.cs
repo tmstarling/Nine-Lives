@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class buttonFunctions : MonoBehaviour
 {
@@ -33,8 +34,7 @@ public class buttonFunctions : MonoBehaviour
 
     private void Awake()
     {
-        clickSFX = SoundManager.Instance.click;
-        hoverSFX = SoundManager.Instance.hover;
+
 
         if (Instance != null && Instance != this)
         {
@@ -45,9 +45,10 @@ public class buttonFunctions : MonoBehaviour
         // ONLY ONE
         DontDestroyOnLoad(gameObject);
     }
-
     private void Start()
     {
+        clickSFX = SoundManager.Instance.click;
+        hoverSFX = SoundManager.Instance.hover;
         godModeToggle.onValueChanged.AddListener(OnGodModeToggle);
         speedBoostToggle.onValueChanged.AddListener(OnSpeedBoostToggle);
         invulnerabilityToggle.onValueChanged.AddListener(OnInvulnerabilityToggle);
@@ -63,7 +64,12 @@ public class buttonFunctions : MonoBehaviour
 
     public void restart()
     {
-        LoadingManager.instance.StartSceneLoad(() => { gamemanager.instance.stateUnpaused(); CheatManager.Instance.ReapplyCheatsAfterRespawn(); }, SceneManager.GetActiveScene().name);
+        LoadingManager.instance.StartSceneLoad(() => { 
+            gamemanager.instance.stateUnpaused(); 
+            CheatManager.Instance.ReapplyCheatsAfterRespawn(); 
+            CheckpointManager.instance.SetScore(0); 
+        }, SceneManager.GetActiveScene().name);
+        
     }
 
     public void cheats()
