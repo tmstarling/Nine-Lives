@@ -112,7 +112,6 @@ public class CheatManager : MonoBehaviour
 
     public void EnableSpeedBoost()
     {
-        Debug.Log("hi");
         gamemanager.instance.playerScript.speed = gamemanager.instance.playerScript.boostedSpeed;
     }
     public void DisableSpeedBoost()
