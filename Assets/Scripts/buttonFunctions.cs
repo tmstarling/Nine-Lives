@@ -6,6 +6,18 @@ using UnityEngine.UI;
 
 public class buttonFunctions : MonoBehaviour
 {
+    AudioSource hoverSFX;
+    AudioSource clickSFX;
+
+    public void hover()
+    {
+        hoverSFX.Play();
+    }
+    public void click()
+    {
+        clickSFX.Play();
+    }
+	
     public static buttonFunctions Instance;
 
     [Header("Cheat Input")]
@@ -21,6 +33,9 @@ public class buttonFunctions : MonoBehaviour
 
     private void Awake()
     {
+        clickSFX = SoundManager.Instance.click;
+        hoverSFX = SoundManager.Instance.hover;
+
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
