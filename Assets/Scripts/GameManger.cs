@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class gamemanager : MonoBehaviour
 {
@@ -23,7 +22,6 @@ public class gamemanager : MonoBehaviour
     public GameObject cheatPopup;
 
     [Header("Game Settings")]
-    float timescaleOrig;
     int pickUpsCount = 0;
     public static int amount;
 
@@ -34,7 +32,6 @@ public class gamemanager : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
-        timescaleOrig = Time.timeScale;
     }
 
     // Update is called once per frame
@@ -67,10 +64,11 @@ public class gamemanager : MonoBehaviour
     public void stateUnpaused()
     {
         isPaused = false;
-        Time.timeScale = timescaleOrig;
+        Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        menuActive.SetActive(false);
+        if (menuActive != null)
+            menuActive.SetActive(false);
         menuActive = null;
     }
 

@@ -48,8 +48,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        gamemanager.instance.stateUnpaused();
+        LoadingManager.instance.StartSceneLoad(() => { gamemanager.instance.stateUnpaused(); CheatManager.Instance.ReapplyCheatsAfterRespawn(); }, SceneManager.GetActiveScene().name);
     }
 
     public void cheats()
@@ -59,17 +58,12 @@ public class buttonFunctions : MonoBehaviour
 
     public void respawn()
     {
-        if (CheckpointManager.instance == null) 
-        {
-            Debug.LogError("CheckpointManager.instance is null");
-        }
-        else
+        LoadingManager.instance.StartSceneLoad(() =>
         {
             CheckpointManager.instance.ResetToLastCheckpoint();
             gamemanager.instance.stateUnpaused();
-            //Cheats Reapplied
             CheatManager.Instance.ReapplyCheatsAfterRespawn();
-        }
+        }, SceneManager.GetActiveScene().name);
     }
 
     public void quit()

@@ -45,9 +45,8 @@ public class CheckpointManager : MonoBehaviour
 
     void MovePlayerToLastSpawn() => player.position = playerSpawnPoint;
 
-    public async void ResetToLastCheckpoint()
+    public void ResetToLastCheckpoint()
     {
-        await SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
         GameObject.FindWithTag("Player").transform.position = playerSpawnPoint;
         ObjectiveManager.instance.SkipTo(checkpointID);
     }

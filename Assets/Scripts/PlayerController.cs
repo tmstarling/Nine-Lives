@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     [SerializeField] int HP;
 
     [Header("Movement Settings")]
-    [SerializeField] public int speed;
     [SerializeField] int sprintMod;
     [SerializeField] int jumpVel;
     [SerializeField] int jumpMax;
@@ -39,20 +38,19 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
 
     [Header("Cheats")]
     public bool godMode;
-    public bool speedBoost;
     public bool invulnerability;
     //public bool wallHack;
 
     [Header("Speed")]
-    public int speedOrig;
     public int boostedSpeed;
-
-
+    [SerializeField] public int originalSpeed;
+    public int speed;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
+        speed = originalSpeed;
         HPOrig = HP;
-        speedOrig = speed;
         UpdateHealthBarFill();
     }
 

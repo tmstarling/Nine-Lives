@@ -1469,7 +1469,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   HP: 100
-  speed: 7
   sprintMod: 2
   jumpVel: 10
   jumpMax: 2
@@ -1482,10 +1481,10 @@ MonoBehaviour:
   Yarnball: {fileID: 0}
   shootPos: {fileID: 3873752468338650063}
   godMode: 0
-  speedBoost: 0
   invulnerability: 0
-  speedOrig: 0
-  boostedSpeed: 0
+  boostedSpeed: 20
+  originalSpeed: 7
+  speed: 7
 --- !u!95 &1527591669686737709
 Animator:
   serializedVersion: 7
