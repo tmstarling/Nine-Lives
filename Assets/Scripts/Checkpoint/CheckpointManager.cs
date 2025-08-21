@@ -26,6 +26,8 @@ public class CheckpointManager : MonoBehaviour
         this.score = score;
     }
 
+    public int GetScore() => score;
+
     static bool awoken = false;
     public static CheckpointManager instance { get; private set; }
     Vector3 playerSpawnPoint;
