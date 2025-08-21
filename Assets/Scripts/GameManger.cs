@@ -13,6 +13,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     public TextMeshProUGUI gameObjectiveText;
+    public TextMeshProUGUI gameScoreText;
     [Header("UI Elements")]
     public Image playeHPBar;
     public GameObject playerDamagePanel;

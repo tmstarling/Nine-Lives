@@ -5,6 +5,21 @@ using UnityEngine.SceneManagement;
 [DefaultExecutionOrder(1000000)]
 public class CheckpointManager : MonoBehaviour
 {
+    int _score;
+    int score { 
+        get => _score; 
+        set     
+        {  
+            _score = value;
+            gamemanager.instance.gameScoreText.text = string.Format("Score: {0}", score);
+        }
+    }
+    int lastScore;
+
+    public void AddScore(int score)
+    {
+        this.score += score;
+    }
     static bool awoken = false;
     public static CheckpointManager instance { get; private set; }
     Vector3 playerSpawnPoint;
@@ -18,6 +33,7 @@ public class CheckpointManager : MonoBehaviour
     {
         checkpointID = id;
         playerSpawnPoint = pos;
+        lastScore = score;
     }
 
     private void Awake()
@@ -49,5 +65,6 @@ public class CheckpointManager : MonoBehaviour
     {
         GameObject.FindWithTag("Player").transform.position = playerSpawnPoint;
         ObjectiveManager.instance.SkipTo(checkpointID);
+        score = lastScore;
     }
 }
