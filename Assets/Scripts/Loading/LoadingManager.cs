@@ -9,9 +9,14 @@ public class LoadingManager : MonoBehaviour
     [SerializeField]
     Animator animator;
     public static LoadingManager instance { get; private set; }
+    [SerializeField]
+    bool animating;
+    Action afterLoad;
+    string sceneName;
 
     private void Awake()
     {
+        transform.parent = null;
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -20,10 +25,6 @@ public class LoadingManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
     }
-    [SerializeField]
-    bool animating;
-    Action afterLoad;
-    string sceneName;
 
     public bool StartSceneLoad(Action afterLoad, string sceneName)
     {

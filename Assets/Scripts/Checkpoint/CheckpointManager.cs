@@ -46,6 +46,7 @@ public class CheckpointManager : MonoBehaviour
 
     private void Awake()
     {
+        transform.parent = null;
         if (instance != null && instance != this)
         {
             Destroy(gameObject);

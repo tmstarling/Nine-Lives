@@ -19,7 +19,8 @@ public class SoundManager : MonoBehaviour
     // boom
     private void Awake()
     {
-		// there can only be one
+        transform.parent = null;
+        // there can only be one
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);

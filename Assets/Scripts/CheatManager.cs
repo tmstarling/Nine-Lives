@@ -12,6 +12,7 @@ public class CheatManager : MonoBehaviour
 
     private void Awake()
     {
+        transform.parent = null;
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
