@@ -19,7 +19,7 @@ public class CheatManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     public void ApplyCheatsToPlayer()

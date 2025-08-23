@@ -72,6 +72,11 @@ public class buttonFunctions : MonoBehaviour
         gamemanager.instance.youCheat();
     }
 
+    public void audioMix()
+    {
+        gamemanager.instance.audioMixer();
+    }
+
     public void respawn()
     {
         if (CheckpointManager.instance == null) 

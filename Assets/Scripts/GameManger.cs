@@ -10,6 +10,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPaused;
     [SerializeField] GameObject menuCheat;
+    [SerializeField] GameObject menuAudio;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     public TextMeshProUGUI gameObjectiveText;
@@ -83,6 +84,18 @@ public class gamemanager : MonoBehaviour
 
         statePaused();
         menuActive = menuCheat;
+        menuActive.SetActive(true);
+    }
+
+    public void audioMixer()
+    {
+        if (menuActive != null)
+        {
+            menuActive.SetActive(false);
+        }
+
+        statePaused();
+        menuActive = menuAudio;
         menuActive.SetActive(true);
     }
 
