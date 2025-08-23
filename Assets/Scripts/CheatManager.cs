@@ -12,14 +12,7 @@ public class CheatManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
 
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     public void ApplyCheatsToPlayer()
@@ -129,20 +122,5 @@ public class CheatManager : MonoBehaviour
     public void DisableInvulnerability()
     {
         gamemanager.instance.playerScript.invulnerability = false;
-    }
-
-    public IEnumerator ReapplyCheatsAfterRespawn()
-    {
-        yield return null;
-
-        if (gamemanager.instance.playerScript != null)
-        {
-            ApplyCheatsToPlayer();
-            buttonFunctions.Instance.SyncCheatToggles();
-        }
-        else
-        {
-            Debug.LogWarning("PlayerScript not found after respawn");
-        }
     }
 }

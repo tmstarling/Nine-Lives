@@ -33,8 +33,8 @@ public class buttonFunctions : MonoBehaviour
 
     private void Awake()
     {
-        clickSFX = SoundManager.Instance.click;
-        hoverSFX = SoundManager.Instance.hover;
+        clickSFX = SoundManager.instance.click;
+        hoverSFX = SoundManager.instance.hover;
 
         if (Instance != null && Instance != this)
         {
@@ -80,7 +80,6 @@ public class buttonFunctions : MonoBehaviour
     public void start()
     {
         SceneManager.LoadScene("Master Scene");
-        gamemanager.instance.stateUnpaused();
     }
 
     public void restart()
@@ -103,14 +102,12 @@ public class buttonFunctions : MonoBehaviour
     {
         if (CheckpointManager.instance == null) 
         {
-            Debug.LogError("CheckpointManager.instance is null");
+            //Debug.LogError("CheckpointManager.instance is null");
         }
         else
         {
             CheckpointManager.instance.ResetToLastCheckpoint();
-            gamemanager.instance.stateUnpaused();
-            //Cheats Reapplied
-            CheatManager.Instance.ReapplyCheatsAfterRespawn();
+            gamemanager.instance.stateUnpaused();;
         }
     }
 
@@ -138,7 +135,7 @@ public class buttonFunctions : MonoBehaviour
     public void EnterCheat()
     {
         string cheatCode = cheatInputField.text.Trim().ToLower();
-        Debug.Log("Entered cheat: " + cheatCode);
+        //Debug.Log("Entered cheat: " + cheatCode);
 
         CheatManager.Instance.ActivateCheat(cheatCode);
         SyncCheatToggles();
@@ -210,6 +207,18 @@ public class buttonFunctions : MonoBehaviour
 
     public void SyncCheatToggles()
     {
+        if (godModeToggle == null || speedBoostToggle == null || invulnerabilityToggle == null)
+        {
+            //Debug.LogWarning("One or more cheat toggles are not assigned.");
+            return;
+        }
+
+        if (CheatManager.Instance == null)
+        {
+            //Debug.LogWarning("CheatManager.Instance is not initialized yet.");
+            return;
+        }
+
         //Temp Remove Listeners
         godModeToggle.onValueChanged.RemoveAllListeners();
         speedBoostToggle.onValueChanged.RemoveAllListeners();

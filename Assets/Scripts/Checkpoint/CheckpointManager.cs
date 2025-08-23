@@ -49,6 +49,12 @@ public class CheckpointManager : MonoBehaviour
     {
         await SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
         GameObject.FindWithTag("Player").transform.position = playerSpawnPoint;
+
+        while (ObjectiveManager.instance == null)
+        {
+            await System.Threading.Tasks.Task.Yield();
+        }
+
         ObjectiveManager.instance.SkipTo(checkpointID);
     }
 }
