@@ -1,13 +1,14 @@
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class gamemanager : MonoBehaviour
 {
     public static gamemanager instance;
 
     [Header("Menus")]
-    [SerializeField] GameObject menuActive;
+    [SerializeField] public GameObject menuActive;
     [SerializeField] GameObject menuPaused;
     [SerializeField] GameObject menuCheat;
     [SerializeField] GameObject menuAudio;
@@ -32,10 +33,29 @@ public class gamemanager : MonoBehaviour
     void Awake()
     {
         instance = this;
-
-        player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<PlayerController>();
         timescaleOrig = Time.timeScale;
+
+        if (IsGameplayScene())
+        {
+            player = GameObject.FindWithTag("Player");
+            if (player != null)
+            {
+                playerScript = player.GetComponent<PlayerController>();
+            }
+            else
+            {
+                Debug.LogWarning("Player not found in gameplay scene.");
+            }
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
+    bool IsGameplayScene()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+        return sceneName != "Main Menu";
     }
 
     // Update is called once per frame
@@ -94,7 +114,6 @@ public class gamemanager : MonoBehaviour
             menuActive.SetActive(false);
         }
 
-        statePaused();
         menuActive = menuAudio;
         menuActive.SetActive(true);
     }

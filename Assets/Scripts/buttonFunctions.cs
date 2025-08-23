@@ -52,12 +52,34 @@ public class buttonFunctions : MonoBehaviour
         speedBoostToggle.onValueChanged.AddListener(OnSpeedBoostToggle);
         invulnerabilityToggle.onValueChanged.AddListener(OnInvulnerabilityToggle);
 
-        SyncCheatToggles();
+        if (IsGameplayScene())
+        {
+            SyncCheatToggles();
+        }
     }
 
+    bool IsGameplayScene()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+        return sceneName != "Main Menu";
+    }
 
     public void resume()
     {
+        if (gamemanager.instance.isPaused)
+        {
+            gamemanager.instance.stateUnpaused();
+        }
+        else if (gamemanager.instance.menuActive != null)
+        {
+            gamemanager.instance.menuActive.SetActive(false);
+            gamemanager.instance.menuActive = null;
+        }
+    }
+
+    public void start()
+    {
+        SceneManager.LoadScene("Master Scene");
         gamemanager.instance.stateUnpaused();
     }
 

@@ -15,6 +15,9 @@ public class VolumControl : MonoBehaviour
 
     private void Awake()
     {
+        _slider.value = _slider.maxValue;
+        SetVolume(_slider.value);
+        _muteToggle.isOn = true;
         _slider.onValueChanged.AddListener(SetVolume);
         _muteToggle.onValueChanged.AddListener(Mute);
     }
