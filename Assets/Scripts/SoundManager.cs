@@ -2,9 +2,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 
+[DefaultExecutionOrder(-100)]
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager Instance;
+    public static SoundManager instance;
 
     [SerializeField] public AudioClip menuMusic;
     [SerializeField] public AudioClip gameMusic;
@@ -19,37 +20,42 @@ public class SoundManager : MonoBehaviour
     // boom
     private void Awake()
     {
-        transform.parent = null;
-        // there can only be one
-        if (Instance != null && Instance != this)
+		// there can only be one
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
             return;
         }
-        Instance = this;
+
+        instance = this;
 		// ONLY ONE
         DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
     {
-		// plays menu music and binds scene loading
-        SceneManager.sceneLoaded += OnSceneLoaded;
         PlayMenuMusic();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-		// idk if we have a main menu scene yet but yeah, it's main menu
-		// switches track on context
-        /*if (scene.name == "MainMenu")
+        // idk if we have a main menu scene yet but yeah, it's main menu
+        // switches track on context
+
+        if (this == null || gameObject == null)
+        {
+            Debug.LogWarning("SoundManager reference lost before scene load.");
+            return;
+        }
+
+        if (scene.name == "MainMenu")
         {
             PlayMenuMusic();
         }
         else
         {
             PlayGameMusic();
-        }*/
+        }
         if (gameObject != null) PlayGameMusic();
     }
 
@@ -76,4 +82,15 @@ public class SoundManager : MonoBehaviour
         // unity uses dB so this is how ya work with that
         musicMixer.SetFloat("MusicVolume", Mathf.Log10(value) * 20);
     }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
 }

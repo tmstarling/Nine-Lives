@@ -35,7 +35,6 @@ public class buttonFunctions : MonoBehaviour
     private void Awake()
     {
 
-
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -53,13 +52,34 @@ public class buttonFunctions : MonoBehaviour
         speedBoostToggle.onValueChanged.AddListener(OnSpeedBoostToggle);
         invulnerabilityToggle.onValueChanged.AddListener(OnInvulnerabilityToggle);
 
-        SyncCheatToggles();
+        if (IsGameplayScene())
+        {
+            SyncCheatToggles();
+        }
     }
 
+    bool IsGameplayScene()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+        return sceneName != "Main Menu";
+    }
 
     public void resume()
     {
-        gamemanager.instance.stateUnpaused();
+        if (gamemanager.instance.isPaused)
+        {
+            gamemanager.instance.stateUnpaused();
+        }
+        else if (gamemanager.instance.menuActive != null)
+        {
+            gamemanager.instance.menuActive.SetActive(false);
+            gamemanager.instance.menuActive = null;
+        }
+    }
+
+    public void start()
+    {
+        SceneManager.LoadScene("Master Scene");
     }
 
     public void restart()
@@ -75,6 +95,11 @@ public class buttonFunctions : MonoBehaviour
     public void cheats()
     {
         gamemanager.instance.youCheat();
+    }
+
+    public void audioMix()
+    {
+        gamemanager.instance.audioMixer();
     }
 
     public void respawn()
@@ -111,7 +136,7 @@ public class buttonFunctions : MonoBehaviour
     public void EnterCheat()
     {
         string cheatCode = cheatInputField.text.Trim().ToLower();
-        Debug.Log("Entered cheat: " + cheatCode);
+        //Debug.Log("Entered cheat: " + cheatCode);
 
         CheatManager.Instance.ActivateCheat(cheatCode);
         SyncCheatToggles();
@@ -183,6 +208,18 @@ public class buttonFunctions : MonoBehaviour
 
     public void SyncCheatToggles()
     {
+        if (godModeToggle == null || speedBoostToggle == null || invulnerabilityToggle == null)
+        {
+            //Debug.LogWarning("One or more cheat toggles are not assigned.");
+            return;
+        }
+
+        if (CheatManager.Instance == null)
+        {
+            //Debug.LogWarning("CheatManager.Instance is not initialized yet.");
+            return;
+        }
+
         //Temp Remove Listeners
         godModeToggle.onValueChanged.RemoveAllListeners();
         speedBoostToggle.onValueChanged.RemoveAllListeners();

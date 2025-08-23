@@ -1,0 +1,411 @@
+commit bdf47eb27bca92b020f37901dfef455fb4f64cf4
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sun Aug 17 18:08:07 2025 -0400
+
+    Minor update
+
+commit 7860c0873090725a59eaca1b2e97986713333320
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sun Aug 17 17:55:03 2025 -0400
+
+    minor updates
+
+commit b1454a6825c44bc9f6aa18b9b3aeecfc2f478377
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sun Aug 17 17:36:46 2025 -0400
+
+    Minor update
+
+commit 257b272584d1f44bd7ad4610e9648d49523ddbb5
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sun Aug 17 17:17:56 2025 -0400
+
+    minor update
+
+commit cb7368e334cc8e09764b9754414697cacaa32037
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sun Aug 17 17:14:40 2025 -0400
+
+    Debugging cheats when respawning
+
+commit 8f05c38e98e53f0f6758d0f0503204cf27e2998e
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sun Aug 17 15:52:31 2025 -0400
+
+    Added respawn point to starting level; could not debug cheats not saving when respawning
+
+commit 6f680294f971537dc958e71b09ace4064a5cc902
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sun Aug 17 14:44:39 2025 -0400
+
+    Minor updates
+
+commit f2ee807ae206636b45a367c9be6be55633fd7ad3
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sun Aug 17 13:22:39 2025 -0400
+
+    fixed cheat toggle and added animation to pick ups
+
+commit 4b1a2ee0d1fac98237314f0c219876e2009441cc
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sat Aug 16 18:27:34 2025 -0400
+
+    Reorganized files
+
+commit a5b21107f1e8439d466552b71404785858c296ae
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sat Aug 16 17:06:07 2025 -0400
+
+    Changed textures on walls and floors
+
+commit ba3f958a2ace0edc728bf6a7b144357c76290033
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sat Aug 16 16:10:01 2025 -0400
+
+    completed debugging with no errors
+
+commit 30c799758f17859aedc3e1aff853a079a3ccfb96
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sat Aug 16 15:42:43 2025 -0400
+
+    Fixed enemy aim and redid naming of spawners
+
+commit 230f58c03c999aaf26b25084287902eb94feac4b
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sat Aug 16 15:06:07 2025 -0400
+
+    Updated enemy aim and prefabs
+
+commit b719fce255d71a8b24d46ddd29d0b9b58fc9c6a0
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sat Aug 16 14:35:46 2025 -0400
+
+    Minor update
+
+commit 845eb1bac866443b8853959cea273f865c9321ef
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sat Aug 16 14:35:06 2025 -0400
+
+    REmoved old enemy model and added new model; working on enemy aim debugging
+
+commit 52a6e8a3ba7cc681ce4176b53247d46e563ae339
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sat Aug 16 12:29:09 2025 -0400
+
+    Minor updates
+
+commit a220ffc9c0d1c64580ab8ed1bdbcf1df6e45a31d
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Fri Aug 15 00:57:25 2025 -0400
+
+    Fixed collider issue for the enemy cat and dog...need to debug/replace robot
+
+commit 5e5b73faf433c50433d11ea682322a4eb901f190
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Thu Aug 14 21:41:12 2025 -0400
+
+    debugged door opening
+
+commit 61bc7d67f5b7a918adb014af33d5f7cf6a9be767
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Thu Aug 14 21:30:09 2025 -0400
+
+    Added Opendoor script and readded cheat menu and pop to scripts
+
+commit 77527f87023c6dc1a9f44403b44b5aed7fc5ac31
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Thu Aug 14 19:02:20 2025 -0400
+
+    Updates
+
+commit 5904f44e015c10dc4bc928e72fd6a100609e8107
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Wed Aug 13 22:05:19 2025 -0400
+
+    Update
+
+commit 9a9b60bb732c84f3770935335e20c74503ab1cdf
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Wed Aug 13 22:04:46 2025 -0400
+
+    Updated text for cheat pop up
+
+commit e091e03643ba11c5d22d5c0702e414486917cac1
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Wed Aug 13 21:54:06 2025 -0400
+
+    updated cheat menu with pop up
+
+commit a205d489a0c6591edf6f744060383bb9ff82d589
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Wed Aug 13 21:16:39 2025 -0400
+
+    adjust doors and walls
+
+commit 524dccefb331c674adcdc76117174acbc70813c3
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Wed Aug 13 20:38:26 2025 -0400
+
+    fixed door issue
+
+commit 177432c2d2ddbcab4775c4b7d443bbb610464160
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Wed Aug 13 20:09:17 2025 -0400
+
+    fixed Cheat Menu with 5 cheats; working on door debugging
+
+commit 4bb3c597092880141f144b4ecf39913055ec3785
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Tue Aug 12 21:05:49 2025 -0400
+
+    Added Cheat menu
+    
+    need to debug cheat input before it can be used.
+
+commit 6bfb615a88552739821b93631320788b7ae34436
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Thu Aug 7 21:57:38 2025 -0400
+
+    Removing unused assets
+
+commit aafee5c687ae4cf56ea8e430a81a2abd825e298d
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Thu Jul 31 20:50:00 2025 -0400
+
+    Adjust level items
+
+commit 9dfeeab3ed2463172b84e4ab101663dba702818c
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Thu Jul 31 20:21:14 2025 -0400
+
+    Unknown update
+
+commit 4ef3e917573121e08539726f3fbc8913ad6a6649
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Thu Jul 24 01:12:39 2025 -0400
+
+    Updated Master scene
+
+commit f352f47e3945e70a2dac0e14f65de10c83c0dc33
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Thu Jul 24 01:10:30 2025 -0400
+
+    Fixed enemy not hitting player
+
+commit 979901265f6b7a0bd03d8353ebcc5c7bf5584911
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Wed Jul 23 23:57:21 2025 -0400
+
+    Created milk pick up
+
+commit 30376084a5ed19ed523afdaa4debb3d92bc5aaa4
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Wed Jul 23 23:24:25 2025 -0400
+
+    Working on bugs
+
+commit 72f6e06dd7cb98be740e0b5462b1fbd1c30b462e
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Wed Jul 23 23:08:28 2025 -0400
+
+    Updated pick up items
+
+commit 0525a0861838524686108a162917042a4fad0928
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Wed Jul 23 22:35:55 2025 -0400
+
+    Updating enemies
+
+commit f2ff650863b9600052eec9e72df26df7a823a02f
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Wed Jul 23 08:46:00 2025 -0400
+
+    Fixed win condition and worked on updating game goal
+
+commit 983e04e833c945d2d414d3d193fb354cbeae8f51
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Tue Jul 22 22:57:39 2025 -0400
+
+    Updated new enemy model
+
+commit 19c0e21c24f9833116ca4f073af15974759dbf1e
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Tue Jul 22 22:47:27 2025 -0400
+
+    Added new enemy models
+
+commit 6f5a0cfcf0b89326558ced6f252bee196363c17f
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Tue Jul 22 21:37:32 2025 -0400
+
+    Fixed player location
+
+commit 5a23c29a17a5a0c7f3247ba1c0f22f4d4edc15ce
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Tue Jul 22 19:50:49 2025 -0400
+
+    Trying to debug
+
+commit 8e1ca0c5ab415c35aa3ea474fbbfd1e5ef1ee91b
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Mon Jul 21 23:09:31 2025 -0400
+
+    index on master: 1907214 Scene updates
+
+commit 7660c02e237becc619cf11d5ec674200d2a6f854
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Mon Jul 21 22:42:06 2025 -0400
+
+    Updates
+
+commit bc5153593c9c303cbd2e4671fd3875b7e638ca9b
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Mon Jul 21 22:34:16 2025 -0400
+
+    Adjusting code
+
+commit d9be6bd3d85d514f0f0631fbcc0363b8b668b5ee
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Mon Jul 21 21:50:13 2025 -0400
+
+    Updates to scripts
+
+commit c8c68eff176c6a91ddaac06dda3490a602ed4827
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Mon Jul 21 20:47:31 2025 -0400
+
+    Map adjustment and prefab setup
+
+commit 82967731403244783628c56bacd5368e5fd55ba6
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Tue Jul 15 20:47:13 2025 -0400
+
+    Fixed enemy not shooting at player
+
+commit 973ddf79259acd99a438e0cd676c1a27442ea310
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sun Jul 13 15:19:54 2025 -0400
+
+    Code debugging
+
+commit 75e3737cafdbad2ce56db296cf97505af2b628be
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sun Jul 13 09:25:30 2025 -0400
+
+    Small update
+
+commit 24c8eaa7fea60a8050f183069ad141760befae18
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sun Jul 13 08:53:29 2025 -0400
+
+    Reorganized files and more debugging
+
+commit b6c1ea927e994586638e3bb25f3e382ec32a9a7e
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sat Jul 12 20:29:48 2025 -0400
+
+    Created Homing bullet
+
+commit 64bb78d53727589a2949b846c8a89b8073590223
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sat Jul 12 19:44:12 2025 -0400
+
+    Fixed error in animation
+
+commit 5e311c2430c84383e5ef04b07aa3153b34584317
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sat Jul 12 19:38:03 2025 -0400
+
+    Trying to debug player animation
+
+commit 1bb3f8a2acf72365eee832fce3568b92a7595b83
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sat Jul 12 19:13:43 2025 -0400
+
+    Trying to debug enemy not shooting
+
+commit 4b15aedc403786f7a4ec1d97e77fe213ec5feac2
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sat Jul 12 17:47:16 2025 -0400
+
+    EnemyAI Debugging
+
+commit 2ae509f261482373665a91634381c4c13863a690
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sat Jul 12 17:16:38 2025 -0400
+
+    Debugging Enemy animation and other errors
+
+commit 55f2e043d26f82285ff89e2eddbc4af85816ab52
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sat Jul 12 14:58:08 2025 -0400
+
+    Fix the litterbox Win condition
+
+commit ef19212730e7810c930c6e5431bfb1618fba5faa
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Sat Jul 12 10:55:49 2025 -0400
+
+    Updates
+
+commit a3997fb5957684c580e64ec8599f6dfe13f0dd2b
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Thu Jul 10 09:06:29 2025 -0400
+
+    Updating prefabs fixed PlayerController script
+
+commit 00d05638912cf6e9529eddfa23c8eaaff6650bba
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Thu Jul 10 00:41:42 2025 -0400
+
+    Adjusted Player size
+
+commit d105b281d1265e6d47d8f4505775b5bb2baaed3d
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Thu Jul 10 00:18:09 2025 -0400
+
+    Removed old prefabs
+
+commit a49f787fa02ab698e794e712c73046b670a4c2a6
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Thu Jul 10 00:10:46 2025 -0400
+
+    Updated scene
+
+commit 947535eff8467ab5c7dde7bcab074da3e581c88f
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Thu Jul 10 00:00:39 2025 -0400
+
+    Updated Furball
+
+commit ed3afc40f876fe406bbb2012fb9b0e34c8b8bf9d
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Wed Jul 9 23:44:31 2025 -0400
+
+    Updated double jump
+
+commit cfb9a5c04a272604dad1f9d263b7b218fb54e94c
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Wed Jul 9 23:37:29 2025 -0400
+
+    Created Cassius Scene folder and scene
+
+commit 0314a04108bbf8add86a6da8241e7e376ee92cfa
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Wed Jul 9 23:01:02 2025 -0400
+
+    Moved files
+
+commit 06583a8c06e97ae34218aeeb32d6753365d2a768
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Wed Jul 9 22:45:51 2025 -0400
+
+    Updated PlayerController and added prefabs
+
+commit e5b813b50b378b55fa22f2e20f046ad47b11250e
+Author: MrPsychopomp13 <cmrawls@student.fullsail.edu>
+Date:   Wed Jul 9 22:23:54 2025 -0400
+
+    Moved Damage and IDamage to Script folder
+    
+    Transferred files
