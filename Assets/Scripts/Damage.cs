@@ -81,11 +81,9 @@ public class Damage : MonoBehaviour
         }
         IDamage damage = other.GetComponent<IDamage>();
 
-        
-
         if (damage != null && type != DamageTypes.DmgOvrTime)
         {
-            damage.TakeDamage(DamageAmount);
+            damage.TakeDamage(DamageAmount, transform.position);
         }
 
         if (type == DamageTypes.Moving || type == DamageTypes.Homing)
@@ -111,7 +109,7 @@ public class Damage : MonoBehaviour
     IEnumerator DamageOther(IDamage damage)
     {
         isDamaging = true;
-        damage.TakeDamage(DamageAmount);
+        damage.TakeDamage(DamageAmount, transform.position);
         yield return new WaitForSeconds(DamageAmount);
         isDamaging = false;
     }

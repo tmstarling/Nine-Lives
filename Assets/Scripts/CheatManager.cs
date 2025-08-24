@@ -6,12 +6,13 @@ public class CheatManager : MonoBehaviour
     public static CheatManager Instance;
 
     [Header("Cheat flags")]
-    public bool godModeEnabled;
+    public bool flyModeEnabled;
     public bool speedBoostEnabled;
     public bool invulnerabilityEnabled;
 
     private void Awake()
     {
+        transform.parent = null;
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -24,15 +25,13 @@ public class CheatManager : MonoBehaviour
 
     public void ApplyCheatsToPlayer()
     {
-        if (godModeEnabled)
+        if (flyModeEnabled)
         {
-            gamemanager.instance.playerScript.godMode = true;
-            EnableSpeedBoost();
-            EnableInvulnerability();
+            gamemanager.instance.playerScript.flyMode = true;
         }
         else
         {
-            gamemanager.instance.playerScript.godMode = false;
+            gamemanager.instance.playerScript.flyMode = false;
             DisableSpeedBoost();
             DisableInvulnerability();
         }
@@ -62,12 +61,10 @@ public class CheatManager : MonoBehaviour
 
         switch (cheatCode.ToLower().Trim())
         {
-            case "godmode":
-                if (godModeEnabled) return;
+            case "flymode":
+                if (flyModeEnabled) return;
 
-                godModeEnabled = true;
-                speedBoostEnabled = true;
-                invulnerabilityEnabled = true;
+                flyModeEnabled = true;
                 ApplyCheatsToPlayer();
                 break;
 
@@ -93,33 +90,30 @@ public class CheatManager : MonoBehaviour
 
     public void ClearCheats()
     {
-        godModeEnabled = false;
+        flyModeEnabled = false;
         speedBoostEnabled = false;
         invulnerabilityEnabled = false;
 
         ApplyCheatsToPlayer();
     }
 
-    public void EnableGodMode()
+    public void EnableFlyMode()
     {
-        gamemanager.instance.playerScript.godMode = true;
+        gamemanager.instance.playerScript.flyMode = true;
     }
 
     public void DisableGodMode()
     {
-        gamemanager.instance.playerScript.godMode = false;
+        gamemanager.instance.playerScript.flyMode = false;
     }
 
     public void EnableSpeedBoost()
     {
-        gamemanager.instance.playerScript.speedBoost = true;
-        gamemanager.instance.playerScript.boostedSpeed = gamemanager.instance.playerScript.speedOrig * 5;
         gamemanager.instance.playerScript.speed = gamemanager.instance.playerScript.boostedSpeed;
     }
     public void DisableSpeedBoost()
     {
-        gamemanager.instance.playerScript.speedBoost = false;
-        gamemanager.instance.playerScript.speed = gamemanager.instance.playerScript.boostedSpeed / 5;
+        gamemanager.instance.playerScript.speed = gamemanager.instance.playerScript.originalSpeed;
     }
 
     public void EnableInvulnerability()
@@ -131,10 +125,8 @@ public class CheatManager : MonoBehaviour
         gamemanager.instance.playerScript.invulnerability = false;
     }
 
-    public IEnumerator ReapplyCheatsAfterRespawn()
+    public void ReapplyCheatsAfterRespawn()
     {
-        yield return null;
-
         if (gamemanager.instance.playerScript != null)
         {
             ApplyCheatsToPlayer();

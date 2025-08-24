@@ -50,7 +50,7 @@ public class CapturePoint : MonoBehaviour
         if (objective == null)
             return;
         if (finished) return;
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && enemies.Count == 0)
         {
             StartCapture();
             playerColliding = true;

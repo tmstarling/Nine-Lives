@@ -47,6 +47,11 @@ public class enemyAI : MonoBehaviour, IDamage, IOpen
 
     }
 
+    public void TakeDamage(int amount, Vector3 damageSourcePosition)
+    {
+        TakeDamage(amount);
+    }
+
     void Update()
     {
         if (anim != null)

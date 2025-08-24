@@ -1,18 +1,22 @@
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class gamemanager : MonoBehaviour
 {
     public static gamemanager instance;
 
     [Header("Menus")]
-    [SerializeField] GameObject menuActive;
+    [SerializeField] public GameObject menuActive;
     [SerializeField] GameObject menuPaused;
     [SerializeField] GameObject menuCheat;
+    [SerializeField] public GameObject menuAudio;
+    [SerializeField] GameObject menuCredits;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     public TextMeshProUGUI gameObjectiveText;
+    public TextMeshProUGUI gameScoreText;
     [Header("UI Elements")]
     public Image playeHPBar;
     public GameObject playerDamagePanel;
@@ -23,7 +27,6 @@ public class gamemanager : MonoBehaviour
     public GameObject cheatPopup;
 
     [Header("Game Settings")]
-    float timescaleOrig;
     int pickUpsCount = 0;
     public static int amount;
 
@@ -32,9 +35,27 @@ public class gamemanager : MonoBehaviour
     {
         instance = this;
 
-        player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<PlayerController>();
-        timescaleOrig = Time.timeScale;
+        if (IsGameplayScene())
+        {
+            player = GameObject.FindWithTag("Player");
+            if (player != null)
+            {
+                playerScript = player.GetComponent<PlayerController>();
+            }
+            else
+            {
+                Debug.LogWarning("Player not found in gameplay scene.");
+            }
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
+    bool IsGameplayScene()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+        return sceneName != "Main Menu";
     }
 
     // Update is called once per frame
@@ -67,10 +88,11 @@ public class gamemanager : MonoBehaviour
     public void stateUnpaused()
     {
         isPaused = false;
-        Time.timeScale = timescaleOrig;
+        Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        menuActive.SetActive(false);
+        if (menuActive != null)
+            menuActive.SetActive(false);
         menuActive = null;
     }
 
@@ -80,9 +102,28 @@ public class gamemanager : MonoBehaviour
         {
             menuActive.SetActive(false);
         }
-
-        statePaused();
         menuActive = menuCheat;
+        menuActive.SetActive(true);
+    }
+
+    public void audioMixer()
+    {
+        if (menuActive != null)
+        {
+            menuActive.SetActive(false);
+        }
+
+        menuActive = menuAudio;
+        menuActive.SetActive(true);
+    }
+
+    public void credits()
+    {
+        if (menuActive != null)
+        {
+            menuActive.SetActive(false);
+        }
+        menuActive = menuCredits;
         menuActive.SetActive(true);
     }
 
