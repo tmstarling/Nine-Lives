@@ -12,6 +12,7 @@ public class CheatManager : MonoBehaviour
 
     private void Awake()
     {
+        transform.parent = null;
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -112,14 +113,11 @@ public class CheatManager : MonoBehaviour
 
     public void EnableSpeedBoost()
     {
-        gamemanager.instance.playerScript.speedBoost = true;
-        gamemanager.instance.playerScript.boostedSpeed = gamemanager.instance.playerScript.speedOrig * 5;
         gamemanager.instance.playerScript.speed = gamemanager.instance.playerScript.boostedSpeed;
     }
     public void DisableSpeedBoost()
     {
-        gamemanager.instance.playerScript.speedBoost = false;
-        gamemanager.instance.playerScript.speed = gamemanager.instance.playerScript.boostedSpeed / 5;
+        gamemanager.instance.playerScript.speed = gamemanager.instance.playerScript.originalSpeed;
     }
 
     public void EnableInvulnerability()
@@ -131,10 +129,8 @@ public class CheatManager : MonoBehaviour
         gamemanager.instance.playerScript.invulnerability = false;
     }
 
-    public IEnumerator ReapplyCheatsAfterRespawn()
+    public void ReapplyCheatsAfterRespawn()
     {
-        yield return null;
-
         if (gamemanager.instance.playerScript != null)
         {
             ApplyCheatsToPlayer();

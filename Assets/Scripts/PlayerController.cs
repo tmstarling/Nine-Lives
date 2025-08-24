@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class PlayerController : MonoBehaviour ,IDamage,IPickup
 {
@@ -11,7 +12,6 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     [SerializeField] int HP;
 
     [Header("Movement Settings")]
-    [SerializeField] public int speed;
     [SerializeField] int sprintMod;
     [SerializeField] int jumpVel;
     [SerializeField] int jumpMax;
@@ -38,20 +38,19 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
 
     [Header("Cheats")]
     public bool godMode;
-    public bool speedBoost;
     public bool invulnerability;
     //public bool wallHack;
 
     [Header("Speed")]
-    public int speedOrig;
     public int boostedSpeed;
-
-
+    [SerializeField] public int originalSpeed;
+    public int speed;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
+        speed = originalSpeed;
         HPOrig = HP;
-        speedOrig = speed;
         UpdateHealthBarFill();
     }
 
@@ -142,9 +141,10 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
         Vector3 offset = Camera.main.transform.forward * 0.3f;
         Instantiate(Furball, shootPos.position + offset, Camera.main.transform.rotation);
     }
-
+    public Action takeDamage;
     public void TakeDamage(int amount)
     {
+        takeDamage?.Invoke();
         HP -= amount;
         UpdateHealthBarFill();
         StartCoroutine(damageFlashScreen());
@@ -162,6 +162,10 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
 
     public void UpdateHealthBarFill()
     {
+        if (gamemanager.instance == null)
+            return;
+        if (gamemanager.instance.playeHPBar == null)
+            return;
         gamemanager.instance.playeHPBar.fillAmount = (float)HP / HPOrig;
     }
 
