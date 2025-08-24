@@ -77,7 +77,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void start()
     {
-        SceneManager.LoadScene("Master Scene");
+        LoadingManager.instance.StartSceneLoad(() => { }, "Tutorial");
     }
 
     public void restart()

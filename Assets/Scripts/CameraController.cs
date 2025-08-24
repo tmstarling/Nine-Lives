@@ -28,8 +28,6 @@ public class CameraController : MonoBehaviour
 
     void Awake()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
         _charachterController = GetComponentInParent<CharacterController>();
         _playerController = GetComponentInParent<PlayerController>();
         _playerController.takeDamage += StartDamageShake;
@@ -43,6 +41,12 @@ public class CameraController : MonoBehaviour
     private void OnDestroy()
     {
         _playerController.takeDamage -= StartDamageShake;
+    }
+
+    private void Start()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void StartDamageShake()

@@ -3775,7 +3775,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8801911369888502408
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3792,7 +3792,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000091552734}
+  m_AnchoredPosition: {x: 0, y: -0.00012207031}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3043920994220962576
@@ -8284,6 +8284,7 @@ MonoBehaviour:
   menuPaused: {fileID: 4285673175151421000}
   menuCheat: {fileID: 5906618659703210779}
   menuAudio: {fileID: 9111236625435547236}
+  menuCredits: {fileID: 0}
   menuWin: {fileID: 3313237142301600952}
   menuLose: {fileID: 1529797139727266455}
   gameObjectiveText: {fileID: 8995802829402608456}
@@ -13921,12 +13922,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a80c4757ab5c874eaabfdd0a37df5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerObject: {fileID: 0}
-  DamageLocation: {x: 18.3, y: 21.07, z: 0}
-  DamageImagePivot: {fileID: 1052639337671776898}
-  DamageImageCanvas: {fileID: 0}
-  FadeStartTime: 0
-  FadeTime: 0
+  playerTransform: {fileID: 0}
+  damageWorldPosition: {x: 0, y: 0, z: 0}
+  indicatorPivot: {fileID: 0}
+  canvasGroup: {fileID: 0}
+  indicatorImage: {fileID: 0}
+  fadeDelay: 0
+  fadeDuration: 0
 --- !u!222 &1184020055726317618
 CanvasRenderer:
   m_ObjectHideFlags: 0
