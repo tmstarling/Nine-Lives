@@ -13,6 +13,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] float cameraShakePointBounds;
     [SerializeField] float shakeSpeed;
     [SerializeField] int maxShakes;
+    [SerializeField] Transform cameraRotation;
     Transform _parent;
     CharacterController _charachterController;
     PlayerController _playerController;
@@ -94,7 +95,7 @@ public class CameraController : MonoBehaviour
             _rotX -= mouseY;
         _rotX = Mathf.Clamp(_rotX, lockVertMin, lockVertMax);
         _rotY += mouseX;
-        transform.rotation = Quaternion.Euler(_rotX, _rotY, 0);
+        cameraRotation.rotation = Quaternion.Euler(_rotX, _rotY, 0);
         _parent.localRotation = Quaternion.Euler(0, _rotY, 0);
     }
 

@@ -1256,6 +1256,7 @@ MonoBehaviour:
   cameraShakePointBounds: 0.1
   shakeSpeed: 15
   maxShakes: 20
+  cameraRotation: {fileID: 151834745267171241}
 --- !u!1 &4664829948263965112
 GameObject:
   m_ObjectHideFlags: 0
