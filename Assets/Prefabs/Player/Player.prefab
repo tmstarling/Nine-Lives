@@ -1427,7 +1427,6 @@ GameObject:
   - component: {fileID: 5954403917245569192}
   - component: {fileID: 1527591669686737709}
   - component: {fileID: 8192666778365918465}
-  - component: {fileID: 4398316529347073984}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1527,35 +1526,12 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 0.14
-  m_Radius: 0.4
+  m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.36, z: -0.05}
---- !u!136 &4398316529347073984
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5836961965450366441}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.25
-  m_Height: 0.5
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.15, z: 0}
+  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!1 &5901741243466088468
 GameObject:
   m_ObjectHideFlags: 0
