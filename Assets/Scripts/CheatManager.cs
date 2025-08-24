@@ -28,8 +28,6 @@ public class CheatManager : MonoBehaviour
         if (flyModeEnabled)
         {
             gamemanager.instance.playerScript.flyMode = true;
-            EnableSpeedBoost();
-            EnableInvulnerability();
         }
         else
         {
