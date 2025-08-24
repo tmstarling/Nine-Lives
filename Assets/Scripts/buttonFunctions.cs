@@ -33,9 +33,6 @@ public class buttonFunctions : MonoBehaviour
 
     private void Awake()
     {
-        clickSFX = SoundManager.instance.click;
-        hoverSFX = SoundManager.instance.hover;
-
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -45,9 +42,10 @@ public class buttonFunctions : MonoBehaviour
         // ONLY ONE
         DontDestroyOnLoad(gameObject);
     }
-
     private void Start()
     {
+        clickSFX = SoundManager.instance.click;
+        hoverSFX = SoundManager.instance.hover;
         godModeToggle.onValueChanged.AddListener(OnGodModeToggle);
         speedBoostToggle.onValueChanged.AddListener(OnSpeedBoostToggle);
         invulnerabilityToggle.onValueChanged.AddListener(OnInvulnerabilityToggle);
@@ -84,8 +82,12 @@ public class buttonFunctions : MonoBehaviour
 
     public void restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        gamemanager.instance.stateUnpaused();
+        LoadingManager.instance.StartSceneLoad(() => { 
+            gamemanager.instance.stateUnpaused(); 
+            CheatManager.Instance.ReapplyCheatsAfterRespawn(); 
+            CheckpointManager.instance.SetScore(0); 
+        }, SceneManager.GetActiveScene().name);
+        
     }
 
     public void cheats()
@@ -100,15 +102,12 @@ public class buttonFunctions : MonoBehaviour
 
     public void respawn()
     {
-        if (CheckpointManager.instance == null) 
-        {
-            //Debug.LogError("CheckpointManager.instance is null");
-        }
-        else
+        LoadingManager.instance.StartSceneLoad(() =>
         {
             CheckpointManager.instance.ResetToLastCheckpoint();
-            gamemanager.instance.stateUnpaused();;
-        }
+            gamemanager.instance.stateUnpaused();
+            CheatManager.Instance.ReapplyCheatsAfterRespawn();
+        }, SceneManager.GetActiveScene().name);
     }
 
     public void quit()
@@ -170,7 +169,7 @@ public class buttonFunctions : MonoBehaviour
     {
         if (!isOn)
         {
-            CheatManager.Instance.flyModeEnabled = false;
+            CheatManager.Instance.godModeEnabled = false;
             CheatManager.Instance.ApplyCheatsToPlayer();
         }
         else
@@ -225,12 +224,12 @@ public class buttonFunctions : MonoBehaviour
         invulnerabilityToggle.onValueChanged.RemoveAllListeners();
 
         //Sync Toggles
-        godModeToggle.isOn = CheatManager.Instance.flyModeEnabled;
+        godModeToggle.isOn = CheatManager.Instance.godModeEnabled;
         speedBoostToggle.isOn = CheatManager.Instance.speedBoostEnabled;
         invulnerabilityToggle.isOn = CheatManager.Instance.invulnerabilityEnabled;
 
         //Toggles Clicked OFF
-        godModeToggle.interactable = CheatManager.Instance. flyModeEnabled;
+        godModeToggle.interactable = CheatManager.Instance.godModeEnabled;
         speedBoostToggle.interactable = CheatManager.Instance.speedBoostEnabled;
         invulnerabilityToggle.interactable = CheatManager.Instance.invulnerabilityEnabled;
 

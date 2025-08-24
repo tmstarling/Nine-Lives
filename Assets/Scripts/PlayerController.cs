@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
-public class PlayerController : MonoBehaviour ,IDamage, IPickup
+public class PlayerController : MonoBehaviour ,IDamage,IPickup
 {
     public static PlayerController Instance;
 
@@ -11,7 +12,6 @@ public class PlayerController : MonoBehaviour ,IDamage, IPickup
     [SerializeField] int HP;
 
     [Header("Movement Settings")]
-    [SerializeField] public int speed;
     [SerializeField] int sprintMod;
     [SerializeField] int jumpVel;
     [SerializeField] int jumpMax;
@@ -25,9 +25,6 @@ public class PlayerController : MonoBehaviour ,IDamage, IPickup
     [SerializeField] GameObject Furball;
     [SerializeField] GameObject Yarnball;
     [SerializeField] Transform shootPos;
-    [SerializeField] DirectionalDamage myDirectionalIndicator;
-
-    [SerializeField] Transform canvasTransform;
 
     [Header("References")]
     Vector3 moveDir;
@@ -40,21 +37,20 @@ public class PlayerController : MonoBehaviour ,IDamage, IPickup
     float shootTimer;
 
     [Header("Cheats")]
-    public bool flyMode;
-    public bool speedBoost;
+    public bool godMode;
     public bool invulnerability;
     //public bool wallHack;
 
     [Header("Speed")]
-    public int speedOrig;
     public int boostedSpeed;
-
-
+    [SerializeField] public int originalSpeed;
+    public int speed;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
+        speed = originalSpeed;
         HPOrig = HP;
-        speedOrig = speed;
         UpdateHealthBarFill();
     }
 
@@ -77,28 +73,6 @@ public class PlayerController : MonoBehaviour ,IDamage, IPickup
         //Debug.Log(controller.gameObject.activeInHierarchy);
         //Debug.Log("Player starting position: " + transform.position);
 
-        
-
-        if (flyMode)
-        {
-            //Fly Direction
-            Transform cam = Camera.main.transform;
-            Vector3 inputDir = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-            Vector3 moveDir = cam.TransformDirection(inputDir).normalized;
-
-            float verticalInput = 0f;
-            if (Input.GetKey(KeyCode.Space)) verticalInput += 1f;
-            if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.C)) verticalInput -= 1f;
-
-            moveDir += cam.up * verticalInput;
-
-            controller.Move(moveDir * speed * Time.deltaTime);
-
-            playerVel = Vector3.zero;
-            jumpCount = 0;
-            return;
-        }
-
         //Player Grounded
         if (controller.isGrounded)
         {
@@ -108,7 +82,7 @@ public class PlayerController : MonoBehaviour ,IDamage, IPickup
 
         moveDir = (Input.GetAxis("Horizontal") * transform.right) + (Input.GetAxis("Vertical") * transform.forward);
         controller.Move(moveDir * speed * Time.deltaTime);
-
+      
         jump();
 
         //Gravity
@@ -167,23 +141,12 @@ public class PlayerController : MonoBehaviour ,IDamage, IPickup
         Vector3 offset = Camera.main.transform.forward * 0.3f;
         Instantiate(Furball, shootPos.position + offset, Camera.main.transform.rotation);
     }
-
+    public Action takeDamage;
     public void TakeDamage(int amount)
     {
-        TakeDamage(amount, transform.position);
-    }
-
-    public void TakeDamage(int amount, Vector3 damageSourcePosition)
-    {
+        takeDamage?.Invoke();
         HP -= amount;
         UpdateHealthBarFill();
-
-        GameObject go = Instantiate(myDirectionalIndicator.gameObject, canvasTransform);
-
-        DirectionalDamage dd = go.GetComponent<DirectionalDamage>();
-        dd.playerTransform = transform;
-        dd.damageWorldPosition = damageSourcePosition;
-        go.SetActive(true);
         StartCoroutine(damageFlashScreen());
 
         if (HP <= 0) 
@@ -191,14 +154,18 @@ public class PlayerController : MonoBehaviour ,IDamage, IPickup
             gamemanager.instance.youLose();
         }
 
-        if (invulnerability)
+        if (invulnerability == true)
         {
-            return; 
+            HP += amount; 
         }
     }
 
     public void UpdateHealthBarFill()
     {
+        if (gamemanager.instance == null)
+            return;
+        if (gamemanager.instance.playeHPBar == null)
+            return;
         gamemanager.instance.playeHPBar.fillAmount = (float)HP / HPOrig;
     }
 
@@ -223,4 +190,7 @@ public class PlayerController : MonoBehaviour ,IDamage, IPickup
     {
         return pickUpsCount < 3;
     }
+
+    //===CHEAT MODE===//
+    
 }
