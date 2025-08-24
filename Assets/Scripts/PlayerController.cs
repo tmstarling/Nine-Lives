@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour ,IDamage, IPickup
     [SerializeField] GameObject Furball;
     [SerializeField] GameObject Yarnball;
     [SerializeField] Transform shootPos;
+    [SerializeField] DirectionalDamage myDirectionalIndicator;
+
+    [SerializeField] Transform canvasTransform;
 
     [Header("References")]
     Vector3 moveDir;
@@ -172,6 +175,7 @@ public class PlayerController : MonoBehaviour ,IDamage, IPickup
         takeDamage?.Invoke();
         HP -= amount;
         UpdateHealthBarFill();
+
         StartCoroutine(damageFlashScreen());
 
         if (HP <= 0) 
@@ -215,7 +219,4 @@ public class PlayerController : MonoBehaviour ,IDamage, IPickup
     {
         return pickUpsCount < 3;
     }
-
-    //===CHEAT MODE===//
-    
 }
