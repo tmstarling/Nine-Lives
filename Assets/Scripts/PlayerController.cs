@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour ,IDamage, IPickup
     float shootTimer;
 
     [Header("Cheats")]
-    public bool godMode;
+    public bool flyMode;
     public bool speedBoost;
     public bool invulnerability;
     //public bool wallHack;
@@ -77,6 +77,28 @@ public class PlayerController : MonoBehaviour ,IDamage, IPickup
         //Debug.Log(controller.gameObject.activeInHierarchy);
         //Debug.Log("Player starting position: " + transform.position);
 
+        
+
+        if (flyMode)
+        {
+            //Fly Direction
+            Transform cam = Camera.main.transform;
+            Vector3 inputDir = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+            Vector3 moveDir = cam.TransformDirection(inputDir).normalized;
+
+            float verticalInput = 0f;
+            if (Input.GetKey(KeyCode.Space)) verticalInput += 1f;
+            if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.C)) verticalInput -= 1f;
+
+            moveDir += cam.up * verticalInput;
+
+            controller.Move(moveDir * speed * Time.deltaTime);
+
+            playerVel = Vector3.zero;
+            jumpCount = 0;
+            return;
+        }
+
         //Player Grounded
         if (controller.isGrounded)
         {
@@ -86,7 +108,7 @@ public class PlayerController : MonoBehaviour ,IDamage, IPickup
 
         moveDir = (Input.GetAxis("Horizontal") * transform.right) + (Input.GetAxis("Vertical") * transform.forward);
         controller.Move(moveDir * speed * Time.deltaTime);
-      
+
         jump();
 
         //Gravity
@@ -169,7 +191,7 @@ public class PlayerController : MonoBehaviour ,IDamage, IPickup
             gamemanager.instance.youLose();
         }
 
-        if (invulnerability || godMode)
+        if (invulnerability)
         {
             return; 
         }
