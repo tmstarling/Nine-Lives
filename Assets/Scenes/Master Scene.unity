@@ -5188,6 +5188,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: New UI
       objectReference: {fileID: 0}
+    - target: {fileID: 3099712302151180331, guid: 75b1b52bdc8967a45a2d3917a23dee23, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6329823316370216245, guid: 75b1b52bdc8967a45a2d3917a23dee23, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -5884,7 +5888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f9eb0df61241684e85131515fc7bb8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  godModeEnabled: 0
+  flyModeEnabled: 0
   speedBoostEnabled: 0
   invulnerabilityEnabled: 0
 --- !u!1001 &977566477

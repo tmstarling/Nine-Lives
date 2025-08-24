@@ -11,7 +11,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] public GameObject menuActive;
     [SerializeField] GameObject menuPaused;
     [SerializeField] GameObject menuCheat;
-    [SerializeField] GameObject menuAudio;
+    [SerializeField] public GameObject menuAudio;
     [SerializeField] GameObject menuCredits;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
