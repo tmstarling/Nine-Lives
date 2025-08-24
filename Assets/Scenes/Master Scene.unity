@@ -7652,7 +7652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5295248763687201902, guid: f767539bf305f1148b79426923ad5898, type: 3}
       propertyPath: m_Size.y
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5295248763687201902, guid: f767539bf305f1148b79426923ad5898, type: 3}
       propertyPath: m_Size.z
@@ -7716,7 +7716,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8663804813277213640, guid: f767539bf305f1148b79426923ad5898, type: 3}
       propertyPath: nextSceneName
-      value: ObjectiveTesting
+      value: Jungle
       objectReference: {fileID: 0}
     - target: {fileID: 8663804813277213640, guid: f767539bf305f1148b79426923ad5898, type: 3}
       propertyPath: onPlayerTouch.m_PersistentCalls.m_Calls.Array.size
