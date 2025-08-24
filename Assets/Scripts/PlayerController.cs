@@ -185,7 +185,7 @@ public class PlayerController : MonoBehaviour ,IDamage, IPickup
 
         if (invulnerability == true)
         {
-            return; 
+            HPOrig += amount; 
         }
     }
 
