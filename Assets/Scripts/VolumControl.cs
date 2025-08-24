@@ -15,6 +15,10 @@ public class VolumControl : MonoBehaviour
 
     private void Awake()
     {
+        //Debug.Log("[VolumControl] Awake: Initializing volume system");
+        //Debug.Log($"[VolumControl] Slider defaulted to max: {_slider.value}");
+        //Debug.Log("[VolumControl] Mute toggle set to ON");
+
         _slider.value = _slider.maxValue;
         SetVolume(_slider.value);
         _muteToggle.isOn = true;
@@ -36,6 +40,20 @@ public class VolumControl : MonoBehaviour
             _slider.value = _slider.minValue;
         }
     }
+    public void ApplySavedVolume()
+    {
+        float savedVolume = PlayerPrefs.GetFloat(_volumeParameter, _slider.maxValue);
+        _slider.value = savedVolume;
+        ApplyVolume(savedVolume);
+    }
+
+    private void ApplyVolume(float value)
+    {
+        float safeValue = Mathf.Clamp(value, 0.0001f, 1f);
+        float dbValue = Mathf.Log10(safeValue) * _multiplier;
+        _mixer.SetFloat(_volumeParameter, dbValue);
+    }
+
     private void OnDisable()
     {
         PlayerPrefs.SetFloat(_volumeParameter, _slider.value);
@@ -52,7 +70,10 @@ public class VolumControl : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _slider.value = PlayerPrefs.GetFloat(_volumeParameter, _slider.value);
+        float savedVolume = PlayerPrefs.GetFloat(_volumeParameter, _slider.maxValue);
+
+        _slider.value = savedVolume;
+        SetVolume(savedVolume);
     }
 
     // Update is called once per frame

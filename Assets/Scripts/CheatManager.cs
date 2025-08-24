@@ -6,7 +6,7 @@ public class CheatManager : MonoBehaviour
     public static CheatManager Instance;
 
     [Header("Cheat flags")]
-    public bool godModeEnabled;
+    public bool flyModeEnabled;
     public bool speedBoostEnabled;
     public bool invulnerabilityEnabled;
 
@@ -25,15 +25,13 @@ public class CheatManager : MonoBehaviour
 
     public void ApplyCheatsToPlayer()
     {
-        if (godModeEnabled)
+        if (flyModeEnabled)
         {
-            gamemanager.instance.playerScript.godMode = true;
-            EnableSpeedBoost();
-            EnableInvulnerability();
+            gamemanager.instance.playerScript.flyMode = true;
         }
         else
         {
-            gamemanager.instance.playerScript.godMode = false;
+            gamemanager.instance.playerScript.flyMode = false;
             DisableSpeedBoost();
             DisableInvulnerability();
         }
@@ -63,12 +61,10 @@ public class CheatManager : MonoBehaviour
 
         switch (cheatCode.ToLower().Trim())
         {
-            case "godmode":
-                if (godModeEnabled) return;
+            case "flymode":
+                if (flyModeEnabled) return;
 
-                godModeEnabled = true;
-                speedBoostEnabled = true;
-                invulnerabilityEnabled = true;
+                flyModeEnabled = true;
                 ApplyCheatsToPlayer();
                 break;
 
@@ -94,21 +90,21 @@ public class CheatManager : MonoBehaviour
 
     public void ClearCheats()
     {
-        godModeEnabled = false;
+        flyModeEnabled = false;
         speedBoostEnabled = false;
         invulnerabilityEnabled = false;
 
         ApplyCheatsToPlayer();
     }
 
-    public void EnableGodMode()
+    public void EnableFlyMode()
     {
-        gamemanager.instance.playerScript.godMode = true;
+        gamemanager.instance.playerScript.flyMode = true;
     }
 
     public void DisableGodMode()
     {
-        gamemanager.instance.playerScript.godMode = false;
+        gamemanager.instance.playerScript.flyMode = false;
     }
 
     public void EnableSpeedBoost()

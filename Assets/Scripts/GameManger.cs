@@ -11,7 +11,8 @@ public class gamemanager : MonoBehaviour
     [SerializeField] public GameObject menuActive;
     [SerializeField] GameObject menuPaused;
     [SerializeField] GameObject menuCheat;
-    [SerializeField] GameObject menuAudio;
+    [SerializeField] public GameObject menuAudio;
+    [SerializeField] GameObject menuCredits;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     public TextMeshProUGUI gameObjectiveText;
@@ -101,8 +102,6 @@ public class gamemanager : MonoBehaviour
         {
             menuActive.SetActive(false);
         }
-
-        statePaused();
         menuActive = menuCheat;
         menuActive.SetActive(true);
     }
@@ -115,6 +114,16 @@ public class gamemanager : MonoBehaviour
         }
 
         menuActive = menuAudio;
+        menuActive.SetActive(true);
+    }
+
+    public void credits()
+    {
+        if (menuActive != null)
+        {
+            menuActive.SetActive(false);
+        }
+        menuActive = menuCredits;
         menuActive.SetActive(true);
     }
 

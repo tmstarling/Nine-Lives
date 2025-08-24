@@ -100,6 +100,11 @@ public class buttonFunctions : MonoBehaviour
         gamemanager.instance.audioMixer();
     }
 
+    public void credits()
+    {
+        gamemanager.instance.credits();
+    }
+
     public void respawn()
     {
         LoadingManager.instance.StartSceneLoad(() =>
@@ -169,7 +174,7 @@ public class buttonFunctions : MonoBehaviour
     {
         if (!isOn)
         {
-            CheatManager.Instance.godModeEnabled = false;
+            CheatManager.Instance.flyModeEnabled = false;
             CheatManager.Instance.ApplyCheatsToPlayer();
         }
         else
@@ -224,12 +229,12 @@ public class buttonFunctions : MonoBehaviour
         invulnerabilityToggle.onValueChanged.RemoveAllListeners();
 
         //Sync Toggles
-        godModeToggle.isOn = CheatManager.Instance.godModeEnabled;
+        godModeToggle.isOn = CheatManager.Instance.flyModeEnabled;
         speedBoostToggle.isOn = CheatManager.Instance.speedBoostEnabled;
         invulnerabilityToggle.isOn = CheatManager.Instance.invulnerabilityEnabled;
 
         //Toggles Clicked OFF
-        godModeToggle.interactable = CheatManager.Instance.godModeEnabled;
+        godModeToggle.interactable = CheatManager.Instance. flyModeEnabled;
         speedBoostToggle.interactable = CheatManager.Instance.speedBoostEnabled;
         invulnerabilityToggle.interactable = CheatManager.Instance.invulnerabilityEnabled;
 
