@@ -8079,7 +8079,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3629388182929278791, guid: 2e5e78d9abc6ae34fa72c2a6779d1905, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3684181386452131980, guid: 2e5e78d9abc6ae34fa72c2a6779d1905, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8123,7 +8123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4119021111118988496, guid: 2e5e78d9abc6ae34fa72c2a6779d1905, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4398316529347073984, guid: 2e5e78d9abc6ae34fa72c2a6779d1905, type: 3}
       propertyPath: m_Enabled
