@@ -1441,10 +1441,11 @@ MonoBehaviour:
   Furball: {fileID: 2466991997635656875, guid: fc2100fb8f48c4f4a9e625833052e08a, type: 3}
   Yarnball: {fileID: 0}
   shootPos: {fileID: 3873752468338650063}
-  godMode: 0
-  invulnerability: 0
+  myDirectionalIndicator: {fileID: 0}
+  canvasTransform: {fileID: 0}
+  flyMode: 0
   speedBoost: 0
-  wallHack: 0
+  invulnerability: 0
   speedOrig: 0
   boostedSpeed: 0
 --- !u!95 &1527591669686737709
@@ -1487,13 +1488,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 0.14
-  m_Radius: 0.4
+  m_Height: 0.25
+  m_Radius: 0.25
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.36, z: -0.05}
+  m_Center: {x: 0, y: 0.25, z: 0}
 --- !u!136 &4398316529347073984
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1514,9 +1515,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.25
-  m_Height: 0.5
+  m_Height: 0.25
   m_Direction: 1
-  m_Center: {x: 0, y: 0.15, z: 0}
+  m_Center: {x: 0, y: 0.25, z: 0}
 --- !u!1 &5901741243466088468
 GameObject:
   m_ObjectHideFlags: 0
