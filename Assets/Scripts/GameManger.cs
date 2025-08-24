@@ -12,13 +12,10 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuPaused;
     [SerializeField] GameObject menuCheat;
     [SerializeField] GameObject menuAudio;
-    [SerializeField] GameObject menuCredits;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
-
-    [Header("Objective Text")]
     public TextMeshProUGUI gameObjectiveText;
-
+    public TextMeshProUGUI gameScoreText;
     [Header("UI Elements")]
     public Image playeHPBar;
     public GameObject playerDamagePanel;
@@ -29,7 +26,6 @@ public class gamemanager : MonoBehaviour
     public GameObject cheatPopup;
 
     [Header("Game Settings")]
-    float timescaleOrig;
     int pickUpsCount = 0;
     public static int amount;
 
@@ -37,7 +33,6 @@ public class gamemanager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        timescaleOrig = Time.timeScale;
 
         if (IsGameplayScene())
         {
@@ -92,10 +87,11 @@ public class gamemanager : MonoBehaviour
     public void stateUnpaused()
     {
         isPaused = false;
-        Time.timeScale = timescaleOrig;
+        Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        menuActive.SetActive(false);
+        if (menuActive != null)
+            menuActive.SetActive(false);
         menuActive = null;
     }
 
@@ -105,6 +101,8 @@ public class gamemanager : MonoBehaviour
         {
             menuActive.SetActive(false);
         }
+
+        statePaused();
         menuActive = menuCheat;
         menuActive.SetActive(true);
     }
@@ -117,16 +115,6 @@ public class gamemanager : MonoBehaviour
         }
 
         menuActive = menuAudio;
-        menuActive.SetActive(true);
-    }
-
-    public void credits()
-    {
-        if (menuActive != null)
-        {
-            menuActive.SetActive(false);
-        }
-        menuActive = menuCredits;
         menuActive.SetActive(true);
     }
 

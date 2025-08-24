@@ -20,6 +20,7 @@ public class SoundManager : MonoBehaviour
     // boom
     private void Awake()
     {
+        transform.parent = null;
 		// there can only be one
         if (instance != null && instance != this)
         {
