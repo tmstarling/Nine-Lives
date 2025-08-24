@@ -24,4 +24,9 @@ public class NewDoor : MonoBehaviour
     {
         _animator.SetTrigger("Close");
     }
+
+    public void Open()
+    {
+        _animator.SetTrigger("Open");
+    }
 }
