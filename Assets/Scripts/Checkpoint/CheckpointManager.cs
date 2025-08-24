@@ -75,7 +75,8 @@ public class CheckpointManager : MonoBehaviour
     public void ResetToLastCheckpoint()
     {
         GameObject.FindWithTag("Player").transform.position = playerSpawnPoint;
-        ObjectiveManager.instance.SkipTo(checkpointID);
+        if (ObjectiveManager.instance != null)
+            ObjectiveManager.instance.SkipTo(checkpointID);
         score = lastScore;
     }
 }
