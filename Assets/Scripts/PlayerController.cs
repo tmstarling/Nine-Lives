@@ -162,6 +162,8 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
 
     public void UpdateHealthBarFill()
     {
+        if (gamemanager.instance == null)
+            return;
         if (gamemanager.instance.playeHPBar == null)
             return;
         gamemanager.instance.playeHPBar.fillAmount = (float)HP / HPOrig;
