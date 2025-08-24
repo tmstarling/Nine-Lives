@@ -98,6 +98,11 @@ public class buttonFunctions : MonoBehaviour
         gamemanager.instance.audioMixer();
     }
 
+    public void credits()
+    {
+        gamemanager.instance.credits();
+    }
+
     public void respawn()
     {
         if (CheckpointManager.instance == null) 
