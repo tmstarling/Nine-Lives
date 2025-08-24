@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour ,IDamage,IPickup
+public class PlayerController : MonoBehaviour ,IDamage, IPickup
 {
     public static PlayerController Instance;
 
@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     [SerializeField] GameObject Furball;
     [SerializeField] GameObject Yarnball;
     [SerializeField] Transform shootPos;
+    [SerializeField] DirectionalDamage myDirectionalIndicator;
+
+    [SerializeField] Transform canvasTransform;
 
     [Header("References")]
     Vector3 moveDir;
@@ -145,8 +148,20 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
 
     public void TakeDamage(int amount)
     {
+        TakeDamage(amount, transform.position);
+    }
+
+    public void TakeDamage(int amount, Vector3 damageSourcePosition)
+    {
         HP -= amount;
         UpdateHealthBarFill();
+
+        GameObject go = Instantiate(myDirectionalIndicator.gameObject, canvasTransform);
+
+        DirectionalDamage dd = go.GetComponent<DirectionalDamage>();
+        dd.playerTransform = transform;
+        dd.damageWorldPosition = damageSourcePosition;
+        go.SetActive(true);
         StartCoroutine(damageFlashScreen());
 
         if (HP <= 0) 
@@ -154,9 +169,9 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
             gamemanager.instance.youLose();
         }
 
-        if (invulnerability == true)
+        if (invulnerability || godMode)
         {
-            HP += amount; 
+            return; 
         }
     }
 
@@ -186,7 +201,4 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     {
         return pickUpsCount < 3;
     }
-
-    //===CHEAT MODE===//
-    
 }
