@@ -61,7 +61,12 @@ public class gamemanager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel"))
+#if !UNITY_WEBGL
+        bool keycodedown = Input.GetKeyDown(KeyCode.Escape);
+#else
+        bool keycodedown = Input.GetKeyDown(KeyCode.P);
+#endif
+        if (keycodedown)
         {
            if(menuActive == null)
             {
