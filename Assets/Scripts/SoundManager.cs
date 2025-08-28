@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+using System.Collections;
 
 [DefaultExecutionOrder(-100)]
 public class SoundManager : MonoBehaviour
@@ -36,6 +37,7 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         PlayMenuMusic();
+        StartCoroutine(InitializeVolume());
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -94,4 +96,23 @@ public class SoundManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    IEnumerator InitializeVolume()
+    {
+        GameObject audioMenu = gamemanager.instance.menuAudio;
+
+        VolumControl volumeControl = audioMenu.GetComponentInChildren<VolumControl>(true);
+        if (volumeControl == null)
+        {
+            yield break;
+        }
+
+        bool wasActive = audioMenu.activeSelf;
+
+        audioMenu.SetActive(true);
+        yield return null;
+
+        volumeControl.ApplySavedVolume();
+
+        audioMenu.SetActive(wasActive);
+    }
 }

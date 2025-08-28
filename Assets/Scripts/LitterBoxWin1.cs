@@ -13,6 +13,9 @@ public class LitterBoxWin1 : MonoBehaviour
             onPlayerTouch?.Invoke();
     }
 
-    public void LoadScene() => LoadingManager.instance.StartSceneLoad(() => { }, nextSceneName);
+    public void LoadScene()
+    {
+        LoadingManager.instance.StartSceneLoad(() => { }, nextSceneName);
+    }
     public void YouWin() => gamemanager.instance.youWin();
 }

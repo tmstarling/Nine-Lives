@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System;
 
-public class PlayerController : MonoBehaviour ,IDamage,IPickup
+public class PlayerController : MonoBehaviour ,IDamage, IPickup
 {
     public static PlayerController Instance;
 
@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     [SerializeField] GameObject Furball;
     [SerializeField] GameObject Yarnball;
     [SerializeField] Transform shootPos;
+    [SerializeField] DirectionalDamage myDirectionalIndicator;
+
+    [SerializeField] Transform canvasTransform;
 
     [Header("References")]
     Vector3 moveDir;
@@ -37,7 +40,7 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     float shootTimer;
 
     [Header("Cheats")]
-    public bool godMode;
+    public bool flyMode;
     public bool invulnerability;
     //public bool wallHack;
 
@@ -72,6 +75,26 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
         //Debug.Log(moveDir);
         //Debug.Log(controller.gameObject.activeInHierarchy);
         //Debug.Log("Player starting position: " + transform.position);
+
+        if (flyMode)
+        {
+            //Fly Direction
+            Transform cam = Camera.main.transform;
+            Vector3 inputDir = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+            Vector3 moveDir = cam.TransformDirection(inputDir).normalized;
+
+            float verticalInput = 0f;
+            if (Input.GetKey(KeyCode.Space)) verticalInput += 1f;
+            if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.C)) verticalInput -= 1f;
+
+            moveDir += cam.up * verticalInput;
+
+            controller.Move(moveDir * speed * Time.deltaTime);
+
+            playerVel = Vector3.zero;
+            jumpCount = 0;
+            return;
+        }
 
         //Player Grounded
         if (controller.isGrounded)
@@ -144,9 +167,15 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     public Action takeDamage;
     public void TakeDamage(int amount)
     {
+        TakeDamage(amount, transform.position);
+    }
+
+    public void TakeDamage(int amount, Vector3 damageSourcePosition)
+    {
         takeDamage?.Invoke();
         HP -= amount;
         UpdateHealthBarFill();
+
         StartCoroutine(damageFlashScreen());
 
         if (HP <= 0) 
@@ -190,7 +219,4 @@ public class PlayerController : MonoBehaviour ,IDamage,IPickup
     {
         return pickUpsCount < 3;
     }
-
-    //===CHEAT MODE===//
-    
 }

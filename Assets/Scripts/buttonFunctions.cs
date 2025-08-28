@@ -77,7 +77,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void start()
     {
-        SceneManager.LoadScene("Master Scene");
+        LoadingManager.instance.StartSceneLoad(() => { }, "Tutorial");
     }
 
     public void restart()
@@ -98,6 +98,11 @@ public class buttonFunctions : MonoBehaviour
     public void audioMix()
     {
         gamemanager.instance.audioMixer();
+    }
+
+    public void credits()
+    {
+        gamemanager.instance.credits();
     }
 
     public void respawn()
