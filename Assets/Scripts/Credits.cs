@@ -5,27 +5,75 @@ using TMPro;
 public class Credits : MonoBehaviour
 {
     [SerializeField] float scrollSpeed = 20f;
+    [SerializeField] float fastScrollMultiplier = 3f;
+    [SerializeField] float endYThreshold = 2000f;
 
     private RectTransform rectTransform;
+    private Vector2 startPosition = new Vector2(0, -450f);
+    private float endPosition = 2110f;
+    private bool isPaused;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        rectTransform.anchoredPosition += new Vector2(0, scrollSpeed * Time.deltaTime);
+        Scoll();
+        Skip();
+    }
 
-        if (Input.anyKeyDown || Input.GetMouseButtonDown(0) || Input.touchCount > 0)
+    void Scoll()
+    {
+        if (isPaused)
         {
-            if (gamemanager.instance.menuActive != null)
-            {
-                gamemanager.instance.menuActive.SetActive(false);
-                gamemanager.instance.menuActive = null;
-            }
+            return;
         }
+
+        float currentSpeed = scrollSpeed;
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            currentSpeed *= fastScrollMultiplier;
+        }
+
+        rectTransform.anchoredPosition += new Vector2(0, currentSpeed * Time.deltaTime);
+
+        if (rectTransform.anchoredPosition.y >= endPosition)
+        {
+            isPaused = true;
+        }
+    }
+
+    void Skip()
+    { 
+        if (Input.GetMouseButtonDown(0))
+        {
+            ReturnToMainMenu();
+        }
+    }
+
+    void OnEnable()
+    {
+        if (rectTransform == null)
+        {
+            rectTransform = GetComponent<RectTransform>();
+        }
+
+        rectTransform.anchoredPosition = startPosition;
+        isPaused = false;
+    }
+
+    void ReturnToMainMenu()
+    {
+        if (gamemanager.instance.menuActive != null)
+        {
+            gamemanager.instance.menuActive.SetActive(false);
+            gamemanager.instance.menuActive = null;
+        }
+
+        gamemanager.instance.menuMain.SetActive(true);
+        gamemanager.instance.menuActive = gamemanager.instance.menuMain;
     }
 }
