@@ -84,7 +84,6 @@ public class buttonFunctions : MonoBehaviour
     {
         LoadingManager.instance.StartSceneLoad(() => { 
             gamemanager.instance.stateUnpaused(); 
-            CheatManager.Instance.ReapplyCheatsAfterRespawn(); 
             CheckpointManager.instance.SetScore(0); 
         }, SceneManager.GetActiveScene().name);
         
@@ -113,6 +112,11 @@ public class buttonFunctions : MonoBehaviour
             gamemanager.instance.stateUnpaused();
             CheatManager.Instance.ReapplyCheatsAfterRespawn();
         }, SceneManager.GetActiveScene().name);
+    }
+
+    public void mainMenu()
+    {
+        LoadingManager.instance.StartSceneLoad(() => { }, "Main Menu");
     }
 
     public void quit()

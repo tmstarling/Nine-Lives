@@ -185,16 +185,23 @@ public class PlayerController : MonoBehaviour ,IDamage, IPickup
 
         if (invulnerability == true)
         {
-            HP += amount; 
+            HP += amount;
+            UpdateHealthBarFill();
         }
     }
 
     public void UpdateHealthBarFill()
     {
-        if (gamemanager.instance == null)
+        if (gamemanager.instance == null || gamemanager.instance.playeHPBar == null)
+        {
             return;
-        if (gamemanager.instance.playeHPBar == null)
-            return;
+        }
+
+        if (HP > HPOrig)
+        {
+            HPOrig = HP;
+        }
+
         gamemanager.instance.playeHPBar.fillAmount = (float)HP / HPOrig;
     }
 
@@ -213,6 +220,8 @@ public class PlayerController : MonoBehaviour ,IDamage, IPickup
         pickUpsCount++;
 
         stats.pickUpsCount++;
+
+        UpdateHealthBarFill();
     }
 
     public bool CanBePickedUp(GameObject player)

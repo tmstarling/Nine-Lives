@@ -15,8 +15,14 @@ public class CheckpointManager : MonoBehaviour
     }
     int lastScore;
 
-    void SetScoreText() => gamemanager.instance.gameScoreText.text = string.Format("Score: {0}", score.ToString());
-    
+    void SetScoreText()
+    {
+        if (gamemanager.instance == null || gamemanager.instance.gameScoreText == null)
+            return;
+
+        gamemanager.instance.gameScoreText.text = $"Score: {score}";
+    }
+
     public void AddScore(int score)
     {
         this.score += score;

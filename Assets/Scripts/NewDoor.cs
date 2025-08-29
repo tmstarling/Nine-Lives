@@ -20,6 +20,15 @@ public class NewDoor : MonoBehaviour
         }
     }
 
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            _animator.Play("Open", 0, 1f);
+            _animator.speed = -1f;
+        }
+    }
+
     public void Close()
     {
         _animator.SetTrigger("Close");
