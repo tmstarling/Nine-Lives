@@ -147,8 +147,8 @@ public class buttonFunctions : MonoBehaviour
 
         switch (cheatCode)
         {
-            case "godmode":
-                cheatFeedbackText.text = "God mode activated";
+            case "flymode":
+                cheatFeedbackText.text = "Fly mode activated";
                 break;
             case "speedboost":
                 cheatFeedbackText.text = "Speed boost activated";

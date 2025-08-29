@@ -47,7 +47,7 @@ public class Credits : MonoBehaviour
     }
 
     void Skip()
-    { 
+    {
         if (Input.GetMouseButtonDown(0))
         {
             ReturnToMainMenu();
@@ -67,13 +67,11 @@ public class Credits : MonoBehaviour
 
     void ReturnToMainMenu()
     {
-        if (gamemanager.instance.menuActive != null)
+        gamemanager.instance.menuActive.SetActive(false);
+
+        if (gamemanager.instance.menuActive == gameObject)
         {
-            gamemanager.instance.menuActive.SetActive(false);
             gamemanager.instance.menuActive = null;
         }
-
-        gamemanager.instance.menuMain.SetActive(true);
-        gamemanager.instance.menuActive = gamemanager.instance.menuMain;
     }
 }
