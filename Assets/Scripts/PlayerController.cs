@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour ,IDamage, IPickup
 
     [Header("Cheats")]
     public bool flyMode;
+    public bool speedboost;
     public bool invulnerability;
     //public bool wallHack;
 
@@ -67,6 +68,8 @@ public class PlayerController : MonoBehaviour ,IDamage, IPickup
             Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
             movement();
             sprint();
+
+            UpdateHealthBarFill();
         }
     }
 

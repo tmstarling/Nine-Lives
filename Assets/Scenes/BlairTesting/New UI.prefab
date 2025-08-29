@@ -4995,7 +4995,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cheatInputField: {fileID: 8905018150713845020}
   cheatFeedbackText: {fileID: 3155043519480343178}
-  godModeToggle: {fileID: 3887879220596160033}
+  flyModeToggle: {fileID: 3887879220596160033}
   speedBoostToggle: {fileID: 2128912121988529077}
   invulnerabilityToggle: {fileID: 4967174880352017410}
 --- !u!1 &4812133424083611217
@@ -5076,7 +5076,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: God Mode
+  m_Text: Fly Mode
 --- !u!1 &5201185160220295300
 GameObject:
   m_ObjectHideFlags: 0
@@ -9427,7 +9427,7 @@ GameObject:
   - component: {fileID: 7068996913508639739}
   - component: {fileID: 3887879220596160033}
   m_Layer: 5
-  m_Name: God Mode
+  m_Name: Fly Mode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

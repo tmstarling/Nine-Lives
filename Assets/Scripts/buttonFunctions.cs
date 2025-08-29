@@ -27,7 +27,7 @@ public class buttonFunctions : MonoBehaviour
     [SerializeField] TMP_Text cheatFeedbackText;
 
     [Header("Cheat Toggles")]
-    [SerializeField] Toggle godModeToggle;
+    [SerializeField] Toggle flyModeToggle;
     [SerializeField] Toggle speedBoostToggle;
     [SerializeField] Toggle invulnerabilityToggle;
 
@@ -46,7 +46,7 @@ public class buttonFunctions : MonoBehaviour
     {
         clickSFX = SoundManager.instance.click;
         hoverSFX = SoundManager.instance.hover;
-        godModeToggle.onValueChanged.AddListener(OnGodModeToggle);
+        flyModeToggle.onValueChanged.AddListener(OnFlyModeToggle);
         speedBoostToggle.onValueChanged.AddListener(OnSpeedBoostToggle);
         invulnerabilityToggle.onValueChanged.AddListener(OnInvulnerabilityToggle);
 
@@ -174,7 +174,7 @@ public class buttonFunctions : MonoBehaviour
         gamemanager.instance.cheatPopup.SetActive(false);
     }
 
-    void OnGodModeToggle(bool isOn)
+    void OnFlyModeToggle(bool isOn)
     {
         if (!isOn)
         {
@@ -183,7 +183,7 @@ public class buttonFunctions : MonoBehaviour
         }
         else
         {
-            godModeToggle.isOn = false;
+            flyModeToggle.isOn = false;
         }
     }
 
@@ -213,9 +213,14 @@ public class buttonFunctions : MonoBehaviour
         }
     }
 
+    void OnEnable()
+    {
+        SyncCheatToggles();
+    }
+
     public void SyncCheatToggles()
     {
-        if (godModeToggle == null || speedBoostToggle == null || invulnerabilityToggle == null)
+        if (flyModeToggle == null || speedBoostToggle == null || invulnerabilityToggle == null)
         {
             //Debug.LogWarning("One or more cheat toggles are not assigned.");
             return;
@@ -228,22 +233,22 @@ public class buttonFunctions : MonoBehaviour
         }
 
         //Temp Remove Listeners
-        godModeToggle.onValueChanged.RemoveAllListeners();
+        flyModeToggle.onValueChanged.RemoveAllListeners();
         speedBoostToggle.onValueChanged.RemoveAllListeners();
         invulnerabilityToggle.onValueChanged.RemoveAllListeners();
 
         //Sync Toggles
-        godModeToggle.isOn = CheatManager.Instance.flyModeEnabled;
+        flyModeToggle.isOn = CheatManager.Instance.flyModeEnabled;
         speedBoostToggle.isOn = CheatManager.Instance.speedBoostEnabled;
         invulnerabilityToggle.isOn = CheatManager.Instance.invulnerabilityEnabled;
 
         //Toggles Clicked OFF
-        godModeToggle.interactable = CheatManager.Instance. flyModeEnabled;
+        flyModeToggle.interactable = CheatManager.Instance. flyModeEnabled;
         speedBoostToggle.interactable = CheatManager.Instance.speedBoostEnabled;
         invulnerabilityToggle.interactable = CheatManager.Instance.invulnerabilityEnabled;
 
         //Reattach Listeners
-        godModeToggle.onValueChanged.AddListener(OnGodModeToggle);
+        flyModeToggle.onValueChanged.AddListener(OnFlyModeToggle);
         speedBoostToggle.onValueChanged.AddListener(OnSpeedBoostToggle);
         invulnerabilityToggle.onValueChanged.AddListener(OnInvulnerabilityToggle);
     }

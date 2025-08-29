@@ -110,10 +110,12 @@ public class CheatManager : MonoBehaviour
     public void EnableSpeedBoost()
     {
         gamemanager.instance.playerScript.speed = gamemanager.instance.playerScript.boostedSpeed;
+        gamemanager.instance.playerScript.speedboost = true;
     }
     public void DisableSpeedBoost()
     {
         gamemanager.instance.playerScript.speed = gamemanager.instance.playerScript.originalSpeed;
+        gamemanager.instance.playerScript.speedboost = false;
     }
 
     public void EnableInvulnerability()
