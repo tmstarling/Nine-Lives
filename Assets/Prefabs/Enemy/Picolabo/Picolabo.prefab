@@ -72,6 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5323792339744080458}
   - component: {fileID: 8454090329331119337}
+  - component: {fileID: -6749540270173939480}
   - component: {fileID: 2168973957509269961}
   - component: {fileID: 259363489039880936}
   - component: {fileID: 4923935679519718315}
@@ -127,6 +128,19 @@ MonoBehaviour:
   bullet2: {fileID: 2261200442920770066, guid: ee746fdd6c3702a49b66f35ca541d4b8, type: 3}
   shootRate: 3
   aimOffset: 0.5
+--- !u!114 &-6749540270173939480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8427293701922803566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1040154650bf1344b81a868ea79ca88d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points: 20
 --- !u!65 &2168973957509269961
 BoxCollider:
   m_ObjectHideFlags: 0
