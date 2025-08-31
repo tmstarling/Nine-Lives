@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // this is to make sure game manager is initialized first, since we access its properties in awake.
 [DefaultExecutionOrder(1000000)]
@@ -66,6 +67,11 @@ public class CheckpointManager : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
+        if (SceneManager.GetActiveScene().name == "Main Menu")
+        { 
+            return;
+        }
+
         SetScoreText();
         var spawnPos = GameObject.FindGameObjectWithTag("StartPosition");
         if (spawnPos != null)
