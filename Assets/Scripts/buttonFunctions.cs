@@ -116,7 +116,15 @@ public class buttonFunctions : MonoBehaviour
 
     public void mainMenu()
     {
-        LoadingManager.instance.StartSceneLoad(() => { }, "Main Menu");
+        LoadingManager.instance.StartSceneLoad(() =>
+        {
+            gamemanager.instance.menuActive = gamemanager.instance.menuMain;
+
+            if (gamemanager.instance.menuActive != null)
+            {
+                gamemanager.instance.menuActive.SetActive(true);
+            }
+        }, "Main Menu");
     }
 
     public void quit()
