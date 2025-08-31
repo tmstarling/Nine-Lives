@@ -70,6 +70,10 @@ public class CheckpointManager : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
+        if (SceneManager.GetActiveScene().name == "Main Menu")
+        {
+            return;
+        }
 
         SetScoreText();
         if (lastSceneLoaded != level)
