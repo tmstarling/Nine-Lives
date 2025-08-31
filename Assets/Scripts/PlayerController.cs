@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour ,IDamage, IPickup
 
     [Header("Cheats")]
     public bool flyMode;
+    public bool speedboost;
     public bool invulnerability;
     //public bool wallHack;
 
@@ -67,6 +68,8 @@ public class PlayerController : MonoBehaviour ,IDamage, IPickup
             Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
             movement();
             sprint();
+
+            UpdateHealthBarFill();
         }
     }
 
@@ -185,16 +188,23 @@ public class PlayerController : MonoBehaviour ,IDamage, IPickup
 
         if (invulnerability == true)
         {
-            HP += amount; 
+            HP += amount;
+            UpdateHealthBarFill();
         }
     }
 
     public void UpdateHealthBarFill()
     {
-        if (gamemanager.instance == null)
+        if (gamemanager.instance == null || gamemanager.instance.playeHPBar == null)
+        {
             return;
-        if (gamemanager.instance.playeHPBar == null)
-            return;
+        }
+
+        if (HP > HPOrig)
+        {
+            HPOrig = HP;
+        }
+
         gamemanager.instance.playeHPBar.fillAmount = (float)HP / HPOrig;
     }
 
@@ -213,6 +223,8 @@ public class PlayerController : MonoBehaviour ,IDamage, IPickup
         pickUpsCount++;
 
         stats.pickUpsCount++;
+
+        UpdateHealthBarFill();
     }
 
     public bool CanBePickedUp(GameObject player)

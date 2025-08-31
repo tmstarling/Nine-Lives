@@ -28,4 +28,14 @@ public class OpenDoor : MonoBehaviour
             Debug.Log("Opening Door");
         }
     }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            anim.SetTrigger("Close");
+
+            Debug.Log("Closing Door");
+        }
+    }
 }

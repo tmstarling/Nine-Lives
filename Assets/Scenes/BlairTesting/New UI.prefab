@@ -391,7 +391,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Quit
+  m_text: 'Main Menu
 
 '
   m_isRightToLeft: 0
@@ -931,7 +931,7 @@ GameObject:
   - component: {fileID: 2633901601271186764}
   - component: {fileID: 92427905778645846}
   m_Layer: 5
-  m_Name: Quit
+  m_Name: Main Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1041,7 +1041,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1955598513556223802}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
-        m_MethodName: quit
+        m_MethodName: mainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4995,7 +4995,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cheatInputField: {fileID: 8905018150713845020}
   cheatFeedbackText: {fileID: 3155043519480343178}
-  godModeToggle: {fileID: 3887879220596160033}
+  flyModeToggle: {fileID: 3887879220596160033}
   speedBoostToggle: {fileID: 2128912121988529077}
   invulnerabilityToggle: {fileID: 4967174880352017410}
 --- !u!1 &4812133424083611217
@@ -5076,7 +5076,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: God Mode
+  m_Text: Fly Mode
 --- !u!1 &5201185160220295300
 GameObject:
   m_ObjectHideFlags: 0
@@ -5889,6 +5889,7 @@ MonoBehaviour:
   menuActive: {fileID: 0}
   menuPaused: {fileID: 4285673175151421000}
   menuCheat: {fileID: 5906618659703210779}
+  menuMain: {fileID: 0}
   menuAudio: {fileID: 862206667283970722}
   menuCredits: {fileID: 0}
   menuWin: {fileID: 3313237142301600952}
@@ -9426,7 +9427,7 @@ GameObject:
   - component: {fileID: 7068996913508639739}
   - component: {fileID: 3887879220596160033}
   m_Layer: 5
-  m_Name: God Mode
+  m_Name: Fly Mode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
