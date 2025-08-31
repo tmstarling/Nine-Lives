@@ -5307,10 +5307,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: New UI
       objectReference: {fileID: 0}
-    - target: {fileID: 5443025595820078153, guid: 75b1b52bdc8967a45a2d3917a23dee23, type: 3}
-      propertyPath: m_ScreenMatchMode
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 6329823316370216245, guid: 75b1b52bdc8967a45a2d3917a23dee23, type: 3}
       propertyPath: m_Pivot.x
       value: 0
