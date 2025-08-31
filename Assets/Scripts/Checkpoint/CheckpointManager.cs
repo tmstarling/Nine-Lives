@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // this is to make sure game manager is initialized first, since we access its properties in awake.
 [DefaultExecutionOrder(1000000)]
@@ -59,20 +60,28 @@ public class CheckpointManager : MonoBehaviour
         instance = this;
     }
 
+    int lastSceneLoaded;
+
     private void Start()
     {
+        lastSceneLoaded = SceneManager.GetActiveScene().buildIndex;
         DontDestroyOnLoad(gameObject);
     }
 
     private void OnLevelWasLoaded(int level)
     {
+
         SetScoreText();
-        var spawnPos = GameObject.FindGameObjectWithTag("StartPosition");
-        if (spawnPos != null)
-            playerSpawnPoint = spawnPos.transform.position;
-        else
-            playerSpawnPoint = gamemanager.instance.player.transform.position;
+        if (lastSceneLoaded != level)
+        {
+            var spawnPos = GameObject.FindGameObjectWithTag("StartPosition");
+            if (spawnPos != null)
+                playerSpawnPoint = spawnPos.transform.position;
+            else
+                playerSpawnPoint = gamemanager.instance.player.transform.position;
+        }
         MovePlayerToLastSpawn();
+        lastSceneLoaded = level;
     }
 
     void MovePlayerToLastSpawn()
