@@ -3040,6 +3040,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5443025595820078153, guid: 75b1b52bdc8967a45a2d3917a23dee23, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5795606752931735677, guid: 75b1b52bdc8967a45a2d3917a23dee23, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
