@@ -36,7 +36,6 @@ public class CheckpointManager : MonoBehaviour
 
     public static CheckpointManager instance { get; private set; }
     Vector3 playerSpawnPoint;
-    Transform player => gamemanager.instance.player.transform;
 
     int checkpointID;
 
@@ -58,27 +57,27 @@ public class CheckpointManager : MonoBehaviour
             return; 
         }
         instance = this;
-        var spawnPos = GameObject.FindGameObjectWithTag("StartPosition");
-        if (spawnPos != null)
-            playerSpawnPoint = spawnPos.transform.position;
-        else
-            playerSpawnPoint = Vector3.zero;
     }
 
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
-        MovePlayerToLastSpawn();
     }
 
     private void OnLevelWasLoaded(int level)
     {
         SetScoreText();
+        var spawnPos = GameObject.FindGameObjectWithTag("StartPosition");
+        if (spawnPos != null)
+            playerSpawnPoint = spawnPos.transform.position;
+        else
+            playerSpawnPoint = gamemanager.instance.player.transform.position;
+        MovePlayerToLastSpawn();
     }
 
     void MovePlayerToLastSpawn()
     {
-        player.position = playerSpawnPoint;
+        gamemanager.instance.player.transform.position = playerSpawnPoint;
     }
 
     public void ResetToLastCheckpoint()
